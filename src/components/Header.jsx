@@ -190,13 +190,11 @@ export default function Header() {
 
                 {/* HR at bottom of header */}
                 <hr className="border-1 h-[0px] bg-black" />
-            </header>
 
-            {/* Professional Mega Menu Dropdown - Outside header for full width */}
-            {
-                isMegaMenuOpen && (
+                {/* Professional Mega Menu Dropdown - Inside header for scroll-with-page */}
+                {isMegaMenuOpen && (
                     <div
-                        className="fixed left-0 right-0 top-[110px] mega-menu-container shadow-xl border-t-4 border-[#0B2C54] z-40"
+                        className="absolute left-1/2 -translate-x-1/2 top-full w-screen max-w-[1200px] mega-menu-container shadow-xl border-t-4 border-[#0B2C54] z-40"
                         onMouseLeave={() => setIsMegaMenuOpen(false)}
                     >
                         {/* Mega Menu Grid */}
@@ -220,8 +218,8 @@ export default function Header() {
                             ))}
                         </div>
                     </div>
-                )
-            }
+                )}
+            </header>
         </>
     );
 }
