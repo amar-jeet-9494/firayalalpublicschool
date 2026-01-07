@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #059669;
+  --primary-dark: #047857;
+  --secondary: #f59e0b;
+  --secondary-dark: #d97706;
 }
 
 @theme inline {
@@ -12,15 +16,305 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  margin: 0;
+  /* padding: 0; */
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Times New Roman', Times, serif;
+  overflow-x: hidden;
+}
+
+/* Vertical Writing Mode for Admission Enquiry */
+.writing-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+/* Custom Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scroll-indicator {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Bell Icon - pulseGlow Animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 18px rgba(255, 193, 7, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 193, 7, 0.89);
+  }
+}
+
+.fps-notify-bell {
+  width: 55px;
+  height: 55px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  cursor: pointer;
+  border: 3px solid #FFC107;
+  box-shadow: 0 0 18px rgba(255, 193, 7, 0.45);
+  transition: 0.3s ease;
+  position: relative;
+  animation: pulseGlow 2s infinite ease-in-out;
+  text-decoration: none;
+}
+
+.fps-notify-bell:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(255, 193, 7, 0.89);
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s ease-out forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+.animate-scroll-indicator {
+  animation: scroll-indicator 1.5s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Animation Delays */
+.animation-delay-200 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+.animation-delay-400 {
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.animation-delay-600 {
+  animation-delay: 0.6s;
+  opacity: 0;
+}
+
+.animation-delay-800 {
+  animation-delay: 0.8s;
+  opacity: 0;
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #059669, #047857);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #047857, #065f46);
+}
+
+/* Selection Color */
+::selection {
+  background: #059669;
+  color: white;
+}
+
+/* Focus Styles */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 2px;
+}
+
+/* Smooth hover transitions */
+a, button {
+  transition: all 0.3s ease;
+}
+
+/* Glass Effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Hero Video Overlay Pattern */
+.hero-pattern {
+  background-image: radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* ============================================
+   MEGA MENU PROFESSIONAL STYLING
+   ============================================ */
+
+/* Mega Menu Container */
+.mega-menu {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    padding: 40px 60px;
+    background: #ffffff;
+}
+
+/* Each Column */
+.menu-column {
+    position: relative;
+    padding-left: 20px;
+}
+
+/* Yellow Divider Line */
+.menu-column:not(:first-child)::before {
+    content: "";
+    position: absolute;
+    left: -20px;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: #F2B705;       /* Yellow color */
+}
+
+/* Heading */
+.menu-column h3 {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0B2C54;            /* Dark Blue Text */
+    margin-bottom: 20px;
+}
+
+/* List Box Container */
+.menu-column ul {
+    background: #fff;
+    box-shadow: 0px 10px 18px rgba(0, 0, 0, 0.12);
+    padding: 10px 0;
+    border-radius: 6px;
+    list-style: none;
+    margin: 0;
+}
+
+/* List Items */
+.menu-column ul li {
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #06244B;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 1px solid #edf0f4;
+}
+
+/* Remove border for last */
+.menu-column ul li:last-child {
+    border-bottom: none;
+}
+
+/* Hover */
+.menu-column ul li:hover {
+    background: #F4FAFF;
+    color: #0A61C9;
+    transition: 0.3s;
+}
+
+/* Animation for menu appearance */
+@keyframes megaMenuFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.mega-menu-container {
+    animation: megaMenuFadeIn 0.25s ease-out forwards;
 }
