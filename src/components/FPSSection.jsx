@@ -18,8 +18,8 @@ export default function FPSSection() {
         <section className="fps-section">
             {/* LEFT CONTENT */}
             <div className="fps-left">
-                <h1>Firayalal Public School</h1>
-                <h2>Nurturing Future Leaders</h2>
+                <h2>Firayalal Public School</h2>
+                <h3>Nurturing Future Leaders</h3>
 
                 <p>
                     Firayalal Public School (F.P.S.) is a co-educational CBSE School in Ranchi

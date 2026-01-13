@@ -93,8 +93,7 @@ export default function HeroBanner() {
                     }`}
             >
                 <source
-                    src="https://powderblue-rabbit-866978.hostingersite.com/wp-content/uploads/2025/12/Firayalal-Public-School-Ranchi.mp4"
-                    type="video/mp4"
+                    src="https://firayalalpublicschool.edu.in/wp-content/uploads/2026/01/Firayalal-Public-School-Ranchi.mp4" type="video/mp4"
                 />
                 Your browser does not support the video tag.
             </video>
@@ -106,10 +105,10 @@ export default function HeroBanner() {
             <div
                 className="absolute bottom-[5%] left-1/2 -translate-x-1/2 text-center text-white z-[30] w-[90%] animate-fade-in-up"
             >
-                <h2 className="text-2xl md:text-3xl font-semibold m-0">
+                <h2 className="text-2xl md:text-2xl font-semibold m-0">
                     Welcome to
                 </h2>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold my-2 md:my-4">
+                <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold my-2 md:my-4">
                     Firayalal Public School
                 </h1>
                 <h3 className="text-xl md:text-2xl font-medium my-1 md:my-2 tracking-widest">

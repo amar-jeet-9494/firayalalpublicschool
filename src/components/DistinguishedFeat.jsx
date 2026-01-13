@@ -143,12 +143,12 @@ export default function DistinguishedFeat() {
                                             <span className="featured-badge">Featured</span>
                                         )}
                                     </div>
-                                    <div className="slide-caption">
+                                    {/* <div className="slide-caption">
                                         <p className="caption-title">{item.title}</p>
                                         {item.date && (
                                             <span className="caption-date">{item.date}</span>
                                         )}
-                                    </div>
+                                    </div> */}
                                 </div>
                             ))}
                         </div>
@@ -167,7 +167,7 @@ export default function DistinguishedFeat() {
                 </div>
 
                 {/* Dots Navigation */}
-                <div className="slider-dots">
+                {/* <div className="slider-dots">
                     {Array.from({ length: maxIndex + 1 }).map((_, index) => (
                         <button
                             key={index}
@@ -176,7 +176,7 @@ export default function DistinguishedFeat() {
                             aria-label={`Go to slide ${index + 1}`}
                         />
                     ))}
-                </div>
+                </div> */}
             </div>
         </section>
     );

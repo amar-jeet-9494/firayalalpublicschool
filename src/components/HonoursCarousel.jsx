@@ -163,7 +163,7 @@ export default function HonoursCarousel() {
                     onMouseLeave={() => setIsAutoPlaying(true)}
                 >
                     {/* Left Arrow */}
-                    <button
+                    {/* <button
                         className="coverflow-arrow left"
                         onClick={handlePrev}
                         aria-label="Previous slide"
@@ -171,7 +171,7 @@ export default function HonoursCarousel() {
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M15 19l-7-7 7-7" />
                         </svg>
-                    </button>
+                    </button> */}
 
                     {/* 3D Carousel */}
                     <div className="coverflow-stage">
@@ -211,7 +211,7 @@ export default function HonoursCarousel() {
                     </div>
 
                     {/* Right Arrow */}
-                    <button
+                    {/* <button
                         className="coverflow-arrow right"
                         onClick={handleNext}
                         aria-label="Next slide"
@@ -219,11 +219,11 @@ export default function HonoursCarousel() {
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M9 5l7 7-7 7" />
                         </svg>
-                    </button>
+                    </button> */}
                 </div>
 
                 {/* Dots Navigation */}
-                <div className="coverflow-dots">
+                {/* <div className="coverflow-dots">
                     {honoursData.map((_, index) => (
                         <button
                             key={index}
@@ -232,7 +232,7 @@ export default function HonoursCarousel() {
                             aria-label={`Go to slide ${index + 1}`}
                         />
                     ))}
-                </div>
+                </div> */}
             </div>
         </section>
     );
