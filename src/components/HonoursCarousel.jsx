@@ -91,7 +91,7 @@ export default function HonoursCarousel() {
         setActiveIndex(index);
     };
 
-    // Calculate position and transform for each slide
+    // Calculate position and transform for each slide - Only 3 visible (center + 2 tilted sides)
     const getSlideStyle = (index) => {
         const diff = index - activeIndex;
         const normalizedDiff = ((diff + totalSlides) % totalSlides);
@@ -105,34 +105,34 @@ export default function HonoursCarousel() {
         let zIndex = 0;
 
         if (actualDiff === 0) {
-            // Center slide
+            // Center slide - Large and prominent
             translateX = 0;
-            translateZ = 0;
+            translateZ = 50;
             rotateY = 0;
             scale = 1;
             opacity = 1;
             zIndex = 10;
-        } else if (actualDiff === 1 || actualDiff === -1) {
-            // Adjacent slides
-            translateX = actualDiff * 340;
-            translateZ = -100;
-            rotateY = actualDiff * -45;
-            scale = 0.85;
-            opacity = 0.9;
+        } else if (actualDiff === 1) {
+            // Right side slide - tilted away
+            translateX = 520;
+            translateZ = -150;
+            rotateY = -35;
+            scale = 0.75;
+            opacity = 1;
             zIndex = 5;
-        } else if (actualDiff === 2 || actualDiff === -2) {
-            // Further slides
-            translateX = actualDiff * 280;
-            translateZ = -200;
-            rotateY = actualDiff * -50;
-            scale = 0.7;
-            opacity = 0.6;
-            zIndex = 2;
+        } else if (actualDiff === -1) {
+            // Left side slide - tilted away
+            translateX = -520;
+            translateZ = -150;
+            rotateY = 35;
+            scale = 0.75;
+            opacity = 1;
+            zIndex = 5;
         } else {
-            // Hidden slides
-            translateX = actualDiff > 0 ? 600 : -600;
-            translateZ = -400;
-            rotateY = actualDiff > 0 ? -60 : 60;
+            // Hidden slides - completely off screen
+            translateX = actualDiff > 0 ? 1200 : -1200;
+            translateZ = -300;
+            rotateY = actualDiff > 0 ? -45 : 45;
             scale = 0.5;
             opacity = 0;
             zIndex = 0;
@@ -142,7 +142,7 @@ export default function HonoursCarousel() {
             transform: `translateX(${translateX}px) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
             opacity,
             zIndex,
-            transition: 'all 0.5s ease-out',
+            transition: 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
         };
     };
 

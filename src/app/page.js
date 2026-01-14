@@ -7,6 +7,11 @@ import EducationSection from '@/components/EducationSection';
 import EventsSection from '@/components/EventsSection';
 import DistinguishedFeat from '@/components/DistinguishedFeat';
 import HonoursCarousel from '@/components/HonoursCarousel';
+import FacultyCarousel from '@/components/FacultyCarousel';
+import AnnualDayGallery from '@/components/AnnualDayGallery';
+import SilverJubilee from '@/components/SilverJubilee';
+import Testimonials from '@/components/Testimonials';
+import SixPillars from '@/components/SixPillars';
 
 export default function Home() {
   return (
@@ -32,6 +37,25 @@ export default function Home() {
 
       {/* Principal's Message Section */}
       <PrincipalMessage />
+
+      {/* Faculty Carousel Section */}
+      <FacultyCarousel />
+
+      {/* Annual Day Gallery Section */}
+      <AnnualDayGallery />
+
+      {/* Silver Jubilee Section */}
+      <SilverJubilee />
+
+      {/* Testimonials Section */}
+      <Testimonials />
+
+      {/* Six Pillars - Our Approach Section */}
+      <SixPillars />
     </>
   );
 }
+
+
+
+
