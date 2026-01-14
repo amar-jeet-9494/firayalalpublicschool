@@ -12,6 +12,7 @@ import AnnualDayGallery from '@/components/AnnualDayGallery';
 import SilverJubilee from '@/components/SilverJubilee';
 import Testimonials from '@/components/Testimonials';
 import SixPillars from '@/components/SixPillars';
+import AcademicStages from '@/components/AcademicStages';
 
 export default function Home() {
   return (
@@ -52,6 +53,9 @@ export default function Home() {
 
       {/* Six Pillars - Our Approach Section */}
       <SixPillars />
+
+      {/* Academic Stages Section */}
+      <AcademicStages />
     </>
   );
 }

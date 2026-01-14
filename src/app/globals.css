@@ -3416,3 +3416,129 @@ a, button {
         font-size: 11px;
     }
 }
+
+/* ============================================
+   ACADEMIC STAGES SECTION
+   ============================================ */
+
+.academic-stages-section {
+    /* background: linear-gradient(90deg, #273DA4 0%, #10385C 100%) !important; */
+    padding: 0 !important;
+    overflow: hidden;
+    width: 100%;
+}
+
+.academic-stages-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 2 !important;
+    min-height: 200px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.stage-card {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    padding: 40px 30px !important;
+    text-align: center;
+    text-decoration: none !important;
+    color: #fff !important;
+    transition: all 0.3s ease;
+    position: relative;
+    min-height: 200px;
+}
+
+/* Different shades for each card */
+.stage-card-1 {
+    background: #273DA4!important;
+}
+
+.stage-card-2 {
+    background: #10385C!important;
+}
+
+.stage-card-3 {
+    background: #10385C!important;
+}
+
+.stage-card-4 {
+    background: #10385C!important;
+}
+
+.stage-card:hover {
+    background: #273DA4 !important;
+    transform: translateY(-3px);
+}
+
+.stage-card::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 20%;
+    height: 60%;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.stage-card:last-child::after {
+    display: none;
+}
+
+.stage-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    font-family: 'Times New Roman', Times, serif;
+    color: #fff;
+}
+
+.stage-subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+    opacity: 0.9;
+    font-family: 'Times New Roman', Times, serif;
+    color: #fff;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .academic-stages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .stage-card::after {
+        display: none;
+    }
+
+    .stage-card {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .stage-card:nth-child(odd) {
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+@media (max-width: 576px) {
+    .academic-stages-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stage-card {
+        padding: 30px 20px;
+        min-height: 150px;
+        border-right: none !important;
+    }
+
+    .stage-title {
+        font-size: 20px;
+    }
+
+    .stage-subtitle {
+        font-size: 13px;
+    }
+}
