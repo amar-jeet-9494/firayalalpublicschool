@@ -17,6 +17,8 @@ import SuccessStories from '@/components/SuccessStories';
 import ForParents from '@/components/ForParents';
 import FAQ from '@/components/FAQ';
 import LifeAtFPS from '@/components/LifeAtFPS';
+import BusTrackingAdmission from '@/components/BusTrackingAdmission';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
@@ -72,6 +74,12 @@ export default function Home() {
 
       {/* Life at F.P.S. Gallery Section */}
       <LifeAtFPS />
+
+      {/* Bus Tracking & Admission Section */}
+      <BusTrackingAdmission />
+
+      {/* Footer Section */}
+      <Footer />
     </>
   );
 }
