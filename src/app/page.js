@@ -13,6 +13,10 @@ import SilverJubilee from '@/components/SilverJubilee';
 import Testimonials from '@/components/Testimonials';
 import SixPillars from '@/components/SixPillars';
 import AcademicStages from '@/components/AcademicStages';
+import SuccessStories from '@/components/SuccessStories';
+import ForParents from '@/components/ForParents';
+import FAQ from '@/components/FAQ';
+import LifeAtFPS from '@/components/LifeAtFPS';
 
 export default function Home() {
   return (
@@ -56,9 +60,23 @@ export default function Home() {
 
       {/* Academic Stages Section */}
       <AcademicStages />
+
+      {/* Success Stories Section */}
+      <SuccessStories />
+
+      {/* For Parents Section */}
+      <ForParents />
+
+      {/* FAQ Section */}
+      <FAQ />
+
+      {/* Life at F.P.S. Gallery Section */}
+      <LifeAtFPS />
     </>
   );
 }
+
+
 
 
 

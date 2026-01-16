@@ -3542,3 +3542,1062 @@ a, button {
         font-size: 13px;
     }
 }
+
+/* ============================================
+   SUCCESS STORIES SECTION
+   ============================================ */
+
+.success-stories-section {
+    background-color: #FDFAF5;
+    padding: 40px 40px;
+    overflow: hidden;
+}
+
+.success-stories-container {
+    max-width: 1440px;
+    margin: 0 auto; 
+}
+
+/* Title */
+.success-stories-title {
+    font-size: 30px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #10385C;
+    margin-bottom: 25px;
+    line-height: 1.5;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+/* Bullet Points List */
+.success-stories-list {
+    list-style: disc;
+    padding-left: 25px;
+    margin-bottom: 35px;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.success-stories-list li {
+    margin-bottom: 12px;
+    line-height: 1.6;
+}
+
+.success-stories-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Highlighted text - Gold/Yellow */
+.success-highlight {
+    color: #F7B500 !important;
+    font-weight: 600;
+}
+
+/* Additional specificity for nested strong elements */
+.success-stories-list li strong .success-highlight,
+.success-stories-list li .success-highlight {
+    color: #F7B500 !important;
+}
+
+/* ============================================
+   SWIPER-STYLE CAROUSEL
+   ============================================ */
+
+/* Swiper Wrapper */
+.success-swiper-wrapper {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    --swiper-theme-color: #000;
+    --swiper-navigation-size: 44px;
+    --swiper-pagination-bullet-size: 6px;
+    --swiper-pagination-bullet-horizontal-gap: 6px;
+}
+
+.success-swiper-container {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Swiper Track - Horizontal slide container */
+.success-swiper-track {
+    display: flex;
+    width: 100%;
+    will-change: transform;
+    transition-timing-function: ease-in-out;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+/* Individual Slide */
+.success-swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    position: relative;
+    transition-property: transform;
+}
+
+/* Slide Inner - Figure container */
+.success-swiper-slide-inner {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Slide Image */
+.success-swiper-slide-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+    border-radius: 10px 10px 10px 10px;
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 992px) {
+    .success-stories-section {
+        padding: 30px 30px;
+    }
+
+    .success-stories-title {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 768px) {
+    .success-stories-section {
+        padding: 25px 20px;
+    }
+
+    .success-stories-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .success-stories-list {
+        font-size: 14px;
+        padding-left: 20px;
+        margin-bottom: 25px;
+    }
+
+    .success-stories-list li {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .success-stories-section {
+        padding: 20px 15px;
+    }
+
+    .success-stories-title {
+        font-size: 18px;
+    }
+
+    .success-stories-list {
+        font-size: 13px;
+    }
+}
+
+/* ============================================
+   FOR PARENTS SECTION
+   ============================================ */
+
+.for-parents-section {
+    width: 100%;
+    position: relative;
+    overflow: visible;
+    font-family: "Times New Roman", serif;
+}
+
+/* Top and Bottom Navy Borders */
+.for-parents-top-border,
+.for-parents-bottom-border {
+    width: 100%;
+    /* height: 8px; */
+    background-color: #10385C;
+}
+
+/* Main Wrapper - Split Layout */
+.for-parents-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 120px;
+    position: relative;
+}
+
+/* Left Panel - Cream/Light Background */
+.for-parents-left {
+    flex: 0 0 40%;
+    background-color: #10385C;
+    padding-left: 10%;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+}
+
+.for-parents-heading {
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 10px 0;
+    line-height: 1.2;
+}
+
+.for-parents-description {
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+    line-height: 1.5;
+    max-width: 280px;
+}
+
+/* Right Panel - Navy Blue Background */
+.for-parents-right {
+    flex: 1;
+    background-color: #005DAB;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 20px 40px 20px 60px;
+}
+
+/* Cards Container */
+.for-parents-cards-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    position: relative;
+    z-index: 2;
+    /* Shift cards slightly left to overlap with cream panel */
+    margin-left: -80px;
+}
+
+/* Individual Card */
+.for-parents-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 18px 16px;
+    width: 100px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.for-parents-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Icon */
+.for-parents-card-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: #10385C;
+}
+
+.for-parents-card-icon svg {
+    width: 32px;
+    height: 32px;
+}
+
+/* Card Label */
+.for-parents-card-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #10385C;
+    margin: 0;
+    line-height: 1.3;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* ============================================
+   RESPONSIVE STYLES - FOR PARENTS
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .for-parents-cards-container {
+        margin-left: -60px;
+        gap: 12px;
+    }
+
+    .for-parents-card {
+        width: 90px;
+        min-width: 90px;
+        padding: 15px 12px;
+    }
+}
+
+@media (max-width: 992px) {
+    .for-parents-wrapper {
+        flex-direction: column;
+    }
+
+    .for-parents-left {
+        flex: none;
+        width: 100%;
+        padding: 25px 30px;
+        text-align: center;
+    }
+
+    .for-parents-description {
+        max-width: 100%;
+    }
+
+    .for-parents-right {
+        padding: 25px 20px;
+        justify-content: center;
+    }
+
+    .for-parents-cards-container {
+        margin-left: 0;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .for-parents-card {
+        width: calc(33.333% - 15px);
+        min-width: 100px;
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 768px) {
+    .for-parents-heading {
+        font-size: 24px;
+    }
+
+    .for-parents-cards-container {
+        gap: 12px;
+    }
+
+    .for-parents-card {
+        width: calc(33.333% - 12px);
+        min-width: 90px;
+        padding: 14px 10px;
+    }
+
+    .for-parents-card-icon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .for-parents-card-label {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .for-parents-left {
+        padding: 20px;
+    }
+
+    .for-parents-heading {
+        font-size: 20px;
+    }
+
+    .for-parents-description {
+        font-size: 13px;
+    }
+
+    .for-parents-right {
+        padding: 20px 15px;
+    }
+
+    .for-parents-cards-container {
+        gap: 10px;
+    }
+
+    .for-parents-card {
+        width: calc(50% - 10px);
+        min-width: 80px;
+        padding: 12px 8px;
+    }
+
+    .for-parents-card-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .for-parents-card-label {
+        font-size: 9px;
+    }
+}
+
+/* ============================================
+   FAQ SECTION - EXACT REPLICA
+   ============================================ */
+
+.faq-section {
+    width: 100%;
+    position: relative;
+    font-family: "Times New Roman", serif;
+}
+
+/* Top and Bottom Navy Borders */
+.faq-top-border,
+.faq-bottom-border {
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(90deg, #10385C 35%, #005DAB 65%);
+}
+
+/* Main Wrapper - Side by Side Layout */
+.faq-wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    min-height: 480px;
+    background-color: rgba(0, 123, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    gap: 30px;
+    padding: 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* Left Panel - Background Image */
+.faq-image-panel {
+    flex: 1;
+    border-radius: 10px;
+    background-image: url("https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Frequently-Asked-Questions.avif");
+    background-position: top right;
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 400px;
+    min-width: 300px;
+}
+
+/* Right Panel - FAQ Content */
+.faq-content-panel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    z-index: 1;
+}
+
+.faq-heading {
+    font-size: 30px;
+    font-weight: 600;
+    color: #10385C;
+    margin: 0 0 20px 0;
+    line-height: 1.2;
+    /* font-style: italic; */
+    /* font-family: "Times New Roman", serif; */
+}
+
+/* ============================================
+   ACCORDION STYLES - ELEMENTOR REPLICA
+   ============================================ */
+
+.faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+.faq-accordion-item {
+    border-bottom: 1px solid #d5d8dc;
+    background-color: transparent;
+    width: 100%;
+}
+
+.faq-accordion-item:first-child {
+    border-top: 1px solid #d5d8dc;
+}
+
+/* Question Button Styling - CRITICAL: Must be flex row */
+.faq-accordion-title {
+    width: 100%;
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 10px;
+    padding: 10px;
+    background-color: #10385c;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.3s ease;
+    font-family: "Times New Roman", serif;
+    appearance: none;
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.faq-accordion-title:hover {
+    background-color: #10385c;
+}
+
+.faq-accordion-title:focus {
+    outline: none;
+}
+
+/* Icon - On Left with proper sizing */
+.faq-accordion-icon {
+    flex-shrink: 0;
+    flex-grow: 0;
+    width: 15px;
+    height: 15px;
+    min-width: 15px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    color: #FFFDF5;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.faq-accordion-icon svg {
+    width: 15px;
+    height: 15px;
+    display: block;
+}
+
+/* Question Text */
+.faq-accordion-text {
+    flex: 1;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFFDF5;
+    line-height: 1.4;
+    font-family: "Times New Roman", serif;
+    display: inline;
+}
+
+/* Content Panel */
+.faq-accordion-content {
+    padding: 0 10px 10px 35px;
+    overflow: hidden;
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.faq-answer-text {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.7;
+    font-family: "Times New Roman", serif;
+}
+
+.faq-answer-text strong {
+    color: #10385C;
+    font-weight: 700;
+}
+
+.faq-answer-text a {
+    color: #005DAB;
+    text-decoration: underline;
+}
+
+.faq-answer-text a:hover {
+    color: #10385C;
+}
+
+.faq-answer-text ul {
+    margin: 10px 0 0 20px;
+    padding: 0;
+    list-style-type: disc;
+}
+
+.faq-answer-text ul li {
+    margin-bottom: 5px;
+}
+
+.faq-answer-text p {
+    margin: 0 0 10px 0;
+}
+
+/* Open State Styling */
+.faq-accordion-item-open .faq-accordion-title {
+    background-color: #10385c;
+}
+
+.faq-accordion-item-open .faq-accordion-icon {
+    color: #fff;
+}
+
+
+/* ============================================
+   RESPONSIVE STYLES - FAQ
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .faq-wrapper {
+        padding: 30px;
+        gap: 25px;
+    }
+
+    .faq-heading {
+        font-size: 26px;
+    }
+
+    .faq-image-panel {
+        min-height: 350px;
+    }
+}
+
+
+@media (max-width: 992px) {
+    .faq-wrapper {
+        flex-direction: column;
+        padding: 30px 20px;
+    }
+
+    .faq-content-panel {
+        flex: none;
+        width: 100%;
+        order: 2;
+    }
+
+    .faq-image-panel {
+        flex: none;
+        width: 100%;
+        min-height: 300px;
+        order: 1;
+    }
+
+    .faq-heading {
+        font-size: 24px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .faq-wrapper {
+        padding: 25px 15px;
+        gap: 20px;
+    }
+
+    .faq-heading {
+        font-size: 22px;
+        margin-bottom: 15px;
+    }
+
+    .faq-image-panel {
+        min-height: 250px;
+        border-radius: 8px;
+    }
+
+    .e-n-accordion-item-title {
+        padding: 14px 10px;
+    }
+
+    .e-n-accordion-item-title-text {
+        font-size: 14px;
+    }
+
+    .faq-answer-text {
+        font-size: 14px;
+    }
+
+    .e-n-accordion-item-content {
+        padding: 0 10px 14px 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .faq-section {
+        overflow: hidden;
+    }
+
+    .faq-top-border,
+    .faq-bottom-border {
+        height: 5px;
+    }
+
+    .faq-wrapper {
+        padding: 20px 12px;
+        gap: 15px;
+    }
+
+    .faq-heading {
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .faq-image-panel {
+        min-height: 200px;
+    }
+
+    .e-n-accordion-item-title {
+        padding: 12px 8px;
+    }
+
+    .e-n-accordion-item-title-icon {
+        width: 16px;
+        height: 16px;
+        margin-left: 10px;
+    }
+
+    .e-n-accordion-item-title-icon svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    .e-n-accordion-item-title-text {
+        font-size: 13px;
+    }
+
+    .faq-answer-text {
+        font-size: 13px;
+    }
+
+    .e-n-accordion-item-content {
+        padding: 0 8px 12px 8px;
+    }
+}
+
+
+/* ============================================
+   LIFE AT F.P.S. SECTION - TABBED GALLERY
+   ============================================ */
+
+.life-at-fps-section {
+    width: 100%;
+    position: relative;
+    background: linear-gradient(135deg, rgba(6, 147, 227, 0.15) 0%, rgba(155, 81, 224, 0.1) 100%);
+    padding: 40px;
+    overflow: hidden;
+}
+
+/* Waves Pattern Divider at Top */
+.life-at-fps-waves {
+    position: relative;
+    width: 100%;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.life-at-fps-waves svg {
+    width: 100%;
+    height: 20px;
+    display: block;
+}
+
+.waves-path {
+    fill: #10385C;
+}
+
+/* Section Heading */
+.life-at-fps-heading {
+    font-size: 42px;
+    font-weight: 700;
+    color: #10385C;
+    text-align: center;
+    margin: 40px 0 30px 0;
+    font-family: "Times New Roman", serif;
+}
+
+/* Tabs Wrapper - Horizontal Scrolling Container */
+.life-at-fps-tabs-wrapper {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto 30px;
+    padding: 20px 20px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #F7B500 rgba(0, 0, 0, 0.1);
+}
+
+.life-at-fps-tabs-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
+.life-at-fps-tabs-wrapper::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 3px;
+}
+
+.life-at-fps-tabs-wrapper::-webkit-scrollbar-thumb {
+    background: #F7B500;
+    border-radius: 3px;
+}
+
+/* Tabs Navigation */
+.life-at-fps-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    min-width: max-content;
+    padding: 0;
+    margin: 0;
+}
+
+.life-at-fps-tab {
+    position: relative;
+    padding: 12px 20px;
+    background-color: #f7b500;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    font-family: "Times New Roman", serif;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.life-at-fps-tab::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: transparent;
+    transition: background-color 0.3s ease;
+}
+
+.life-at-fps-tab:hover {
+    color: #10385C;
+}
+
+.life-at-fps-tab.active {
+    background-color: #F7B500;
+    color: #10385C;
+    font-weight: 600;
+}
+
+.life-at-fps-tab.active::after {
+    background-color: #10385C;
+}
+
+/* Tab Content Area */
+.life-at-fps-content {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Gallery Container */
+.life-at-fps-gallery {
+    display: none;
+}
+
+.life-at-fps-gallery.active {
+    display: block;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gallery Grid - Justified Layout */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+/* Individual Gallery Item */
+.gallery-item {
+    position: relative;
+    width: 100%;
+    padding-top: 66.67%; /* 3:2 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.gallery-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.4s ease;
+}
+
+/* Hover Overlay */
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(16, 56, 92, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .gallery-image {
+    transform: scale(1.1);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-title {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    padding: 10px 15px;
+    font-family: "Times New Roman", serif;
+    max-width: 90%;
+    line-height: 1.4;
+}
+
+/* ============================================
+   RESPONSIVE STYLES - LIFE AT F.P.S.
+   ============================================ */
+
+@media (max-width: 1200px) {
+    .life-at-fps-heading {
+        font-size: 36px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+}
+
+@media (max-width: 992px) {
+    .life-at-fps-heading {
+        font-size: 32px;
+        margin: 30px 0 25px 0;
+    }
+
+    .life-at-fps-tabs-wrapper {
+        justify-content: flex-start;
+    }
+
+    .life-at-fps-tabs {
+        justify-content: flex-start;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .life-at-fps-section {
+        padding: 0 0 40px 0;
+    }
+
+    .life-at-fps-heading {
+        font-size: 28px;
+        margin: 25px 0 20px 0;
+    }
+
+    .life-at-fps-tab {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .gallery-item {
+        border-radius: 6px;
+    }
+
+    .gallery-title {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    .life-at-fps-section {
+        padding: 0 0 30px 0;
+    }
+
+    .life-at-fps-heading {
+        font-size: 24px;
+        margin: 20px 0 15px 0;
+    }
+
+    .life-at-fps-tabs-wrapper {
+        padding: 0 10px;
+        margin-bottom: 20px;
+    }
+
+    .life-at-fps-tab {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .life-at-fps-content {
+        padding: 0 10px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+
+    .gallery-item {
+        border-radius: 4px;
+    }
+
+    .gallery-title {
+        font-size: 11px;
+        padding: 5px 8px;
+    }
+}
+
