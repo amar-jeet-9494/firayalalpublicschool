@@ -5548,3 +5548,1898 @@ a, button {
     }
 }
 
+
+/* ============================================
+   ADMISSION PROCESS PAGE STYLES
+   ============================================ */
+
+/* Curtain Reveal Animation */
+@keyframes curtainRevealUp {
+    0% {
+        clip-path: inset(100% 0 0 0);
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+/* Hero Section - Matching Reference Exactly */
+.admission-hero.breadcrumb-animated {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 40px;
+    background-image: url("https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/image2.avif");
+    background-position: top left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: scroll;
+    clip-path: inset(0px 0px 0%);
+    animation: curtainRevealUp 2.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    overflow: visible;
+}
+
+/* Overlay for Hero */
+.admission-hero.breadcrumb-animated::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(11, 47, 79, 0.5);
+    z-index: 0;
+}
+
+/* Inner Content Container */
+.admission-hero-inner {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 500px;
+    margin: 0;
+    padding-top: 60px;
+}
+
+/* Notification Bell for Admission */
+.admission-bell {
+    margin-bottom: 15px;
+}
+
+/* Admission Process Title */
+.admission-title {
+    font-size: 36px;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 15px;
+    font-family: "Times New Roman", serif;
+    line-height: 1.2;
+}
+
+/* Tagline */
+.admission-tagline {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    line-height: 1.6;
+}
+
+/* Content Section */
+.admission-content-section {
+    background: #fff;
+    padding: 60px 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.admission-content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.admission-content-text {
+    font-size: 17px;
+    line-height: 1.8;
+    color: #333;
+    margin: 0 0 20px;
+}
+
+.admission-content-text strong {
+    color: #0B2C54;
+    font-weight: 700;
+}
+
+/* ============================================
+   ADMISSION PROCESS RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 992px) {
+    .admission-hero.breadcrumb-animated {
+        min-height: 70vh;
+        padding: 30px;
+    }
+
+    .admission-hero-inner {
+        max-width: 100%;
+    }
+
+    .admission-title {
+        font-size: 30px;
+    }
+
+    .admission-content-section {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admission-hero.breadcrumb-animated {
+        min-height: 60vh;
+        padding: 25px;
+    }
+
+    .admission-hero-inner {
+        padding-top: 80px;
+    }
+
+    .admission-title {
+        font-size: 26px;
+    }
+
+    .admission-tagline {
+        font-size: 14px;
+    }
+
+    .admission-content-section {
+        padding: 30px 20px;
+    }
+
+    .admission-content-text {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admission-hero.breadcrumb-animated {
+        min-height: 50vh;
+        padding: 20px;
+    }
+
+    .admission-title {
+        font-size: 22px;
+    }
+
+    .admission-tagline {
+        font-size: 13px;
+    }
+}
+
+
+/* ============================================
+   ADMISSION STATS & FORM SECTION
+   ============================================ */
+
+.admission-stats-form-section {
+    position: relative;
+    background: transparent;
+    padding: 0 40px 60px;
+}
+
+.admission-stats-form-container {
+    display: flex;
+    gap: 20px;
+    max-width: 1440px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+/* Left Column - Stats */
+.admission-stats-column {
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-top: 40px;
+}
+
+/* Silver Jubilee Banner */
+.silver-jubilee-banner {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.jubilee-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.stat-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e5e9f0;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.stat-number {
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 8px;
+}
+
+.stat-number.blue {
+    color: #0077cc;
+}
+
+.stat-number.yellow {
+    color: #F7B500;
+}
+
+.stat-title {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Right Column - Form */
+.admission-form-column {
+    flex: 0 0 60%;
+    padding-left: 30px;
+    margin-top: -300px;
+}
+
+.enquiry-form-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 35px 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.form-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0B2C54;
+    margin: 0 0 25px;
+    text-align: center;
+}
+
+/* Form Styles */
+.enquiry-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-field.full-width {
+    width: 100%;
+}
+
+.form-field label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: #999;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    outline: none;
+    border-color: #0077cc;
+    box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.1);
+}
+
+.form-field select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 40px;
+}
+
+.form-field textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Submit Button */
+.form-submit {
+    margin-top: 10px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 16px 30px;
+    background: linear-gradient(135deg, #0B2C54 0%, #1a4a7a 100%);
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(11, 44, 84, 0.3);
+}
+
+.submit-btn:hover {
+    background: linear-gradient(135deg, #1a4a7a 0%, #0B2C54 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(11, 44, 84, 0.4);
+}
+
+/* ============================================
+   ADMISSION STATS & FORM RESPONSIVE
+   ============================================ */
+
+@media (max-width: 992px) {
+    .admission-stats-form-section {
+        margin-top: -200px;
+        padding: 0 30px 50px;
+    }
+
+    .admission-stats-form-container {
+        flex-direction: column;
+    }
+
+    .admission-stats-column {
+        flex: none;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .admission-form-column {
+        flex: none;
+        width: 100%;
+        padding-left: 0;
+        margin-top: 30px;
+    }
+
+    .stat-number {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admission-stats-form-section {
+        margin-top: -150px;
+        padding: 0 20px 40px;
+    }
+
+    .enquiry-form-card {
+        padding: 25px 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stat-number {
+        font-size: 32px;
+    }
+
+    .stat-title {
+        font-size: 12px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admission-stats-form-section {
+        margin-top: -100px;
+        padding: 0 15px 30px;
+    }
+
+    .stats-grid {
+        gap: 10px;
+    }
+
+    .stat-card {
+        padding: 20px 15px;
+    }
+
+    .stat-number {
+        font-size: 28px;
+    }
+
+    .enquiry-form-card {
+        padding: 20px 15px;
+    }
+
+    .submit-btn {
+        padding: 14px 20px;
+        font-size: 14px;
+    }
+}
+
+
+/* ============================================
+   ADMISSION JOURNEY SECTION
+   ============================================ */
+
+.admission-journey-section {
+    background-color: #FDFAF5;
+    padding: 40px;
+    position: relative;
+    overflow: visible;
+}
+
+.admission-journey-container {
+    display: flex;
+    gap: 0;
+    max-width: 1440px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+/* Left Side - Image Slideshow Grid */
+.journey-images-grid {
+    flex: 0 0 40%;
+    display: flex;
+    gap: 0;
+}
+
+/* Large left image box */
+.slide-box-large {
+    flex: 0 0 50%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px 0 0 12px;
+}
+
+/* Right column with 2 stacked images */
+.journey-slide-column {
+    flex: 0 0 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* Small image boxes */
+.journey-slide-box {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+}
+
+.slide-box-small {
+    flex: 1;
+}
+
+.slide-box-small:first-child {
+    border-radius: 0 12px 0 0;
+}
+
+.slide-box-small:last-child {
+    border-radius: 0 0 12px 0;
+}
+
+/* Slide images */
+.slide-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.slide-image.active {
+    opacity: 1;
+}
+
+/* Horizontal slide animation */
+.slide-horizontal {
+    transform: translateX(-100%);
+}
+
+.slide-horizontal.active {
+    transform: translateX(0);
+}
+
+/* Vertical slide down animation */
+.slide-vertical-down {
+    transform: translateY(-100%);
+}
+
+.slide-vertical-down.active {
+    transform: translateY(0);
+}
+
+/* Vertical slide up animation */
+.slide-vertical-up {
+    transform: translateY(100%);
+}
+
+.slide-vertical-up.active {
+    transform: translateY(0);
+}
+
+/* Right Side - Content */
+.journey-content {
+    flex: 0 0 60%;
+    padding: 20px 0 20px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.journey-heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0B2C54;
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    text-transform: uppercase;
+}
+
+.journey-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+    margin: 0;
+    text-align: justify;
+    font-family: "Times New Roman", serif;
+}
+
+.journey-text strong {
+    color: #0B2C54;
+    font-weight: 700;
+}
+
+.proceed-admission-btn {
+    display: inline-block;
+    background: #0B2C54;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    width: fit-content;
+    font-family: "Times New Roman", serif;
+}
+
+.proceed-admission-btn:hover {
+    background: #1a4a7a;
+    transform: translateY(-2px);
+}
+
+/* ============================================
+   ADMISSION JOURNEY RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 992px) {
+    .admission-journey-section {
+        padding: 30px;
+    }
+
+    .admission-journey-container {
+        flex-direction: column;
+    }
+
+    .journey-images-grid {
+        flex: none;
+        width: 100%;
+        height: 400px;
+    }
+
+    .journey-content {
+        flex: none;
+        width: 100%;
+        padding: 30px 0 0 0;
+    }
+
+    .journey-heading {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .admission-journey-section {
+        padding: 20px;
+    }
+
+    .journey-images-grid {
+        height: 300px;
+    }
+
+    .journey-heading {
+        font-size: 22px;
+    }
+
+    .journey-text {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .journey-images-grid {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .slide-box-large {
+        flex: none;
+        height: 200px;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .journey-slide-column {
+        flex: none;
+        flex-direction: row;
+    }
+
+    .slide-box-small {
+        height: 150px;
+    }
+
+    .slide-box-small:first-child {
+        border-radius: 0 0 0 12px;
+    }
+
+    .slide-box-small:last-child {
+        border-radius: 0 0 12px 0;
+    }
+
+    .journey-heading {
+        font-size: 20px;
+    }
+
+    .proceed-admission-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+/* ============================================
+   SCHOOL TRANSPORT SECTION
+   ============================================ */
+
+.school-transport-section {
+    background-color: rgba(0, 123, 255, 0.05);
+    padding: 40px;
+    position: relative;
+    overflow: visible;
+}
+
+.transport-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 30px;
+    max-width: 1140px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+/* Video Container */
+.transport-video-container {
+    flex: 0 0 45%;
+    position: relative;
+    min-height: 500px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.transport-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Content Side */
+.transport-content {
+    flex: 0 0 55%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.transport-heading {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0B2C54;
+    margin: 0;
+    font-family: "Times New Roman", serif;
+}
+
+.transport-intro {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+    margin: 0;
+    text-align: justify;
+    font-family: "Times New Roman", serif;
+}
+
+.transport-intro strong {
+    color: #0B2C54;
+}
+
+.transport-link {
+    color: #0B2C54;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.transport-link:hover {
+    color: #1a4a7a;
+}
+
+/* Accordion Styles */
+.transport-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.accordion-item {
+    border: none;
+    overflow: hidden;
+}
+
+.accordion-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #0B2C54 0%, #1a4a7a 100%);
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Times New Roman", serif;
+    text-align: left;
+}
+
+.accordion-header:hover {
+    background: linear-gradient(135deg, #1a4a7a 0%, #0B2C54 100%);
+}
+
+.accordion-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: #F7B500;
+}
+
+.accordion-title {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.accordion-content {
+    max-height: 0;
+    padding: 0 20px;
+    overflow: hidden;
+    background: #fff;
+    transition: max-height 0.4s ease, padding 0.4s ease;
+}
+
+.accordion-item.open .accordion-content {
+    max-height: 1000px;
+    padding: 20px;
+    border: 1px solid #e5e9f0;
+    border-top: none;
+}
+
+.accordion-list {
+    margin: 0;
+    padding: 0 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.accordion-list li {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #333;
+    font-family: "Times New Roman", serif;
+}
+
+.accordion-list li strong {
+    color: #0B2C54;
+}
+
+.accordion-list li a {
+    color: #0077cc;
+    text-decoration: underline;
+}
+
+.accordion-list li em {
+    font-style: italic;
+    color: #666;
+}
+
+/* ============================================
+   SCHOOL TRANSPORT RESPONSIVE
+   ============================================ */
+
+@media (max-width: 992px) {
+    .school-transport-section {
+        padding: 30px;
+    }
+
+    .transport-container {
+        flex-direction: column;
+    }
+
+    .transport-video-container {
+        flex: none;
+        width: 100%;
+        min-height: 300px;
+    }
+
+    .transport-content {
+        flex: none;
+        width: 100%;
+    }
+
+    .transport-heading {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .school-transport-section {
+        padding: 20px;
+    }
+
+    .transport-video-container {
+        min-height: 250px;
+    }
+
+    .transport-heading {
+        font-size: 24px;
+    }
+
+    .accordion-header {
+        padding: 12px 16px;
+    }
+
+    .accordion-title {
+        font-size: 14px;
+    }
+
+    .accordion-list li {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .transport-video-container {
+        min-height: 200px;
+    }
+
+    .transport-heading {
+        font-size: 22px;
+    }
+
+    .accordion-header {
+        padding: 10px 14px;
+    }
+
+    .accordion-title {
+        font-size: 13px;
+    }
+}
+
+
+/* ============================================
+   TRANSPORT INCHARGE SECTION
+   ============================================ */
+
+.transport-incharge-section {
+    background-color: #fff;
+    padding: 40px;
+    position: relative;
+}
+
+.incharge-container {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    max-width: 1140px;
+    margin: 0 auto;
+    align-items: flex-start;
+}
+
+/* Left Content */
+.incharge-content {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.incharge-heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0b2c54;
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    text-transform: uppercase;
+}
+
+/* Person Card */
+.incharge-person {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.person-image-wrapper {
+    flex-shrink: 0;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #0B2C54;
+}
+
+.person-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.person-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.person-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+    font-family: "Times New Roman", serif;
+}
+
+.person-name a {
+    color: #0B2C54;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+.person-name a:hover {
+    color: #F7B500;
+}
+
+.person-contact {
+    font-size: 14px;
+    color: #333;
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.phone-icon,
+.email-icon {
+    font-size: 14px;
+}
+
+/* Features List */
+.incharge-features {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.feature-item {
+    font-size: 15px;
+    color: #333;
+    font-family: "Times New Roman", serif;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.5;
+}
+
+.feature-bullet {
+    color: #0B2C54;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+/* Buttons */
+.incharge-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.incharge-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #0B2C54 0%, #1a4a7a 100%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-family: "Times New Roman", serif;
+}
+
+.incharge-btn:hover {
+    background: linear-gradient(135deg, #1a4a7a 0%, #0B2C54 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(11, 44, 84, 0.3);
+}
+
+/* Right Image */
+.incharge-image-container {
+    flex: 0 0 50%;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.incharge-main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+/* ============================================
+   TRANSPORT INCHARGE RESPONSIVE
+   ============================================ */
+
+@media (max-width: 992px) {
+    .transport-incharge-section {
+        padding: 30px;
+    }
+
+    .incharge-container {
+        flex-direction: column;
+    }
+
+    .incharge-content,
+    .incharge-image-container {
+        flex: none;
+        width: 100%;
+    }
+
+    .incharge-heading {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .transport-incharge-section {
+        padding: 20px;
+    }
+
+    .incharge-person {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .person-info {
+        align-items: center;
+    }
+
+    .incharge-heading {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .incharge-features {
+        text-align: left;
+    }
+
+    .incharge-buttons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .person-image-wrapper {
+        width: 80px;
+        height: 80px;
+    }
+
+    .incharge-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .incharge-heading {
+        font-size: 20px;
+    }
+}
+
+
+/* ============================================
+   FOUNDATIONAL STAGE SECTION
+   ============================================ */
+
+.foundational-stage-section {
+    position: relative;
+    background-color: rgba(0, 123, 255, 0.05);
+    padding: 40px;
+}
+
+.foundational-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1440px;
+    margin: 0 auto;
+    align-items: stretch;
+    border: 1px solid #0B2C54;
+    border-radius: 10px;
+    padding: 20px;  
+}
+
+/* Left Content */
+.foundational-content {
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.foundational-heading {
+    color: #0B2C54;
+    margin: 0;
+}
+
+.foundational-text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.foundational-text p {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.7;
+    margin: 0;
+    font-family: "Times New Roman", serif;
+}
+
+.foundational-btn {
+    display: inline-block;
+    width: fit-content;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #0B2C54 0%, #1a4a7a 100%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-family: "Times New Roman", serif;
+}
+
+.foundational-btn:hover {
+    background: linear-gradient(135deg, #1a4a7a 0%, #0B2C54 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(11, 44, 84, 0.3);
+}
+
+/* Right Image Grid */
+.foundational-image-grid {
+    flex: 0 0 55%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 15px;
+    min-height: 400px;
+}
+
+.foundational-slide-box {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.foundational-slide-horizontal {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    height: 100%;
+}
+
+.foundational-slide-column {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+}
+
+.foundational-slide-vertical {
+    flex: 1;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.foundational-slide-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.foundational-slide-image.active {
+    opacity: 1;
+}
+
+/* Slide Transitions */
+.foundational-slide-image.slide-down {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.foundational-slide-image.slide-up {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* ============================================
+   FOUNDATIONAL STAGE RESPONSIVE
+   ============================================ */
+
+@media (max-width: 992px) {
+    .foundational-stage-section {
+        padding: 30px;
+    }
+
+    .foundational-container {
+        flex-direction: column;
+    }
+
+    .foundational-content,
+    .foundational-image-grid {
+        flex: none;
+        width: 100%;
+    }
+
+    .foundational-image-grid {
+        min-height: 350px;
+    }
+
+    .foundational-heading {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 768px) {
+    .foundational-stage-section {
+        padding: 20px;
+    }
+
+    .foundational-image-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        min-height: 500px;
+    }
+
+    .foundational-slide-horizontal {
+        grid-column: 1 / 2;
+        height: 200px;
+    }
+
+    .foundational-slide-column {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        flex-direction: row;
+        height: 180px;
+    }
+
+    .foundational-heading {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .foundational-content {
+        align-items: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .foundational-slide-column {
+        flex-direction: column;
+        height: 300px;
+    }
+
+    .foundational-heading {
+        font-size: 20px;
+    }
+
+    .foundational-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ============================================
+   FOUNDATIONAL STAGE PAGE - HERO SECTION
+   ============================================ */
+
+.foundational-hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 40px;
+    overflow: hidden;
+    animation: curtainRevealUp 2.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+    clip-path: inset(0px 0px 0%);
+}
+
+/* Curtain Reveal Animation */
+@keyframes curtainRevealUp {
+    from {
+        clip-path: inset(100% 0 0 0);
+    }
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+/* Background Slideshow Container */
+.foundational-hero-slideshow {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+/* Individual Slide */
+.foundational-hero-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.foundational-hero-slide.active {
+    opacity: 1;
+}
+
+/* Dark Overlay */
+.foundational-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(8, 18, 34, 0.55);
+    z-index: 2;
+}
+
+/* Hero Content */
+.foundational-hero-content {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Title */
+.foundational-hero-title {
+    font-family: 'Times New Roman', Georgia, serif;
+    font-size: 50px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+    line-height: 1.2;
+}
+
+/* Hero Subtitle */
+.foundational-hero-subtitle {
+    font-family: 'Times New Roman', Georgia, serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 0 25px 0;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    line-height: 1.4;
+    opacity: 0.95;
+}
+
+/* Hero Button */
+.foundational-hero-btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #10385c 0%, #1f4f7e 100%);
+    color: #ffffff;
+    padding: 14px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0px 20px 0px 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(16, 56, 92, 0.4);
+    border: none;
+    cursor: pointer;
+}
+
+.foundational-hero-btn:hover {
+    background: linear-gradient(135deg, #1f4f7e 0%, #10385c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(16, 56, 92, 0.5);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    .foundational-hero-section {
+        min-height: 70vh;
+        padding: 30px;
+    }
+
+    .foundational-hero-title {
+        font-size: 44px;
+    }
+
+    .foundational-hero-subtitle {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .foundational-hero-section {
+        min-height: 60vh;
+        padding: 25px;
+        align-items: flex-end;
+    }
+
+    .foundational-hero-title {
+        font-size: 36px;
+    }
+
+    .foundational-hero-subtitle {
+        font-size: 16px;
+    }
+
+    .foundational-hero-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .foundational-hero-section {
+        min-height: 55vh;
+        padding: 20px;
+    }
+
+    .foundational-hero-title {
+        font-size: 28px;
+    }
+
+    .foundational-hero-subtitle {
+        font-size: 14px;
+    }
+
+    .foundational-hero-content {
+        max-width: 100%;
+    }
+}
+
+/* ============================================
+   FOUNDATIONAL ADMISSION INFO SECTION
+   ============================================ */
+
+.foundational-admission-info {
+    background: #ffffff;
+    padding: 40px;
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+/* Main Card Container */
+.admission-info-card {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* Section Headings */
+.admission-info-heading {
+    font-size: 26px;
+    font-weight: 700;
+    color: #0B2C54;
+    margin: 0 0 25px 0;
+    font-family: "Times New Roman", serif;
+    text-transform: uppercase;
+}
+
+/* Table Controls */
+.table-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.entries-control {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    color: #333;
+}
+
+.entries-select {
+    padding: 6px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background: #fff;
+    cursor: pointer;
+}
+
+.search-control {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-input {
+    padding: 10px 40px 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 250px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.search-input:focus {
+    border-color: #0B2C54;
+}
+
+.search-input::placeholder {
+    color: #999;
+}
+
+.search-icon {
+    position: absolute;
+    right: 12px;
+    width: 16px;
+    height: 16px;
+    color: #999;
+    pointer-events: none;
+}
+
+/* Age Table */
+.age-table-container {
+    overflow-x: auto;
+    margin-bottom: 20px;
+}
+
+.age-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.age-table thead tr {
+    background: linear-gradient(135deg, #0B2C54 0%, #1a4a7a 100%);
+}
+
+.age-table th {
+    padding: 15px 20px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.age-table th span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-icon {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.age-table tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+}
+
+.age-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.age-table td {
+    padding: 15px 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Table Footer */
+.table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.showing-info {
+    font-size: 14px;
+    color: #666;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pagination-btn {
+    padding: 8px 16px;
+    border: none;
+    background: #f0f0f0;
+    color: #333;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #0B2C54;
+    color: #fff;
+}
+
+.pagination-btn.active {
+    background: #0B2C54;
+    color: #fff;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Procedure Section */
+.procedure-section {
+    margin-bottom: 30px;
+}
+
+.procedure-text {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 15px;
+    font-family: "Times New Roman", serif;
+}
+
+.procedure-link {
+    color: #0693e3;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.procedure-link:hover {
+    color: #0B2C54;
+    text-decoration: underline;
+}
+
+.procedure-note {
+    font-size: 15px;
+    font-style: italic;
+    color: #cf2e2e;
+    margin-top: 20px;
+    font-family: "Times New Roman", serif;
+}
+
+/* Two Column Layout */
+.info-two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* Info Cards */
+.info-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 25px;
+}
+
+.info-card-heading {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0B2C54;
+    margin: 0 0 20px 0;
+    font-family: "Times New Roman", serif;
+    text-transform: uppercase;
+}
+
+.documents-list {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.documents-list li {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: "Times New Roman", serif;
+}
+
+/* Admission Notice Card */
+.admission-notice-card {
+    border-left: 4px solid #F7B500;
+    background: #FFFDF5;
+}
+
+.admission-notice-heading {
+    color: #0B2C54;
+}
+
+.admission-notice-list {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.admission-notice-list li {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 10px;
+    font-family: "Times New Roman", serif;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .info-two-columns {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .foundational-admission-info {
+        padding: 20px;
+    }
+
+    .admission-info-card {
+        padding: 20px;
+    }
+
+    .table-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .search-input {
+        width: 100%;
+    }
+
+    .table-footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .admission-info-heading {
+        font-size: 22px;
+    }
+
+    .info-card-heading {
+        font-size: 18px;
+    }
+}

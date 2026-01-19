@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Header() {
+export default function Header({ isTransparent = false }) {
     const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
 
     // Mega Menu Data - Exact content from reference image
@@ -18,8 +18,8 @@ export default function Header() {
             { name: 'School Leaders', href: '/about/leaders' },
         ],
         'ADMISSION': [
-            { name: 'Admission Process', href: '/admission/process' },
-            { name: 'Foundational Stage | Balvatika II (Earlier referred as Nursery) to Grade II', href: '/admission/foundational' },
+            { name: 'Admission Process', href: '/admission-process' },
+            { name: 'Foundational Stage | Balvatika II (Earlier referred as Nursery) to Grade II', href: '/foundational-stage' },
             { name: 'Elementary Stage | Grade III to V', href: '/admission/elementary' },
             { name: 'Middle Stage | Grade VI to VIII', href: '/admission/middle' },
             { name: 'Secondary Stage | Grade IX and XI', href: '/admission/secondary' },
@@ -33,7 +33,7 @@ export default function Header() {
             { name: 'Achievements', href: '/academics/achievements' },
             { name: 'Class wise Enrollment', href: '/academics/enrollment' },
             { name: 'Book List', href: '/academics/books' },
-            { name: 'Academic Calendar', href: '/academics/calendar' },
+            { name: 'Academic Calendar', href: '/academic-calendar' },
             { name: 'FPS ASSESSMENT PLAN', href: '/academics/assessment' },
             { name: 'Annual Sports', href: '/academics/sports' },
             { name: 'House Systems', href: '/academics/house-systems' },
@@ -52,9 +52,26 @@ export default function Header() {
         ],
     };
 
+    // Header background style based on isTransparent prop
+    const headerBgClass = isTransparent
+        ? 'bg-transparent'
+        : 'bg-[#fff]';
+
+    const headerPositionClass = isTransparent
+        ? 'absolute top-0 left-0 right-0 z-50'
+        : 'relative';
+
+
+    const headerLogoClass = isTransparent
+        ? '/1-3 (1).avif'
+        : '/2-5.avif';
+    // Divider and text color based on background
+    const dividerColor = isTransparent ? 'bg-black' : 'bg-white/30';
+    const hamburgerColor = isTransparent ? 'bg-black' : 'bg-white';
+
     return (
         <>
-            <header className="absolute top-0 left-0 right-0 z-50 bg-transparent">
+            <header className={`${headerPositionClass} ${headerBgClass}`}>
                 <div className="w-full">
                     <div className="max-w-7xl mx-auto flex items-center justify-between h-[110px] px-4">
 
@@ -63,7 +80,7 @@ export default function Header() {
                             <Link href="/" className="flex items-center">
                                 <div className="relative block shrink-0 w-[285px] h-[95px] -mt-6">
                                     <Image
-                                        src="/1-3 (1).avif"
+                                        src={headerLogoClass}
                                         alt="Firayalal Public School Logo"
                                         className="object-contain drop-shadow-md"
                                         fill
@@ -73,7 +90,7 @@ export default function Header() {
                             </Link>
 
                             {/* DIVIDER AFTER LOGO */}
-                            <div className="hidden lg:block w-px h-25 bg-black"></div>
+                            <div className={`hidden lg:block w-px h-25 ${dividerColor}`}></div>
                         </div>
 
                         {/* RIGHT SECTION */}
@@ -108,7 +125,7 @@ export default function Header() {
                             </nav>
 
                             {/* DIVIDER */}
-                            <div className="hidden lg:block w-px h-10 bg-black"></div>
+                            <div className={`hidden lg:block w-px h-10 ${dividerColor}`}></div>
 
                             {/* SOCIAL ICONS */}
                             <div className="hidden lg:flex items-center gap-2">
@@ -180,16 +197,16 @@ export default function Header() {
 
                             {/* MOBILE MENU */}
                             <button className="lg:hidden flex flex-col gap-1.5 p-2 rounded-lg hover:bg-black/10 transition">
-                                <span className="w-7 h-[3px] bg-black rounded"></span>
-                                <span className="w-7 h-[3px] bg-black rounded"></span>
-                                <span className="w-7 h-[3px] bg-black rounded"></span>
+                                <span className={`w-7 h-[3px] ${hamburgerColor} rounded`}></span>
+                                <span className={`w-7 h-[3px] ${hamburgerColor} rounded`}></span>
+                                <span className={`w-7 h-[3px] ${hamburgerColor} rounded`}></span>
                             </button>
                         </div>
                     </div>
                 </div>
 
                 {/* HR at bottom of header */}
-                <hr className="border-1 h-[0px] bg-black" />
+                <hr className={`border-1 h-[0px] ${isTransparent ? 'bg-black' : 'bg-white/20'}`} />
 
                 {/* Professional Mega Menu Dropdown - Inside header for scroll-with-page */}
                 {isMegaMenuOpen && (
