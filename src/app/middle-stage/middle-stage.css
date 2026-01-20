@@ -1,0 +1,534 @@
+/* ============================================
+   MIDDLE STAGE PAGE STYLES
+   ============================================ */
+
+/* Hero Section */
+.middle-hero-section {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    display: flex;
+    align-items: end;
+    overflow: hidden;
+}
+
+.middle-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.middle-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(11, 44, 84, 0.8) 0%, rgba(16, 56, 92, 0.7) 100%);
+    z-index: 1;
+}
+
+.middle-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    max-width: 800px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.middle-hero-title {
+    font-size: 50px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+    font-family: "Times New Roman", serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.middle-hero-subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 30px 0;
+    font-family: "Times New Roman", serif;
+    letter-spacing: 1px;
+}
+
+.middle-hero-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, #F7B500 0%, #e5a600 100%);
+    color: #0B2C54;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0px 20px 0px 20px;
+    transition: all 0.3s ease;
+    font-family: "Times New Roman", serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(247, 181, 0, 0.4);
+}
+
+.middle-hero-btn:hover {
+    background: linear-gradient(135deg, #e5a600 0%, #F7B500 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(247, 181, 0, 0.5);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Content Section */
+.middle-content-section {
+    background: #ffffff;
+    padding: 40px 20px;
+}
+
+.middle-error,
+.middle-loading {
+    max-width: 1140px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 40px;
+}
+
+.middle-error p {
+    color: #cf2e2e;
+    font-size: 18px;
+}
+
+.middle-loading p {
+    color: #666;
+    font-size: 18px;
+}
+
+/* WordPress Content Styles */
+.middle-content-section .wordpress-content {
+    max-width: 1140px;
+    margin: 0 auto;
+    font-family: "Times New Roman", serif;
+    line-height: 1.7;
+    color: #333;
+}
+
+/* Handle Elementor containers */
+.middle-content-section .wordpress-content .elementor-element,
+.middle-content-section .wordpress-content .e-con,
+.middle-content-section .wordpress-content .e-con-inner {
+    max-width: 100%;
+}
+
+/* Headings */
+.middle-content-section .wordpress-content h1,
+.middle-content-section .wordpress-content h2,
+.middle-content-section .wordpress-content h3,
+.middle-content-section .wordpress-content h4,
+.middle-content-section .wordpress-content h5,
+.middle-content-section .wordpress-content h6 {
+    color: #0B2C54;
+    font-family: "Times New Roman", serif;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: 1.3;
+}
+
+.middle-content-section .wordpress-content h2 {
+    font-size: 28px;
+    margin-top: 5px;
+}
+
+.middle-content-section .wordpress-content h3 {
+    font-size: 22px;
+    margin-top: 30px;
+}
+
+/* Paragraphs */
+.middle-content-section .wordpress-content p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Links */
+.middle-content-section .wordpress-content a {
+    color: #0693e3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.middle-content-section .wordpress-content a:hover {
+    color: #0B2C54;
+    text-decoration: underline;
+}
+
+/* Tables */
+.middle-content-section .wordpress-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.middle-content-section .wordpress-content thead tr {
+    background: linear-gradient(135deg, #0B2C54 0%, #1a4a7a 100%);
+}
+
+.middle-content-section .wordpress-content th {
+    padding: 15px 20px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.middle-content-section .wordpress-content tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+.middle-content-section .wordpress-content tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.middle-content-section .wordpress-content td {
+    padding: 15px 20px;
+    text-align: center;
+    color: #333;
+}
+
+/* Lists */
+.middle-content-section .wordpress-content ul,
+.middle-content-section .wordpress-content ol {
+    padding-left: 25px;
+    margin-bottom: 20px;
+}
+
+.middle-content-section .wordpress-content li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Images in content */
+.middle-content-section .wordpress-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Button styles for content */
+.middle-content-section .wordpress-content .elementor-button {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #F7B500 0%, #e5a600 100%);
+    color: #0B2C54;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0px 20px 0px 20px;
+    transition: all 0.3s ease;
+}
+
+.middle-content-section .wordpress-content .elementor-button:hover {
+    transform: translateY(-2px);
+}
+
+/* Elementor container styles */
+.middle-content-section .wordpress-content .e-con-full {
+    padding: 20px 0;
+}
+
+/* Elementor heading styles */
+.middle-content-section .wordpress-content .elementor-heading-title {
+    color: #0B2C54;
+    font-family: "Times New Roman", serif;
+}
+
+/* Elementor text editor styles */
+.middle-content-section .wordpress-content .elementor-widget-text-editor {
+    margin-bottom: 20px;
+}
+
+/* DataTables styling override */
+.middle-content-section .wordpress-content .ekit_table,
+.middle-content-section .wordpress-content .dataTable {
+    width: 100% !important;
+}
+
+.middle-content-section .wordpress-content .dt-container {
+    margin: 20px 0;
+}
+
+.middle-content-section .wordpress-content .dt-search input,
+.middle-content-section .wordpress-content .dt-length select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .middle-hero-section {
+        height: 60vh;
+        min-height: 400px;
+    }
+
+    .middle-hero-title {
+        font-size: 32px;
+    }
+
+    .middle-hero-subtitle {
+        font-size: 14px;
+    }
+
+    .middle-content-section {
+        padding: 40px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .middle-hero-title {
+        font-size: 28px;
+    }
+
+    .middle-hero-subtitle {
+        font-size: 13px;
+    }
+}
+
+/* ============================================
+   ABOUT MIDDLE STAGE SECTION
+   ============================================ */
+
+.middle-about-section {
+    position: relative;
+    background-color: rgba(0, 123, 255, 0.05);
+    padding: 40px;
+}
+
+.middle-about-container {
+    display: flex;
+    flex-direction: row;
+    max-width: 1440px;
+    margin: 0 auto;
+    align-items: stretch;
+    border: 1px solid #0B2C54;
+    border-radius: 10px;
+    padding: 20px;
+    gap: 40px;
+}
+
+/* Left Content */
+.middle-about-content {
+    flex: 0 0 45%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.middle-about-heading {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0B2C54;
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    text-transform: uppercase;
+}
+
+.middle-about-text {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.middle-about-text p {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.7;
+    margin: 0;
+    font-family: "Times New Roman", serif;
+    text-align: justify;
+}
+
+.middle-about-text strong {
+    color: #0B2C54;
+    font-weight: 700;
+}
+
+.middle-about-btn {
+    display: inline-block;
+    width: fit-content;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #0B2C54 0%, #1a4a7a 100%);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-family: "Times New Roman", serif;
+}
+
+.middle-about-btn:hover {
+    background: linear-gradient(135deg, #1a4a7a 0%, #0B2C54 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(11, 44, 84, 0.3);
+}
+
+/* Right Image Grid */
+.middle-image-grid {
+    flex: 0 0 50%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    gap: 15px;
+    min-height: 400px;
+}
+
+.middle-slide-box {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.middle-slide-horizontal {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    height: 100%;
+}
+
+.middle-slide-column {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+}
+
+.middle-slide-vertical {
+    flex: 1;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.middle-slide-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.middle-slide-image.active {
+    opacity: 1;
+}
+
+/* Slide Transitions */
+.middle-slide-image.slide-down {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.middle-slide-image.slide-up {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+/* ============================================
+   MIDDLE ABOUT SECTION RESPONSIVE
+   ============================================ */
+
+@media (max-width: 992px) {
+    .middle-about-section {
+        padding: 30px;
+    }
+
+    .middle-about-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .middle-about-content,
+    .middle-image-grid {
+        flex: none;
+        width: 100%;
+    }
+
+    .middle-image-grid {
+        min-height: 350px;
+    }
+
+    .middle-about-heading {
+        font-size: 26px;
+    }
+}
+
+@media (max-width: 768px) {
+    .middle-about-section {
+        padding: 20px;
+    }
+
+    .middle-image-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        min-height: 500px;
+    }
+
+    .middle-slide-horizontal {
+        grid-column: 1 / 2;
+        height: 200px;
+    }
+
+    .middle-slide-column {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        flex-direction: row;
+        height: 180px;
+    }
+
+    .middle-about-heading {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .middle-about-content {
+        align-items: center;
+        text-align: center;
+    }
+
+    .middle-about-text p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .middle-slide-column {
+        flex-direction: column;
+        height: 300px;
+    }
+
+    .middle-about-heading {
+        font-size: 20px;
+    }
+
+    .middle-about-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

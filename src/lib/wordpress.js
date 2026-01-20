@@ -117,7 +117,7 @@ export async function getCompletePageById(pageId) {
 export const PAGE_IDS = {
     ELEMENTARY_STAGE: 7206,
     FOUNDATIONAL_STAGE: 3693, // Update with actual ID
-    MIDDLE_STAGE: 7208, // Update with actual ID
+    MIDDLE_STAGE: 7291, // Middle Stage page
     SECONDARY_STAGE: 7260, // Update with actual ID
     // Add more page IDs as needed
 };
