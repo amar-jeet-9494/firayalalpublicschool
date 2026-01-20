@@ -7133,15 +7133,18 @@ a, button {
     padding: 40px;
     max-width: 1140px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 /* Main Card Container */
 .admission-info-card {
     background: #ffffff;
-    border-radius: 8px;
+    border: 1px solid #CCD2EC;
+    border-radius: 20px;
     padding: 30px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    margin-bottom: 0;
 }
 
 /* Section Headings */
@@ -7355,9 +7358,9 @@ a, button {
 /* Info Cards */
 .info-card {
     background: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 25px;
+    border: 1px solid #CCD2EC;
+    border-radius: 20px;
+    padding: 30px;
 }
 
 .info-card-heading {
@@ -7384,6 +7387,7 @@ a, button {
 
 /* Admission Notice Card */
 .admission-notice-card {
+    border: 1px solid #CCD2EC;
     border-left: 4px solid #F7B500;
     background: #FFFDF5;
 }

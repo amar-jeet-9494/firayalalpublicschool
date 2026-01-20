@@ -1,67 +1,100 @@
-'use client';
-
-import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
+import ElementaryStageSection from '@/components/ElementaryStageSection';
+import { getCompletePageById, PAGE_IDS, extractElementorImages, filterWordPressContentFromHeading } from '@/lib/wordpress';
+import './elementary-stage.css';
 
-export default function FoundationalStagePage() {
-    const [currentSlide, setCurrentSlide] = useState(0);
+// This is a Server Component - data is fetched at build/request time
+export const revalidate = 60; // Revalidate every 60 seconds (ISR)
 
-    // Background slideshow images
-    const heroImages = [
-        'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-07-185126.avif',
-        'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-04-at-11.39.18_cfdf197c-2.avif',
-        'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-24-at-09.37.25_ad5baf03.avif',
-        'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-24-at-09.36.29_a4a478db.avif'
-    ];
+// Generate metadata dynamically from WordPress
+export async function generateMetadata() {
+    try {
+        const page = await getCompletePageById(PAGE_IDS.ELEMENTARY_STAGE);
+        return {
+            title: page.title ? `${page.title.replace(/<[^>]*>/g, '')} | Firayalal Public School` : 'Elementary Stage | Firayalal Public School',
+            description: page.excerpt ? page.excerpt.replace(/<[^>]*>/g, '').substring(0, 160) : 'Elementary Stage - Building a Strong Academic and Creative Foundation at Firayalal Public School',
+        };
+    } catch (error) {
+        return {
+            title: 'Elementary Stage | Firayalal Public School',
+            description: 'Elementary Stage - Building a Strong Academic and Creative Foundation',
+        };
+    }
+}
 
-    // Auto-slide effect every 5 seconds
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-        }, 5000);
-        return () => clearInterval(interval);
-    }, [heroImages.length]);
+export default async function ElementaryStagePage() {
+    let pageData = null;
+    let error = null;
+    let slideshowImages = [];
+
+    try {
+        pageData = await getCompletePageById(PAGE_IDS.ELEMENTARY_STAGE);
+        // Extract slideshow images from Elementor data-settings
+        if (pageData?.content) {
+            slideshowImages = extractElementorImages(pageData.content);
+        }
+    } catch (err) {
+        console.error('Failed to fetch Elementary Stage page:', err);
+        error = 'Failed to load page content. Please try again later.';
+    }
+
+    // Use first slideshow image or fallback
+    const heroImage = slideshowImages.find(img => img.type === 'slideshow')?.url 
+        || 'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-26-135312.avif';
 
     return (
         <>
             <Header isTransparent={false} />
             <StickyElements />
 
-            {/* Hero Section with Background Slideshow */}
-            <section className="foundational-hero-section">
-                {/* Background Slideshow */}
-                <div className="foundational-hero-slideshow">
-                    {heroImages.map((img, idx) => (
-                        <div
-                            key={idx}
-                            className={`foundational-hero-slide ${idx === currentSlide ? 'active' : ''}`}
-                            style={{ backgroundImage: `url(${img})` }}
-                        />
-                    ))}
-                </div>
-
-                {/* Dark Overlay */}
-                <div className="foundational-hero-overlay" />
-
-                {/* Hero Content */}
-                <div className="foundational-hero-content">
-                    <h1 className="foundational-hero-title">Foundational Stage</h1>
-                    <h2 className="foundational-hero-subtitle">Building Bright Futures, One Step at a Time</h2>
+            {/* Hero Section with dynamic background from WordPress */}
+            <section className="elementary-hero-section">
+                <div
+                    className="elementary-hero-bg"
+                    style={{ backgroundImage: `url(${heroImage})` }}
+                />
+                <div className="elementary-hero-overlay" />
+                <div className="elementary-hero-content">
+                    <h1 className="elementary-hero-title">Elementary Stage</h1>
+                    <h2 className="elementary-hero-subtitle">Building a Strong Academic and Creative Foundation</h2>
                     <a
                         href="https://floralwhite-newt-933629.hostingersite.com/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="foundational-hero-btn"
+                        className="elementary-hero-btn"
                     >
                         Apply for Admission
                     </a>
                 </div>
             </section>
 
-            {/* Footer */}
+            {/* About Elementary Stage Section with Image Slideshow */}
+            <ElementaryStageSection />
+
+            {/* Dynamic WordPress Content - Filtered to show only from "Minimum Age Required" onwards */}
+            <section className="elementary-content-section">
+                {error ? (
+                    <div className="elementary-error">
+                        <p>{error}</p>
+                    </div>
+                ) : pageData ? (
+                    <div
+                        className="wordpress-content"
+                        dangerouslySetInnerHTML={{ 
+                            __html: filterWordPressContentFromHeading(pageData.content, 'Minimum Age Required') 
+                        }}
+                    />
+                ) : (
+                    <div className="elementary-loading">
+                        <p>Loading content...</p>
+                    </div>
+                )}
+            </section>
+
             <Footer />
         </>
     );
 }
+
