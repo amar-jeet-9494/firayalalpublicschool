@@ -41,8 +41,7 @@ export default async function MiddleStagePage() {
     }
 
     // Use first slideshow image or fallback
-    const heroImage = slideshowImages.find(img => img.type === 'slideshow')?.url 
-        || 'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-26-135312.avif';
+    const heroImage = 'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-07-190158.avif';
 
     return (
         <>
