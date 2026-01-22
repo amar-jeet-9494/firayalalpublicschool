@@ -29,7 +29,7 @@ export default function Header({ isTransparent = false }) {
         'ACADEMICS': [
             { name: 'Curriculum', href: '/curriculum' },
             { name: 'Faculty', href: '/faculty' },
-            { name: 'Academic Results', href: '/academic-results' },
+            { name: 'Academic Results', href: '/results' },
             { name: 'Achievements', href: '/academic-achievements' },
             { name: 'Class wise Enrollment', href: '/class-wise-enrollment' },
             { name: 'Book List', href: '/book-list' },

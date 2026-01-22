@@ -1,0 +1,226 @@
+/* Results Page Specific Styles */
+
+.results-page-container {
+    --fps-primary: #10385c;
+    --fps-accent: #f7b500;
+    --fps-text: #333;
+    --fps-bg-light: #f9f9f9;
+    --tab-active-bg: #10385c;
+    --tab-active-text: #ffffff;
+    --tab-inactive-bg: #f4f4f4;
+    --tab-inactive-text: #555;
+    
+    font-family: "Times New Roman", serif;
+    background-color: #fff;
+    min-height: 100vh;
+}
+
+/* Hero Section (Reusing similar styles to Faculty) */
+.results-hero-section {
+    position: relative;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    color: #fff;
+    overflow: hidden;
+}
+.results-hero-subtitle{
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.results-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-image: url('https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-05-170600.avif'); 
+    z-index: 1;
+}
+
+.results-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #161c2259; /* Deep blue overlay */
+    z-index: 2;
+}
+
+.results-hero-content {
+    position: relative;
+    z-index: 3;
+    /* max-width: 800px; */ 
+    padding: 20px;
+}
+
+.results-hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.results-main-content {
+    max-width: 1440px;
+    margin: 40px auto;
+    padding: 0 40px;
+}
+
+.results-tabs-border{
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* Intro Section */
+.results-intro {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    /* text-align: left; Default is left, ensuring it matches */
+}
+
+.results-intro-heading {
+    color: var(--fps-primary);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.results-intro-text {
+    font-size: 1.1rem;
+    color: var(--fps-text);
+    line-height: 1.6;
+    /* max-width: 900px; */
+}
+
+/* Tabs Navigation */
+.results-tabs-wrapper {
+    margin-bottom: 30px;
+    border-bottom: 2px solid #ddd;
+    overflow-x: auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE 10+ */
+}
+
+.results-tabs-wrapper::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
+.results-tabs-list {
+    display: flex;
+    gap: 10px;
+    padding-bottom: 5px;
+    min-width: max-content;
+}
+
+.results-tab-button {
+    background: none;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--tab-inactive-text);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 5px 5px 0 0;
+    font-family: inherit;
+    position: relative;
+}
+
+.results-tab-button:hover {
+    color: var(--fps-primary);
+    background-color: rgba(16, 56, 92, 0.05);
+}
+
+.results-tab-button.active {
+    color: var(--fps-primary);
+    background-color: #fff;
+    border-bottom: 3px solid var(--fps-accent);
+}
+
+/* Tab Content */
+.results-tab-content-panel {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.results-year-heading {
+    text-align: center;
+    font-size: 2rem;
+    color: var(--fps-primary);
+    margin-bottom: 30px;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.results-year-heading::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--fps-accent);
+    margin: 10px auto 0;
+}
+
+/* Gallery / Grid Layout */
+.results-gallery-grid {
+    display: flex;
+    /* flex-wrap: wrap; */
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.results-gallery-item {
+    flex: 1 1 400px; /* Basis of 400px, grow and shrink */
+    max-width: 600px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.results-gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.results-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .results-hero-title {
+        font-size: 2rem;
+    }
+    
+    .results-tab-button {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+    
+    .results-gallery-item {
+        flex: 1 1 100%;
+    }
+}

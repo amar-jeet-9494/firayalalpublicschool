@@ -104,11 +104,11 @@ export default function Footer() {
                         <ul className="footer-nav-list">
                             <li><a href="/admission-process">Admission Process</a></li>
                             <li><a href="/foundational-stage">Foundational Stage | Balvatika II (Earlier referred as Nursery) to Grade II</a></li>
-                            <li><a href="/elementary-stage/">Elementary Stage | Grade III to V</a></li>
-                            <li><a href="/middle-stage/">Middle Stage | Grade VI to VIII</a></li>
-                            <li><a href="/secondary-stage/">Secondary Stage | Grade IX and XI</a></li>
-                            <li><a href="/fee-structure/">Fee Structure</a></li>
-                            <li><a href="/withdrawal/">Withdrawal Norms</a></li>
+                            <li><a href="/elementary-stage">Elementary Stage | Grade III to V</a></li>
+                            <li><a href="/middle-stage">Middle Stage | Grade VI to VIII</a></li>
+                            <li><a href="/secondary-stage">Secondary Stage | Grade IX and XI</a></li>
+                            <li><a href="/fee-structure">Fee Structure</a></li>
+                            <li><a href="/withdrawal">Withdrawal Norms</a></li>
                         </ul>
                     </div>
 
@@ -116,14 +116,14 @@ export default function Footer() {
                     <div className="footer-column">
                         <h2 className="footer-column-title">Academics</h2>
                         <ul className="footer-nav-list">
-                            <li><a href="https://firayalalpublicschool.edu.in/curriculum/">Curriculum</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/faculty/">Faculty</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/results/">Academic Results</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/achievements/">Achievements</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/class-wise-enrollment/">Class wise Enrollment</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/book-list/">Book List</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/academic-calendar/">Academic Calendar</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/fps-assesment-plan/">FPS ASSESSMENT PLAN</a></li>
+                            <li><a href="/curriculum">Curriculum</a></li>
+                            <li><a href="/faculty">Faculty</a></li>
+                            <li><a href="/results">Academic Results</a></li>
+                            <li><a href="/achievements">Achievements</a></li>
+                            <li><a href="/class-wise-enrollment">Class wise Enrollment</a></li>
+                            <li><a href="/book-list">Book List</a></li>
+                            <li><a href="/academic-calendar">Academic Calendar</a></li>
+                            <li><a href="/fps-assesment-plan">FPS ASSESSMENT PLAN</a></li>
                             <li><a href="https://firayalalpublicschool.edu.in/annual-sports/">Annual Sports</a></li>
                             <li><a href="https://firayalalpublicschool.edu.in/house-systems/">House Systems</a></li>
                         </ul>
