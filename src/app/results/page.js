@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
+import Lightbox from '@/components/Lightbox';
 import './results.css';
 
 // Data extraction from the provided content
@@ -132,9 +133,21 @@ const resultsData = [
 
 export default function ResultsPage() {
     const [activeTab, setActiveTab] = useState(0);
+    const [lightboxOpen, setLightboxOpen] = useState(false);
+    const [lightboxIndex, setLightboxIndex] = useState(0);
 
     const heroImage = 'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-05-170600.avif';
 
+    const openLightbox = (index) => {
+        setLightboxIndex(index);
+        setLightboxOpen(true);
+    };
+
+    const closeLightbox = () => {
+        setLightboxOpen(false);
+    };
+
+    const currentYearImages = resultsData[activeTab].images;
 
     return (
         <div className="results-page-container">
@@ -188,7 +201,11 @@ export default function ResultsPage() {
                                 <h2 className="results-year-heading">{data.heading}</h2>
                                 <div className="results-gallery-grid">
                                     {data.images.map((imgSrc, imgIndex) => (
-                                        <div key={imgIndex} className="results-gallery-item">
+                                        <div 
+                                            key={imgIndex} 
+                                            className="results-gallery-item"
+                                            onClick={() => openLightbox(imgIndex)}
+                                        >
                                             <img 
                                                 src={imgSrc} 
                                                 alt={`${data.heading} - ${imgIndex + 1}`} 
@@ -204,6 +221,13 @@ export default function ResultsPage() {
                 </div>
                 </div>
             </main>
+
+            <Lightbox 
+                isOpen={lightboxOpen} 
+                onClose={closeLightbox} 
+                images={currentYearImages} 
+                initialIndex={lightboxIndex} 
+            />
 
             <Footer />
         </div>
