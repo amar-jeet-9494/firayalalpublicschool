@@ -5473,6 +5473,7 @@ a, button {
     .footer-top-container {
         flex-direction: column;
         text-align: center;
+        align-items: start;
     }
 
     .footer-logo-img {
@@ -5481,10 +5482,14 @@ a, button {
 
     .footer-address-section {
         width: 100%;
+        align-items: start;
     }
 
+    .footer-address-text {
+        text-align: start;
+    }
     .footer-contact-section {
-        align-items: center;
+        /* align-items: start; */
     }
 
     .footer-main {
@@ -5492,13 +5497,14 @@ a, button {
     }
 
     .footer-main-container {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: 2 fr;
         gap: 25px;
     }
 
     .footer-column {
-        text-align: center;
-        align-items: center;
+        text-align: start;
+        align-items: start;
     }
 
     .footer-epfuture-btn {
@@ -5522,7 +5528,7 @@ a, button {
 @media (max-width: 480px) {
     .footer-social-icons {
         flex-wrap: wrap;
-        justify-content: center;
+        justify-content: start;
     }
 
     .footer-social-icon {

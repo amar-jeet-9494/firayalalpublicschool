@@ -24,7 +24,7 @@ export default function Header({ isTransparent = false }) {
             { name: 'Middle Stage | Grade VI to VIII', href: '/middle-stage' },
             { name: 'Secondary Stage | Grade IX and XI', href: '/secondary-stage' },
             { name: 'Fee Structure', href: '/fee-structure' },
-            { name: 'Withdrawal Norms', href: '/withdrawal-norms' },
+            { name: 'Withdrawal Norms', href: '/withdrawal' },
         ],
         'ACADEMICS': [
             { name: 'Curriculum', href: '/curriculum' },

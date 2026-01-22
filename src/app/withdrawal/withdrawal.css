@@ -1,0 +1,395 @@
+/* ============================================
+   WITHDRAWAL PAGE STYLES
+   ============================================ */
+
+/* Curtain Reveal Animation */
+@keyframes curtainRevealUp {
+    0% {
+        clip-path: inset(100% 0px 0% 0px);
+    }
+    100% {
+        clip-path: inset(0px 0px 0% 0px);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hero Section */
+.withdrawal-hero-section {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    animation: curtainRevealUp 2.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+.withdrawal-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+}
+
+.withdrawal-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 18, 34, 0.55);
+    z-index: 1;
+}
+
+.withdrawal-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px;
+    animation: fadeInUp 1s ease-out;
+}
+
+.withdrawal-hero-title {
+    font-size: 50px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0 0 15px 0;
+    font-family: "Times New Roman", serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.withdrawal-hero-subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 30px 0;
+    font-family: "Times New Roman", serif;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.withdrawal-hero-btn {
+    display: inline-block;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, #F7B500 0%, #e5a600 100%);
+    color: #10385C;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 0px 20px 0px 20px;
+    transition: all 0.3s ease;
+    font-family: "Times New Roman", serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(247, 181, 0, 0.4);
+}
+
+.withdrawal-hero-btn:hover {
+    background: linear-gradient(135deg, #e5a600 0%, #F7B500 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(247, 181, 0, 0.5);
+}
+
+/* Content Section */
+.withdrawal-content-section {
+    background: #ffffff;
+    padding: 40px 20px;
+}
+
+.withdrawal-content-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    font-family: "Times New Roman", serif;
+}
+
+/* Main Heading */
+.withdrawal-main-heading {
+    font-size: 32px;
+    font-weight: 700;
+    color: #10385C;
+    text-align: start;
+    margin: 0 0 20px 0;
+    font-family: "Times New Roman", serif;
+}
+
+.withdrawal-intro-text {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.7;
+    text-align: start;
+    margin: 0 auto 40px auto;
+    font-family: "Times New Roman", serif;
+}
+
+.withdrawal-intro-text strong {
+    color: #10385C;
+    font-weight: 700;
+}
+
+/* Info Sections */
+.withdrawal-info-section {
+    margin-bottom: 10px;
+}
+
+.withdrawal-section-heading {
+    font-size: 22px;
+    font-weight: 600;
+    color: #10385C;
+    margin: 0 0 25px 0;
+    font-family: "Times New Roman", serif;
+}
+
+/* Withdrawal Cards */
+.withdrawal-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.withdrawal-card {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #10385C;
+    transition: all 0.3s ease;
+}
+
+.withdrawal-card:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transform: translateX(5px);
+}
+
+.withdrawal-card-number {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #10385C 0%, #1a4a7a 100%);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 50%;
+    font-family: "Times New Roman", serif;
+}
+
+.withdrawal-card-content {
+    flex: 1;
+}
+
+.withdrawal-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #10385C;
+    margin: 0 0 10px 0;
+    font-family: "Times New Roman", serif;
+}
+
+.withdrawal-card-description {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+    margin: 0;
+    font-family: "Times New Roman", serif;
+}
+
+/* Divider */
+.withdrawal-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #ddd, transparent);
+    margin: 30px 0;
+}
+
+/* Withdrawal List */
+.withdrawal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.withdrawal-list li {
+    position: relative;
+    padding: 12px 0 12px 28px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    border-bottom: 1px solid #f0f0f0;
+    font-family: "Times New Roman", serif;
+}
+
+.withdrawal-list li:last-child {
+    border-bottom: none;
+}
+
+.withdrawal-list li::before {
+    content: "•";
+    position: absolute;
+    left: 8px;
+    color: #F7B500;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Important Note */
+.withdrawal-note {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+    border-radius: 8px;
+    border-left: 4px solid #F7B500;
+}
+
+.withdrawal-note-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.withdrawal-note-content {
+    font-size: 15px;
+    color: #333;
+    line-height: 1.6;
+    font-family: "Times New Roman", serif;
+}
+
+.withdrawal-note-content strong {
+    color: #10385C;
+    font-weight: 600;
+}
+
+/* ============================================
+   RESPONSIVE STYLES
+   ============================================ */
+
+@media (max-width: 992px) {
+    .withdrawal-hero-content {
+        padding: 30px;
+    }
+
+    .withdrawal-hero-title {
+        font-size: 42px;
+    }
+
+    .withdrawal-hero-subtitle {
+        font-size: 16px;
+    }
+
+    .withdrawal-main-heading {
+        font-size: 28px;
+    }
+
+    .withdrawal-section-heading {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .withdrawal-hero-section {
+        min-height: 50vh;
+    }
+
+    .withdrawal-hero-content {
+        padding: 20px;
+    }
+
+    .withdrawal-hero-title {
+        font-size: 32px;
+    }
+
+    .withdrawal-hero-subtitle {
+        font-size: 14px;
+    }
+
+    .withdrawal-content-section {
+        padding: 30px 15px;
+    }
+
+    .withdrawal-main-heading {
+        font-size: 24px;
+    }
+
+    .withdrawal-intro-text {
+        font-size: 15px;
+    }
+
+    .withdrawal-section-heading {
+        font-size: 18px;
+    }
+
+    .withdrawal-card {
+        padding: 16px;
+        gap: 15px;
+    }
+
+    .withdrawal-card-number {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .withdrawal-card-title {
+        font-size: 16px;
+    }
+
+    .withdrawal-card-description {
+        font-size: 14px;
+    }
+
+    .withdrawal-list li {
+        font-size: 15px;
+    }
+
+    .withdrawal-note {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .withdrawal-hero-title {
+        font-size: 28px;
+    }
+
+    .withdrawal-hero-subtitle {
+        font-size: 13px;
+    }
+
+    .withdrawal-hero-btn {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+
+    .withdrawal-main-heading {
+        font-size: 22px;
+    }
+
+    .withdrawal-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .withdrawal-list li {
+        font-size: 14px;
+        padding-left: 24px;
+    }
+
+    .withdrawal-note {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

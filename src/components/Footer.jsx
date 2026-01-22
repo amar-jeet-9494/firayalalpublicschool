@@ -35,7 +35,7 @@ export default function Footer() {
                         <div className="footer-address">
                             <a href="https://maps.app.goo.gl/nnboBBPmSLaoCADQ7" target="_blank" rel="noopener noreferrer" className="footer-address-link">
                                 <span className="footer-icon-box">📍</span>
-                                <span>5, Main Road, Near Railway Overbridge Ranchi- 834001 (Jharkhand)</span>
+                                <span className="footer-address-text">5, Main Road, Near Railway Overbridge Ranchi- 834001 (Jharkhand)</span>
                             </a>
                         </div>
                         <div className="footer-social-icons">
@@ -102,13 +102,13 @@ export default function Footer() {
                     <div className="footer-column">
                         <h2 className="footer-column-title">Admission</h2>
                         <ul className="footer-nav-list">
-                            <li><a href="https://firayalalpublicschool.edu.in/admission-process/">Admission Process</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/foundational-stage/">Foundational Stage | Balvatika II (Earlier referred as Nursery) to Grade II</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/elementary-stage/">Elementary Stage | Grade III to V</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/middle-stage/">Middle Stage | Grade VI to VIII</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/secondary-stage/">Secondary Stage | Grade IX and XI</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/fee-structure/">Fee Structure</a></li>
-                            <li><a href="https://firayalalpublicschool.edu.in/withdrawal/">Withdrawal Norms</a></li>
+                            <li><a href="/admission-process">Admission Process</a></li>
+                            <li><a href="/foundational-stage">Foundational Stage | Balvatika II (Earlier referred as Nursery) to Grade II</a></li>
+                            <li><a href="/elementary-stage/">Elementary Stage | Grade III to V</a></li>
+                            <li><a href="/middle-stage/">Middle Stage | Grade VI to VIII</a></li>
+                            <li><a href="/secondary-stage/">Secondary Stage | Grade IX and XI</a></li>
+                            <li><a href="/fee-structure/">Fee Structure</a></li>
+                            <li><a href="/withdrawal/">Withdrawal Norms</a></li>
                         </ul>
                     </div>
 
