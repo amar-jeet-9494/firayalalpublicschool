@@ -10,7 +10,7 @@ export default function Header({ isTransparent = false }) {
     // Mega Menu Data - Exact content from reference image
     const megaMenuItems = {
         'ABOUT FPS': [
-            { name: 'School Overview', href: '/about/overview' },
+            { name: 'School Overview', href: '/school-overview' },
             { name: 'Achievements', href: '/about/achievements' },
             { name: 'Feedback and Suggestions', href: '/about/feedback' },
             { name: 'Get In Touch', href: '/about/contact' },
