@@ -1,119 +1,120 @@
 /* StudentCouncil.css */
 
-.student-council-section {
-    max-width: 1000px; /* Constrain width like a document/sheet */
-    margin: 40px auto;
-    padding: 20px;
-    background-color: #fff;
-    /* Removed heavy shadow to look more like the flat document style, or keep subtle */
-    box-shadow: 0 0 20px rgba(0,0,0,0.05); 
-}
-
-/* Main Header Container - Yellow Box */
-.council-header-container {
-    background-color: #FAFF00; /* Bright Yellow from reference */
-    padding: 15px;
-    margin-bottom: 0; /* Connected to table */
-    border: 2px solid #000;
-    border-bottom: none; /* Merge with table border */
-    text-align: center;
-}
-
-.council-main-title {
-    color: #000;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    margin: 0;
-    font-family: 'Times New Roman', Times, serif; /* Match typical PDF/Doc font */
-}
-
-.table-responsive {
-    overflow-x: auto;
-}
-
-.council-table {
+.student-council-pdf-section {
     width: 100%;
-    border-collapse: collapse;
-    font-family: 'Arial', sans-serif; /* Clean sans-serif for table content */
-    border: 2px solid #000; /* Thick outer border */
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-family: 'Roboto', 'Segoe UI', sans-serif;
 }
 
-/* Header Row - Green */
-.council-table thead {
-    background-color: #61CE70; /* Green from reference */
-    border-bottom: 2px solid #000;
+/* Mock PDF Viewer Container */
+.mock-pdf-viewer {
+    width: 100%;
+    height: 85vh; /* Occupy viewport height */
+    min-height: 700px;
+    background-color: #525659; /* Standard Dark Grey PDF Viewer Background */
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.council-table th {
-    padding: 8px 10px;
-    text-align: left;
-    font-weight: 700;
-    font-size: 1rem;
-    color: #000;
-    border-right: 1px solid #000;
-    text-transform: uppercase;
+/* Toolbar */
+.pdf-toolbar {
+    height: 56px;
+    background-color: #323639; /* Darker toolbar color */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    color: #f1f3f4;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10;
 }
 
-.council-table th:last-child {
-    border-right: none;
+.toolbar-left, .toolbar-center, .toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
-/* Column Widths (Approximate optimization) */
-.th-sno { width: 60px; text-align: center !important; }
-.th-house { width: 150px; }
-.th-resp { width: 250px; }
-.th-name { width: auto; }
-
-/* Table Body */
-.council-table td {
-    padding: 6px 10px;
-    border: 1px solid #000; /* Solid grid lines */
-    color: #000;
-    font-size: 0.95rem;
+.file-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: none; /* Hide on small screens, show on lg */
 }
 
-.council-table tr:nth-child(even) {
-    background-color: #fff; /* Keep white/clean as per PDF */
+@media (min-width: 768px) {
+    .file-name {
+        display: block;
+    }
 }
 
-.council-table tr:hover {
-    background-color: #f0f0f0;
+.tool-btn {
+    background: transparent;
+    border: none;
+    color: #f1f3f4;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
 }
 
-/* Specific Cell Styling */
-.td-center {
-    text-align: center;
+.tool-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
-.td-house {
-    font-weight: 700;
-    text-transform: uppercase;
-    background-color: #fff; /* Ensure white background */
+.page-indicator {
+    background-color: #000;
+    padding: 2px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
 }
 
-.td-resp {
-    text-transform: uppercase;
+.zoom-level {
+    font-size: 0.85rem;
+    min-width: 40px;
 }
 
-.td-name {
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.council-loading, .council-error {
-    text-align: center;
+/* Viewport Area */
+.pdf-viewport {
+    flex: 1;
+    overflow: auto;
     padding: 40px;
-    color: #555;
+    display: flex;
+    justify-content: center;
+    background-color: #525659;
 }
 
-@media (max-width: 768px) {
-    .council-main-title {
-        font-size: 1.2rem;
-    }
-    
-    .council-table th, .council-table td {
-        padding: 6px;
-        font-size: 0.8rem;
-    }
+/* The Paper Sheet */
+.pdf-page-sheet {
+    background-color: #fff;
+    width: 100%;
+    max-width: 850px; /* A4-ish width constraint */
+    min-height: 1100px; /* A4-ish height */
+    padding: 40px 50px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    position: relative;
+    /* Scale transform handled in inline style */
+}
+
+.pdf-footer-mark {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: #999;
 }

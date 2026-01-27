@@ -15,7 +15,7 @@ export default function Header({ isTransparent = false }) {
             { name: 'Feedback and Suggestions', href: '/feedback-and-suggestions' },
             { name: 'Get In Touch', href: '/get-in-touch' },
             { name: 'Photo Gallery', href: '/gallery' },
-            { name: 'School Leaders', href: '/leaders' },
+            { name: 'School Leaders', href: '/school-leaders' },
         ],
         'ADMISSION': [
             { name: 'Admission Process', href: '/admission-process' },
