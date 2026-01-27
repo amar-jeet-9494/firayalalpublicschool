@@ -1,0 +1,184 @@
+/* annual-sports.css */
+
+/* Hero Section Styles based on Elementor reference */
+.elementor-element-648b427 {
+    background-image: url("https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-07-183640.avif");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 80vh; /* --min-height: 80vh */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end; /* --align-items: flex-end */
+    justify-content: flex-start;
+    padding: 40px;
+    position: relative;
+}
+
+/* Overlay */
+.elementor-element-648b427::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 18, 34, 0.55); /* --fps-bg-overlay */
+    z-index: 1;
+}
+
+/* Inner Container */
+.elementor-element-de6d867 {
+    z-index: 2;
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* H1 - Annual Sports */
+.elementor-element-5d62e7c .elementor-heading-title {
+    color: #ffffff; /* --e-global-color-primary from previous page ref or user vars */
+    font-family: "Times New Roman", Sans-serif;
+    font-weight: 700;
+    font-size: 60px; /* Assuming consistent large hero size */
+    text-transform: uppercase;
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* H2 - Description */
+.elementor-element-e47368c .elementor-heading-title {
+    color: #FFFFFF;
+    font-family: "Times New Roman", Sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.6;
+    max-width: 1440px;
+    margin: 0;
+    text-transform: none;
+}
+
+/* Animation */
+.breadcrumb-animated {
+    animation: curtainRevealUp 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes curtainRevealUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main Content Styles */
+.annual-sports-content {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .elementor-element-648b427 {
+        min-height: 60vh;
+        padding: 40px 20px;
+        align-items: center; /* Center on mobile if alignment feels off */
+    }
+
+    .elementor-element-5d62e7c .elementor-heading-title {
+        font-size: 36px;
+    }
+    
+    .elementor-element-e47368c .elementor-heading-title {
+        font-size: 16px;
+    }
+}
+
+/* Sports Table Section */
+.sports-table-section {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    padding: 20px;
+    border: 1px solid #eaeaea;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+.sports-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* Ensure table doesn't squash on small screens */
+    font-family: 'Times New Roman', serif;
+}
+
+.sports-table thead th {
+    background-color: #eaf3fa; /* Light Blue Header */
+    color: #333;
+    font-weight: 700;
+    padding: 15px 10px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    font-size: 1.05rem;
+}
+
+.sports-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #444;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+/* Zebra Striping */
+.sports-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.sports-table tbody tr:hover {
+    background-color: #f0f8ff; /* Light hover blue */
+}
+
+/* Column Specific Styles */
+.th-sno, .td-center {
+    text-align: center !important;
+    width: 60px;
+}
+
+.th-category, .th-students {
+    text-align: center !important;
+}
+
+.td-class {
+    font-weight: 600;
+    color: #10385C; /* Brand Primary */
+    width: 120px;
+}
+
+.td-event {
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .sports-table-section {
+        padding: 10px;
+    }
+    
+    .sports-table thead th, 
+    .sports-table td {
+        padding: 10px 5px;
+        font-size: 0.95rem;
+    }
+}
