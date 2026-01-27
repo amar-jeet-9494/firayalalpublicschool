@@ -55,25 +55,27 @@
 
 .lightbox-prev,
 .lightbox-next {
-    /* position: absolute; */
+    /*position: absolute;  Fixed absolute positioning relative to overlay */
     top: 50%;
     transform: translateY(-50%);
     background: rgba(255, 255, 255, 0.1);
     border: none;
     color: #fff;
-    font-size: 2rem;
+    font-size: 3rem; /* Larger arrows */
     padding: 15px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 10001; /* Above image */
 }
 
 .lightbox-prev:hover,
 .lightbox-next:hover {
     background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .lightbox-prev {

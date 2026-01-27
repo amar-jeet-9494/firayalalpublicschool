@@ -11,11 +11,11 @@ export default function Header({ isTransparent = false }) {
     const megaMenuItems = {
         'ABOUT FPS': [
             { name: 'School Overview', href: '/school-overview' },
-            { name: 'Achievements', href: '/about/achievements' },
-            { name: 'Feedback and Suggestions', href: '/about/feedback' },
-            { name: 'Get In Touch', href: '/about/contact' },
-            { name: 'Photo Gallery', href: '/about/gallery' },
-            { name: 'School Leaders', href: '/about/leaders' },
+            { name: 'Achievements', href: '/achievements' },
+            { name: 'Feedback and Suggestions', href: '/feedback-and-suggestions' },
+            { name: 'Get In Touch', href: '/get-in-touch' },
+            { name: 'Photo Gallery', href: '/gallery' },
+            { name: 'School Leaders', href: '/leaders' },
         ],
         'ADMISSION': [
             { name: 'Admission Process', href: '/admission-process' },

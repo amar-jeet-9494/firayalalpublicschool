@@ -1,0 +1,241 @@
+/* leaders.css */
+
+.school-leaders-container {
+    font-family: "Times New Roman", serif;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+}
+
+/* Hero Section */
+.leaders-hero-section {
+    position: relative;
+    width: 100%;
+    /* 80vh minimum height as per Elementor reference or inferred from similar pages */
+    min-height: 80vh; 
+    display: flex;
+    justify-content: flex-start; /* Aligns content to the left/start */
+    align-items: flex-end; /* Aligns content to the bottom */
+    padding: 60px 40px; /* Adjust padding as needed */
+    
+    background-image: url("https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-04-123220.avif");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* Overlay */
+.leaders-hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 18, 34, 0.5); /* Implied overlay opacity 0.5 */
+    z-index: 1;
+}
+
+/* Content */
+.leaders-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1140px; /* Standard container width */
+    margin: 0 auto;
+    width: 100%;
+    color: #fff;
+    opacity: 0; /* Final state for animation */
+}
+
+.leaders-hero-title {
+    color: #ffd84d; /* Yellow accent */
+    font-size: 4rem; /* Large sizing for H1 */
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.leaders-hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.6;
+    max-width: 800px; /* Readable line length */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Animation */
+@keyframes curtainRevealUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-curtain-reveal {
+    animation: curtainRevealUp 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .leaders-hero-section {
+        min-height: 60vh;
+        padding: 40px 20px;
+        align-items: center; /* Center on mobile? or keep bottom? Keeping bottom for consistency */
+        background-attachment: scroll; /* Better for mobile performance */
+    }
+
+    .leaders-hero-title {
+        font-size: 2.5rem;
+    }
+
+    .leaders-hero-subtitle {
+        font-size: 1.1rem;
+    }
+}
+
+/* =========================================
+   Leader Profiles Content
+   ========================================= */
+
+.leaders-main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 80px;
+}
+
+.leader-profile-section {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    background: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.leader-profile-section:hover {
+    transform: translateY(-5px);
+}
+
+/* Reverse layout for alternating sections */
+.leader-profile-section.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Image Wrapper */
+.leader-image-wrapper {
+    flex: 1;
+    max-width: 400px;
+    position: relative;
+}
+
+.leader-image {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    border: 5px solid #fff;
+}
+
+.leader-image-placeholder {
+    width: 100%;
+    height: 400px; /* Approximate height matching typical portrait */
+    background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-weight: 500;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.05);
+}
+
+/* Info Wrapper */
+.leader-info-wrapper {
+    flex: 1.5;
+}
+
+.leader-role {
+    color: #10385c; /* Primary Blue from reference */
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.leader-role::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background-color: #ffd84d; /* Yellow accent */
+}
+
+.leader-name {
+    font-size: 2.8rem;
+    color: #333;
+    margin-bottom: 25px;
+    font-family: "Times New Roman", serif; /* Enforcing font */
+}
+
+.leader-quote {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #ffd84d;
+    padding-left: 20px;
+    margin-bottom: 25px;
+    line-height: 1.6;
+    background: #fffdf5; /* Light yellow tint bg */
+    padding: 20px;
+    border-radius: 0 10px 10px 0;
+}
+
+.leader-bio {
+    font-size: 1.1rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+/* Responsive for Content */
+@media (max-width: 992px) {
+    .leader-profile-section, 
+    .leader-profile-section.reverse {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .leader-role::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .leader-image-wrapper {
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .leader-image {
+        max-width: 400px; /* Constrain on mobile/tablet so it's not huge */
+        margin: 0 auto;
+    }
+
+    .leader-name {
+        font-size: 2.2rem;
+    }
+}

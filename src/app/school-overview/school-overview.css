@@ -310,13 +310,17 @@ strong[data-start] {
    MISSION & VISION STYLING 
    Replica of the Blue Box Design
 */
+/* 
+   MISSION & VISION STYLING 
+   Replica of the Blue Box Design
+*/
 .fps-mission-container {
-    background-color: #10385c; /* Deep Blue base */
-    background: linear-gradient(135deg, #10385c 0%, #273DA4 100%); /* Slight gradient for depth */
+    background-color: #273DA4; /* Specified User Color */
+    /* background: linear-gradient(135deg, #10385c 0%, #273DA4 100%);  Removed gradient to match strict request */
     color: #fff;
-    padding: 60px;
+    padding: 40px;
     border-radius: 20px;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     box-shadow: 0 15px 40px rgba(0,0,0,0.15);
     position: relative;
     overflow: hidden;
@@ -338,8 +342,6 @@ strong[data-start] {
     color: #fff !important; 
     text-transform: uppercase;
     font-size: 36px;
-    margin-top: 0;
-    margin-bottom: 30px;
     text-align: left;
     background: none;
     border: none;
@@ -387,15 +389,26 @@ strong[data-start] {
    INFO CARDS STYLING 
    Purple, Cyan, Green Cards
 */
+
+/* Container for the 3 cards row */
+.fps-cards-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
 .fps-info-card {
+    flex: 1;
+    min-width: 300px;
     padding: 40px;
     border-radius: 20px;
     color: #fff;
-    margin-bottom: 30px;
+    /* margin-bottom: 30px;  Removed margin bottom as gap handles it, mostly */
     min-height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Align top */
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -410,13 +423,14 @@ strong[data-start] {
 .fps-info-card h3 {
     color: #fff;
     font-size: 24px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-weight: 700;
     position: relative;
     z-index: 2;
-    border-bottom: 2px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(255,255,255,0.3);
     padding-bottom: 15px;
-    display: inline-block;
+    display: block;
+    width: 100%;
 }
 
 .fps-info-card p {
@@ -426,22 +440,40 @@ strong[data-start] {
     position: relative;
     z-index: 2;
     opacity: 0.95;
+    margin: 0;
 }
 
 /* Card Variants */
 .card-purple {
-    background: linear-gradient(135deg, #7F00FF 0%, #E100FF 100%);
-    border-left: 8px solid #4a00e0;
+    background: #9b00fa; /* Fallback */
+    background: linear-gradient(135deg, #ae00ff 0%, #7605d6 100%);
+    border-left: none; /* User might not want border if it's a "card" style like image 2 */
 }
 
+/* If user wants EXACT colors from image:
+   Purple: #aa00ff approx
+   Cyan: #00b0ff approx
+   Green: #00c853 approx
+   Let's keep gradients but make them vibrant.
+*/
+
 .card-cyan {
-    background: linear-gradient(135deg, #00C6FF 0%, #0072FF 100%);
-    border-left: 8px solid #005bb5;
+    background: linear-gradient(135deg, #00d2ff 0%, #007aff 100%);
+    border-left: none;
 }
 
 .card-green {
+    background: linear-gradient(135deg, #2af598 0%, #009efd 100%); /* Wait, green card was green on image */
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); /* Too light? */
     background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-    border-left: 8px solid #0b6623;
+    border-left: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .fps-cards-row {
+        flex-direction: column;
+    }
 }
 
 /* Specific to mimic the image layout */
@@ -468,3 +500,373 @@ strong[data-start] {
 /* Fix Lint: Add standard background-clip */
 /* Fix Lint: Add standard background-clip */
 /* Removed invalid :contains selector */
+
+/* School Timing Styles */
+.school-timing-section {
+    margin-top: 60px;
+    padding: 40px;
+    background-color: #fff; /* Clean background like image */
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    border-top: 5px solid #10385c; /* Accent top border */
+}
+
+.school-timing-section h2 {
+    color: #10385c;
+    font-size: 32px;
+    margin-bottom: 5px;
+    display: block;
+    border-bottom: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.timing-subtitle {
+    color: #5a7184;
+    font-size: 18px;
+    margin-bottom: 25px;
+    font-style: italic;
+    font-family: "Times New Roman", serif;
+}
+
+.timing-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 30px;
+}
+
+.timing-list li {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    color: #333;
+}
+
+.timing-list li::before {
+    content: '•';
+    color: #10385c;
+    font-size: 24px;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.timing-list strong {
+    color: #000;
+    font-weight: 700;
+}
+
+/* Note Box */
+.timing-note-box {
+    display: flex;
+    gap: 20px;
+    background-color: #fff8e1; /* Light yellow bg */
+    border-left: 5px solid #ffc107; /* Gold accent */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 40px;
+    align-items: flex-start;
+}
+
+.note-icon {
+    font-size: 30px;
+    line-height: 1;
+}
+
+.note-content p {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.note-content p:last-child {
+    margin-bottom: 0;
+}
+
+.note-content strong {
+    color: #10385c;
+}
+
+/* Table Styles */
+.timing-table-container {
+    overflow-x: auto;
+}
+
+.school-timing-section table {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+    border-collapse: collapse;
+    border: 1px solid #e0e6ed;
+}
+
+.school-timing-section th {
+    background-color: #e3f2fd; /* Light Blue Header */
+    color: #10385c;
+    padding: 15px 20px;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 700;
+    border-bottom: 2px solid #bbdefb;
+    text-align: left;
+}
+
+.school-timing-section td {
+    padding: 15px 20px;
+    font-size: 16px;
+    color: #333;
+    border-bottom: 1px solid #e0e6ed;
+}
+
+.school-timing-section tr:last-child td {
+    border-bottom: none;
+}
+
+.school-timing-section tr:nth-child(even) {
+    background-color: #fafbfc;
+}
+
+/* 
+   WHAT MAKES US DIFFERENT SECTION 
+   Layout: Flex Row (Left Content + Right Images)
+*/
+.fps-differentiation-section {
+    display: flex;
+    gap: 40px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    align-items: stretch;
+}
+
+/* Left Content Box */
+.fps-diff-content {
+    flex: 1;
+    background-color: #f0f7ff; /* Light Blue BG from image */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #ddecff;
+}
+
+.fps-diff-content h2 {
+    color: #10385c;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(16, 56, 92, 0.1);
+    text-transform: uppercase;
+}
+
+.fps-diff-content ol {
+    padding-left: 20px;
+    margin: 0;
+}
+
+.fps-diff-content li {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+    margin-bottom: 15px;
+    list-style-type: decimal; /* Explicit numbers */
+    padding-left: 10px;
+}
+/* Override generic li styling if needed */
+.fps-diff-content li::before {
+    display: none !important; /* Remove custom bullet */
+}
+
+/* Right Image Collage */
+.fps-diff-images {
+    flex: 1;
+    display: flex;
+    gap: 20px;
+}
+
+/* Large Left Image */
+.diff-img-large {
+    flex: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    min-height: 400px; /* Ensure height */
+}
+
+.diff-img-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.diff-img-large:hover img {
+    transform: scale(1.05);
+}
+
+/* Stacked Column */
+.diff-img-column {
+    flex: 1; /* Less width than large? Or equal. Image suggests split */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.diff-img-small {
+    flex: 1;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.diff-img-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.diff-img-small:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive for Diff Section */
+@media (max-width: 1024px) {
+    .fps-differentiation-section {
+        flex-direction: column;
+    }
+    
+    .fps-diff-images {
+        height: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .fps-diff-images {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .diff-img-large {
+        height: 300px;
+    }
+    
+    .diff-img-small {
+        height: 200px;
+    }
+}
+
+/* 
+   SCHOOL PROFILE GRID SECTION 
+   2x2 Grid Layout
+*/
+.fps-profile-grid-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.fps-profile-card {
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.fps-profile-card:hover {
+    transform: translateY(-5px);
+}
+
+.fps-profile-card h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-family: inherit; /* Times New Roman per global */
+}
+
+/* Light Card Style */
+.card-light {
+    background-color: #fcfcfc;
+    border: 1px solid #eee;
+    color: #333;
+}
+
+.card-light h2 {
+    color: #10385c;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+.card-light p {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #444;
+}
+
+.card-light strong {
+    color: #10385c;
+}
+
+/* Dark Card Style */
+.card-dark {
+    background-color: #273DA4; /* Matching Mission Box Blue */
+    color: #fff;
+    border: none;
+}
+
+.card-dark h2 {
+    color: #fff !important;
+    border-bottom: 2px solid rgba(255,255,255,0.3);
+    padding-bottom: 10px;
+    display: inline-block;
+    -webkit-text-fill-color: initial;
+}
+
+.card-dark ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-dark li {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.card-dark li::before {
+    content: '•';
+    color: #ffd700; /* Gold bullet */
+    position: absolute;
+    left: 0;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.card-dark p {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #fff;
+}
+
+.card-dark strong {
+    color: #ffd700; /* Gold highlight for labels */
+}
+
+/* Responsive Grid */
+@media (max-width: 900px) {
+    .fps-profile-grid-section {
+        grid-template-columns: 1fr;
+    }
+}

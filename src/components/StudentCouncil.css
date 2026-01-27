@@ -1,0 +1,119 @@
+/* StudentCouncil.css */
+
+.student-council-section {
+    max-width: 1000px; /* Constrain width like a document/sheet */
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    /* Removed heavy shadow to look more like the flat document style, or keep subtle */
+    box-shadow: 0 0 20px rgba(0,0,0,0.05); 
+}
+
+/* Main Header Container - Yellow Box */
+.council-header-container {
+    background-color: #FAFF00; /* Bright Yellow from reference */
+    padding: 15px;
+    margin-bottom: 0; /* Connected to table */
+    border: 2px solid #000;
+    border-bottom: none; /* Merge with table border */
+    text-align: center;
+}
+
+.council-main-title {
+    color: #000;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin: 0;
+    font-family: 'Times New Roman', Times, serif; /* Match typical PDF/Doc font */
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.council-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Arial', sans-serif; /* Clean sans-serif for table content */
+    border: 2px solid #000; /* Thick outer border */
+}
+
+/* Header Row - Green */
+.council-table thead {
+    background-color: #61CE70; /* Green from reference */
+    border-bottom: 2px solid #000;
+}
+
+.council-table th {
+    padding: 8px 10px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #000;
+    border-right: 1px solid #000;
+    text-transform: uppercase;
+}
+
+.council-table th:last-child {
+    border-right: none;
+}
+
+/* Column Widths (Approximate optimization) */
+.th-sno { width: 60px; text-align: center !important; }
+.th-house { width: 150px; }
+.th-resp { width: 250px; }
+.th-name { width: auto; }
+
+/* Table Body */
+.council-table td {
+    padding: 6px 10px;
+    border: 1px solid #000; /* Solid grid lines */
+    color: #000;
+    font-size: 0.95rem;
+}
+
+.council-table tr:nth-child(even) {
+    background-color: #fff; /* Keep white/clean as per PDF */
+}
+
+.council-table tr:hover {
+    background-color: #f0f0f0;
+}
+
+/* Specific Cell Styling */
+.td-center {
+    text-align: center;
+}
+
+.td-house {
+    font-weight: 700;
+    text-transform: uppercase;
+    background-color: #fff; /* Ensure white background */
+}
+
+.td-resp {
+    text-transform: uppercase;
+}
+
+.td-name {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.council-loading, .council-error {
+    text-align: center;
+    padding: 40px;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .council-main-title {
+        font-size: 1.2rem;
+    }
+    
+    .council-table th, .council-table td {
+        padding: 6px;
+        font-size: 0.8rem;
+    }
+}

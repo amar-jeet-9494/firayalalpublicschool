@@ -346,6 +346,7 @@ a, button {
 
 .mega-menu-container {
     animation: megaMenuFadeIn 0.25s ease-out forwards;
+    z-index: 9999;
 }
 
 /* ============================================
