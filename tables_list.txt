@@ -1,0 +1,68 @@
+[
+  {
+    "name": "1-holiday.xlsx-2026-01-28"
+  },
+  {
+    "name": "10-school-rooms-2026-01-28"
+  },
+  {
+    "name": "11-registration-charges-2026-01-28"
+  },
+  {
+    "name": "12-annual-fees-2026-01-28"
+  },
+  {
+    "name": "13-transport-fees-2026-01-28"
+  },
+  {
+    "name": "14-school_timing_schedule.xlsx-2026-01-28"
+  },
+  {
+    "name": "15-school_dispersal_timing.xlsx-2026-01-28"
+  },
+  {
+    "name": "16-school-timing-summer-2026-01-28"
+  },
+  {
+    "name": "17-event_timings.xlsx-2026-01-28"
+  },
+  {
+    "name": "18-middle-stage-2026-01-28"
+  },
+  {
+    "name": "19-secondary-stage-2026-01-28"
+  },
+  {
+    "name": "2-school_timetable-2026-01-28"
+  },
+  {
+    "name": "20-strength.csv-2026-01-28"
+  },
+  {
+    "name": "21-foundational-stage-2026-01-28"
+  },
+  {
+    "name": "22-18-middle-stage-2025-11-22.csv-2026-01-28"
+  },
+  {
+    "name": "23-19-secondary-stage-2025-11-22.csv-2026-01-28"
+  },
+  {
+    "name": "3-school-class-strength-2026-01-28"
+  },
+  {
+    "name": "4-school-focus-area-details-2026-01-28"
+  },
+  {
+    "name": "6-combination-of-subjects-for-science-stream-2026-01-28"
+  },
+  {
+    "name": "7-combination-of-subjects-for-commerce-stream-2026-01-28"
+  },
+  {
+    "name": "8-minimum-requirement-for-direct-admission-in-class-xi-2026-01-28"
+  },
+  {
+    "name": "9-school-sports-events-2026-01-28"
+  }
+]

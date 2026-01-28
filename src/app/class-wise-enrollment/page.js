@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
+import { supabase } from '@/lib/supabase';
 import './enrollment.css';
 
 export default function ClassWiseEnrollmentPage() {
@@ -13,40 +14,35 @@ export default function ClassWiseEnrollmentPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const response = await fetch('https://firayalalpublicschool.edu.in/wp-json/wp/v2/pages/2527');
-                if (!response.ok) {
-                    throw new Error('Failed to fetch data');
-                }
-                const data = await response.json();
-                
-                // Parse the content to extract table data
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(data.content.rendered, 'text/html');
-                const rows = doc.querySelectorAll('tr');
-                
-                const tableData = [];
-                // Skip header row if it exists (usually the first one)
-                // We'll assume the first row with TH or bold text might be header, but let's check index
-                rows.forEach((row, index) => {
-                    const cells = row.querySelectorAll('td');
-                    if (cells.length >= 3) {
-                         // Clean up text content
-                        const cleanText = (text) => text.trim().replace(/&nbsp;/g, '');
-                        
-                        tableData.push({
-                            className: cleanText(cells[0].textContent),
-                            sections: cleanText(cells[1].textContent),
-                            students: cleanText(cells[2].textContent)
-                        });
-                    }
-                });
+            if (!supabase) {
+                setLoading(false);
+                return;
+            }
 
-                setEnrollmentData(tableData);
+            try {
+                // Fetch from Supabase Table 3 (School Class Strength)
+                const { data: rawData, error: sbError } = await supabase
+                    .from('dynamic_tables')
+                    .select('content')
+                    .eq('name', '3-school-class-strength-2026-01-28')
+                    .single();
+
+                if (sbError) throw sbError;
+
+                if (rawData?.content && Array.isArray(rawData.content)) {
+                    // Map CSV columns to our UI format
+                    // Expected CSV Headers: "Class", "No. of Sections", "Total Students" (or similar)
+                    const tableData = rawData.content.map(row => ({
+                        className: row['Class'] || row['class'] || Object.values(row)[0],
+                        sections: row['No. of Sections'] || row['Sections'] || Object.values(row)[1],
+                        students: row['Total Students'] || row['Students'] || Object.values(row)[2]
+                    }));
+                    setEnrollmentData(tableData);
+                }
                 setLoading(false);
             } catch (err) {
                 console.error("Error fetching enrollment data:", err);
-                setError(err.message);
+                setError("Failed to load data from database.");
                 setLoading(false);
             }
         };
@@ -75,9 +71,7 @@ export default function ClassWiseEnrollmentPage() {
             <main className="enrollment-main-content">
                 <div className="enrollment-intro">
                     <h2>CLASSWISE ENROLLMENT OF STUDENTS (Session 2025–2026)</h2>
-                    {/* <div className="enrollment-footer-note"> */}
-                     <p className="enrollment-subtitle"><strong>At Firayalal Public School</strong>, we are proud to share the classwise enrollment of students for the academic session 2025–2026. Our diverse student body reflects our commitment to quality education and holistic development.</p>
-                {/* </div> */}
+                    <p className="enrollment-subtitle"><strong>At Firayalal Public School</strong>, we are proud to share the classwise enrollment of students for the academic session 2025–2026. Our diverse student body reflects our commitment to quality education and holistic development.</p>
                 </div>
 
                 {loading && <div className="enrollment-loading">Loading enrollment data...</div>}
@@ -108,7 +102,7 @@ export default function ClassWiseEnrollmentPage() {
                 )}
                  
                  {!loading && !error && enrollmentData.length === 0 && (
-                    <p>No enrollment data found.</p>
+                    <p className="text-center p-10">No enrollment data found.</p>
                  )}
             </main>
 

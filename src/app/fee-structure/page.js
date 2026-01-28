@@ -1,30 +1,40 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
+import { supabase } from '@/lib/supabase';
 import './fee-structure.css';
 
-// Generate metadata for SEO
-export const metadata = {
-    title: 'Fee Structure | Firayalal Public School',
-    description: 'Fee Structure - Firayalal Public School is an award winning school where the best teachers shape your child\'s learning for a lifetime!',
-};
+// ... (retain metadata export if Next.js allows, but this is a client component so metadata export might not work here. 
+// However, the original file had it. If it was working, I will keep it, but usually 'use client' + metadata export is invalid in Next 13+.
+// The user had it, so I will comment it out or move to layout if needed, but for now I will try to keep the structure 'safe'.)
+// Actually, 'export const metadata' in a 'use client' file throws an error. The original file had 'import Header' so it was likely a Client Component (or default server).
+// Wait, the original file did NOT have 'use client' at the top line! It was a Server Component by default?
+// No, it imported Header/Footer/Sticky which are likely client components? 
+// Let's check line 1 of original file... it did NOT have 'use client'.
+// But I need 'use client' for useState/useEffect.
+// So I will convert it to 'use client'. I MUST remove 'export const metadata'.
+// I will move metadata to a separate layout or just omit it for now to avoid breakage (or keep it if I don't use 'use client' and fetch data on server? No, 'dynamic_tables' fetch is async).
+// Decision: Use Client Component, remove metadata export (it won't work).
 
-// Fee data
-const registrationCharges = [
+// Static Data (Fallback)
+const initialRegistrationHelper = [
     { particulars: 'Registration Fee', amount: '1,500', remarks: 'Non-refundable, at the time of form' },
     { particulars: 'Security Deposit', amount: '10,000', remarks: 'Refundable at withdrawal' },
     { particulars: 'Annual Fees', amount: '10,000', remarks: 'Payable every year on or before the fees of May' },
     { particulars: 'Miscellaneous', amount: '1,000', remarks: 'Payable along with April 2026 fees' },
 ];
 
-const admissionFees = [
+const initialAdmissionHelper = [
     { group: 'Foundational (Bal Vatika II - Grade II)', admissionFee: '35,000', tuitionFee: '3,000/month' },
     { group: 'Elementary (Grade III - Grade V)', admissionFee: '40,000', tuitionFee: '3,275/month' },
     { group: 'Middle (Grade VI - VII)', admissionFee: '45,000', tuitionFee: '3,725/month' },
     { group: 'Secondary (Grade VIII - X)', admissionFee: '50,000', tuitionFee: '3,725/month' },
 ];
 
-const transportFees = [
+const initialTransportHelper = [
     { distance: '0 – 5 km', fee: '1,000' },
     { distance: '5 – 10 km', fee: '1,200' },
     { distance: 'Above 10 km', fee: '1,500' },
@@ -45,8 +55,69 @@ const paymentGuidelines = [
 ];
 
 export default function FeeStructurePage() {
-    // Hero background image from user's HTML
     const heroImage = 'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/TDS-OPT-21-FIRAYALAL-SCHOOL.avif';
+    
+    // State
+    const [registrationData, setRegistrationData] = useState(initialRegistrationHelper);
+    const [admissionData, setAdmissionData] = useState(initialAdmissionHelper);
+    const [transportData, setTransportData] = useState(initialTransportHelper);
+
+    useEffect(() => {
+        if (!supabase) return;
+
+        const fetchFees = async () => {
+            // 1. Registration Charges (Table 11)
+            const { data: regRaw } = await supabase
+                .from('dynamic_tables')
+                .select('content')
+                .eq('name', '11-registration-charges-2026-01-28')
+                .single();
+            
+            if (regRaw?.content) {
+                // Normalize keys (CSV headers might be "Particulars", "Amount (Rs)", etc)
+                // We map them to our UI keys: particulars, amount, remarks
+                const normalized = regRaw.content.map(row => ({
+                    particulars: row['Particulars'] || row['particulars'] || Object.values(row)[0],
+                    amount: row['Amount'] || row['Amount (₹)'] || row['amount'] || Object.values(row)[1],
+                    remarks: row['Remarks'] || row['remarks'] || Object.values(row)[2] || ''
+                }));
+                if (normalized.length > 0) setRegistrationData(normalized);
+            }
+
+            // 2. Admission/Annual Fees (Table 12)
+            const { data: admRaw } = await supabase
+                .from('dynamic_tables')
+                .select('content')
+                .eq('name', '12-annual-fees-2026-01-28')
+                .single();
+
+            if (admRaw?.content) {
+                const normalized = admRaw.content.map(row => ({
+                    group: row['Group'] || row['group'] || Object.values(row)[0],
+                    admissionFee: row['Admission Fees'] || row['Admission Fee'] || Object.values(row)[1],
+                    tuitionFee: row['Tuition Fees'] || row['Tuition Fee'] || Object.values(row)[2]
+                }));
+                if (normalized.length > 0) setAdmissionData(normalized);
+            }
+
+            // 3. Transport Fees (Table 13)
+            const { data: transRaw } = await supabase
+                .from('dynamic_tables')
+                .select('content')
+                .eq('name', '13-transport-fees-2026-01-28')
+                .single();
+
+            if (transRaw?.content) {
+                const normalized = transRaw.content.map(row => ({
+                    distance: row['Distance Range'] || row['Distance'] || Object.values(row)[0],
+                    fee: row['Fee'] || row['Fee (Per Month)'] || Object.values(row)[1]
+                }));
+                if (normalized.length > 0) setTransportData(normalized);
+            }
+        };
+
+        fetchFees();
+    }, []);
 
     return (
         <>
@@ -100,7 +171,7 @@ export default function FeeStructurePage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {registrationCharges.map((item, index) => (
+                                    {registrationData.map((item, index) => (
                                         <tr key={index}>
                                             <td>{item.particulars}</td>
                                             <td className="amount-cell">{item.amount}</td>
@@ -127,7 +198,7 @@ export default function FeeStructurePage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {admissionFees.map((item, index) => (
+                                    {admissionData.map((item, index) => (
                                         <tr key={index}>
                                             <td>{item.group}</td>
                                             <td className="amount-cell">{item.admissionFee}</td>
@@ -153,7 +224,7 @@ export default function FeeStructurePage() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {transportFees.map((item, index) => (
+                                    {transportData.map((item, index) => (
                                         <tr key={index}>
                                             <td>{item.distance}</td>
                                             <td className="amount-cell">{item.fee}</td>
