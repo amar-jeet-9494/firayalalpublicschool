@@ -34,7 +34,7 @@ export default function Header({ isTransparent = false }) {
             { name: 'Class wise Enrollment', href: '/class-wise-enrollment' },
             { name: 'Book List', href: '/book-list' },
             { name: 'Academic Calendar', href: '/academic-calendar' },
-            { name: 'FPS ASSESSMENT PLAN', href: '/assessment' },
+            { name: 'FPS ASSESSMENT PLAN', href: '/fps-assesment-plan' },
             { name: 'Annual Sports', href: '/annual-sports' },
             { name: 'House Systems', href: '/house-systems' },
         ],
@@ -211,7 +211,7 @@ export default function Header({ isTransparent = false }) {
                 {/* Professional Mega Menu Dropdown - Inside header for scroll-with-page */}
                 {isMegaMenuOpen && (
                     <div
-                        className="absolute left-1/2 -translate-x-1/2 top-full w-screen max-w-[1200px] mega-menu-container shadow-xl border-t-4 border-[#0B2C54] z-40"
+                        className="absolute left-1/2 -translate-x-1/2 top-full w-screen max-w-[1440px] mega-menu-container shadow-xl border-t-4 border-[#0B2C54] z-40"
                         onMouseLeave={() => setIsMegaMenuOpen(false)}
                     >
                         {/* Mega Menu Grid */}

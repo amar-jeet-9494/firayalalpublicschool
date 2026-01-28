@@ -115,7 +115,7 @@ export default function BookListPage() {
                             </div>
                         ) : (
                              // Fallback if extraction failed but we have content
-                            <div dangerouslySetInnerHTML={{ __html: pageContent }} />
+                            <div dangerouslySetInnerHTML={{ /*__html: pageContent */ }} />
                         )}
                     </div>
                 )}

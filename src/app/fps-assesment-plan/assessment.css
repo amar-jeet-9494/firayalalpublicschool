@@ -1,0 +1,107 @@
+/* assessment.css */
+
+/* Hero Section Styles replicating Elementor reference */
+.elementor-element-9ef55e9 {
+    background-image: url("https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/TDS-OPT-21-FIRAYALAL-SCHOOL.avif");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed; /* Parallax-like effect requested */
+    min-height: 60vh; /* --min-height: 60vh */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center; /* --align-items: center */
+    justify-content: flex-start;
+    padding: 40px;
+    position: relative;
+    clip-path: inset(0px 0px 0%);
+}
+
+/* Overlay */
+.elementor-element-9ef55e9::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(8, 18, 34, 0.55); /* --fps-bg-overlay */
+    z-index: 1;
+}
+
+/* Inner Container */
+.elementor-element-ca4a9ff {
+    z-index: 2;
+    width: 100%;
+    max-width: 1440px; /* Standard wide width */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* H1 - Title */
+.elementor-element-0895d4b .elementor-heading-title {
+    color: #ffffff; /* --e-global-color-primary / Yellow Accent */
+    font-family: "Times New Roman", Sans-serif;
+    font-weight: 600;
+    font-size: 50px; /* Standard Large Hero Font */
+    margin: 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+/* H2 - Subtitle */
+.elementor-element-3ac3edf .elementor-heading-title {
+    color: #ffffff;
+    font-family: "Times New Roman", Sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1.6;
+    margin: 0;
+    text-transform: none;
+}
+
+/* Animation */
+.breadcrumb-animated {
+    animation: curtainRevealUp 1.5s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes curtainRevealUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Main Content Styles */
+.assessment-main-content {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 400px;
+}
+
+@media (max-width: 768px) {
+    .elementor-element-9ef55e9 {
+        padding: 40px 20px;
+        min-height: 50vh;
+    }
+
+    .elementor-element-0895d4b .elementor-heading-title {
+        font-size: 36px;
+    }
+    
+    .elementor-element-3ac3edf .elementor-heading-title {
+        font-size: 16px;
+    }
+    
+    .elementor-element-9ef55e9 {
+        background-attachment: scroll; /* Fix for mobile background attachment */
+    }
+}
