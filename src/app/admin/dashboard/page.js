@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
-import { FaFileCsv, FaEdit, FaCalendarAlt } from 'react-icons/fa';
+import { FaFileCsv, FaEdit, FaCalendarAlt, FaBullhorn } from 'react-icons/fa';
 
 export default function DashboardHome() {
     const [tables, setTables] = useState([]);
@@ -47,58 +47,67 @@ export default function DashboardHome() {
 
     return (
         <div>
-            <div className="page-header">
-                <h1 className="page-title">Data Tables</h1>
-                <p className="text-gray-500 mt-2">Manage the 22 dynamic tables for the website.</p>
+            <div className="mb-8">
+                <h1 className="text-3xl font-bold text-slate-800">Dashboard Overview</h1>
+                <p className="text-slate-500 mt-2">Manage your website content, events, and announcements from one place.</p>
             </div>
 
-            <div className="card-grid">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Academic Calendar Card */}
-                <div className="admin-card border-l-4 border-l-blue-600">
-                    <div className="card-body">
-                        <div className="flex items-center gap-3 mb-3">
-                            <div className="p-2 bg-blue-100 rounded-lg text-blue-700">
-                                <FaCalendarAlt size={24} />
-                            </div>
-                            <h3 className="card-title mb-0">Academic Calendar</h3>
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group">
+                    <div className="flex items-start justify-between mb-4">
+                        <div className="p-3 bg-blue-50 text-blue-600 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                            <FaCalendarAlt size={24} />
                         </div>
-                        <p className="card-desc">Manage holidays and school events.</p>
                     </div>
-                    <div className="card-footer">
-                        <Link 
-                            href="/admin/dashboard/calendar"
-                            className="btn-primary flex items-center gap-2"
-                        >
-                            <FaEdit /> Manage Calendar
-                        </Link>
+                    <h3 className="text-lg font-bold text-slate-800 mb-2">Academic Calendar</h3>
+                    <p className="text-slate-500 text-sm mb-6">Manage school holidays, events, and exam schedules.</p>
+                    <Link 
+                        href="/admin/dashboard/calendar"
+                        className="inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors"
+                    >
+                        Manage Calendar &rarr;
+                    </Link>
+                </div>
+
+                {/* Announcements Card */}
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group">
+                    <div className="flex items-start justify-between mb-4">
+                        <div className="p-3 bg-orange-50 text-orange-600 rounded-lg group-hover:bg-orange-500 group-hover:text-white transition-colors">
+                            <FaBullhorn size={24} />
+                        </div>
                     </div>
+                    <h3 className="text-lg font-bold text-slate-800 mb-2">Announcements</h3>
+                    <p className="text-slate-500 text-sm mb-6">Update homepage notices, news, and circulars.</p>
+                    <Link 
+                        href="/admin/dashboard/announcements"
+                        className="inline-flex items-center text-sm font-semibold text-orange-600 hover:text-orange-800 transition-colors"
+                    >
+                        Manage Notices &rarr;
+                    </Link>
                 </div>
 
                 {tables.map(table => (
-                    <div key={table.id} className="admin-card">
-                        <div className="card-body">
-                            <div className="flex items-center gap-3 mb-3">
-                                <div className="p-2 bg-blue-50 rounded-lg text-blue-700">
-                                    <FaFileCsv size={24} />
-                                </div>
-                                <h3 className="card-title mb-0">{formatName(table.name)}</h3>
+                    <div key={table.id} className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group">
+                        <div className="flex items-start justify-between mb-4">
+                            <div className="p-3 bg-slate-50 text-slate-600 rounded-lg group-hover:bg-slate-800 group-hover:text-white transition-colors">
+                                <FaFileCsv size={24} />
                             </div>
-                            <p className="card-desc">ID: {table.name}</p>
                         </div>
-                        <div className="card-footer">
-                            <Link 
-                                href={`/admin/dashboard/editor?table=${table.name}`}
-                                className="btn-primary flex items-center gap-2"
-                            >
-                                <FaEdit /> Edit Table
-                            </Link>
-                        </div>
+                        <h3 className="text-lg font-bold text-slate-800 mb-2">{formatName(table.name)}</h3>
+                        <p className="text-slate-500 text-sm mb-6 truncate">Table ID: {table.name}</p>
+                        <Link 
+                            href={`/admin/dashboard/editor?table=${table.name}`}
+                            className="inline-flex items-center text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
+                        >
+                            <FaEdit className="mr-2" /> Edit Table
+                        </Link>
                     </div>
                 ))}
                 
                 {tables.length === 0 && (
-                    <div className="col-span-full p-10 text-center bg-white rounded-lg border">
-                        <p>No tables found in database. Please run the import script.</p>
+                    <div className="col-span-full p-12 text-center bg-white rounded-xl border border-dashed border-slate-200">
+                        <p className="text-slate-400">No dynamic tables found in database. Importing data...</p>
                     </div>
                 )}
             </div>

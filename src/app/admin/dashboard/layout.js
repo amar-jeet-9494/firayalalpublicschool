@@ -1,8 +1,8 @@
 'use client';
-
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { FaTable, FaSignOutAlt, FaCog } from 'react-icons/fa';
+import { useRouter } from 'next/navigation';
+import AdminSidebar from './AdminSidebar';
+import AdminHeader from './AdminHeader';
 import '../admin.css';
 
 export default function DashboardLayout({ children }) {
@@ -14,36 +14,18 @@ export default function DashboardLayout({ children }) {
     };
 
     return (
-        <div className="dashboard-layout">
+        <div className="min-h-screen bg-slate-50">
             {/* Sidebar */}
-            <aside className="sidebar">
-                <div className="sidebar-header">
-                    <img src="/logo.png" alt="FPS" className="w-8 h-8" onError={(e) => e.target.style.display='none'} />
-                    <span className="brand-name">FPS Admin</span>
-                </div>
-                
-                <nav className="sidebar-nav">
-                    <Link href="/admin/dashboard" className="nav-item active">
-                        <FaTable className="nav-icon" />
-                        <span>Data Tables</span>
-                    </Link>
-                    <Link href="#" className="nav-item">
-                        <FaCog className="nav-icon" />
-                        <span>Settings</span>
-                    </Link>
-                </nav>
+            <AdminSidebar onLogout={handleLogout} />
 
-                <div className="sidebar-footer">
-                    <button onClick={handleLogout} className="logout-btn">
-                        <FaSignOutAlt />
-                        <span>Sign Out</span>
-                    </button>
-                </div>
-            </aside>
+            {/* Header */}
+            <AdminHeader />
 
             {/* Main Content */}
-            <main className="main-content">
-                {children}
+            <main className="pt-16 min-h-screen transition-all duration-300 md:pl-64">
+                <div className="p-6 md:p-8 max-w-7xl mx-auto">
+                    {children}
+                </div>
             </main>
         </div>
     );

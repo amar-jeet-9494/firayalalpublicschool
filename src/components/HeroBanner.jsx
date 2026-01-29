@@ -139,29 +139,7 @@ export default function HeroBanner() {
                 )}
             </button>
 
-            {/* Responsive styles */}
-            <style jsx>{`
-                @keyframes fadeInUp {
-                    from {
-                        opacity: 0;
-                        transform: translate(-50%, 20%);
-                    }
-                    to {
-                        opacity: 1;
-                        transform: translate(-50%, 0);
-                    }
-                }
-
-                .animate-fade-in-up {
-                    animation: fadeInUp 1.5s ease forwards;
-                }
-
-                @media (max-width: 768px) {
-                    #home-video-section > div:nth-child(4) {
-                        bottom: 15% !important;
-                    }
-                }
-            `}</style>
+            {/* Responsive styles moved to globals.css */}
         </section>
     );
 }

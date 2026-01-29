@@ -9,24 +9,24 @@ export default function EventsSection() {
     const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
     const announcementRef = useRef(null);
 
-    // State for events
+    // State for events and announcements
     const [eventsData, setEventsData] = useState({});
+    const [announcements, setAnnouncements] = useState([]);
 
     useEffect(() => {
-        const fetchEvents = async () => {
+        const fetchData = async () => {
             if (!supabase) return;
 
             try {
-                const { data, error } = await supabase
+                // Fetch Calendar Events
+                const { data: calendarData, error: calendarError } = await supabase
                     .from('academic_calendar')
                     .select('*');
 
-                if (error) throw error;
+                if (calendarError) throw calendarError;
 
-                // Transform array to object: { 'YYYY-MM-DD': { title: 'Event Name', type: 'event/holiday' } }
                 const formattedEvents = {};
-                (data || []).forEach(item => {
-                    // Simple heuristic for type
+                (calendarData || []).forEach(item => {
                     const upperEvent = item.event.toUpperCase();
                     let type = 'event';
                     if (upperEvent.includes('BREAK') || upperEvent.includes('HOLIDAY') || upperEvent.includes('SUNDAY')) {
@@ -42,58 +42,34 @@ export default function EventsSection() {
                         type: type
                     };
                 });
-
                 setEventsData(formattedEvents);
+
+                // Fetch Announcements
+                const { data: announcementsData, error: announcementsError } = await supabase
+                    .from('announcements')
+                    .select('*')
+                    .order('date', { ascending: false });
+
+                if (announcementsError) throw announcementsError;
+                setAnnouncements(announcementsData || []);
+
             } catch (err) {
-                console.error('Error fetching calendar events:', err);
+                console.error('Error fetching data:', err);
             }
         };
 
-        fetchEvents();
+        fetchData();
     }, []);
 
-    // Sample announcements data (will be replaced with API data later)
-    const announcements = [
-        {
-            id: 1,
-            type: 'green',
-            date: 'November 22, 2025',
-            title: '',
-            content: '',
-        },
-        {
-            id: 2,
-            type: 'red',
-            date: 'November 20, 2025',
-            title: 'Please click here for the Admission open for session 2026-27 for Grade IX',
-            content: 'Please click here for the Admission open for session 2026-27 for Grade IX',
-            link: '#',
-        },
-        {
-            id: 3,
-            type: 'blue',
-            date: '',
-            title: 'Reopening of School for Students & Revised School Timings in view of District Administration Order',
-            content: '',
-            viewLink: '#',
-        },
-        {
-            id: 4,
-            type: 'green',
-            date: 'November 15, 2025',
-            title: 'Please click here for the Admission open for session 2026-27 for Bal Vatika II',
-            content: 'Please click here for the Admission open for session 2026-27 for Bal Vatika II',
-            link: '#',
-        },
-        {
-            id: 5,
-            type: 'red',
-            date: 'November 10, 2025',
-            title: 'Annual Day Celebration Notice',
-            content: 'All parents are cordially invited for the Annual Day celebration on December 15, 2025.',
-            link: '#',
-        },
-    ];
+    // Helper to format announcement date
+    const formatAnnouncementDate = (dateString) => {
+        if (!dateString) return '';
+        return new Date(dateString).toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric'
+        });
+    };
 
     // Auto-scroll announcements
     useEffect(() => {
@@ -237,22 +213,30 @@ export default function EventsSection() {
 
                         <div className="announcement-list" ref={announcementRef}>
                             {announcements.map((item) => (
-                                <div key={item.id} className={`announcement-card ${item.type}`}>
-                                    {item.date && <span className="date-pill">{item.date}</span>}
+                                <div key={item.id} className={`announcement-card ${item.type || 'blue'}`}>
+                                    {item.date && (
+                                        <span className="date-pill">
+                                            {formatAnnouncementDate(item.date)}
+                                        </span>
+                                    )}
 
                                     {item.title && <h4>{item.title}</h4>}
 
-                                    {item.content && (
-                                        <p>
-                                            Please click here for the{' '}
-                                            <a href={item.link || '#'} className="highlight-link">
-                                                {item.content.includes('Admission') ? 'Admission open for session 2026-27 for Grade IX' : item.content}
-                                            </a>
-                                        </p>
-                                    )}
-
-                                    {item.viewLink && (
-                                        <a href={item.viewLink} className="view-link">View Circular</a>
+                                    {item.content === 'View Circular' ? (
+                                        /* Special case for Circulars */
+                                        <a href={item.link || '#'} className="view-link" target="_blank" rel="noopener noreferrer">
+                                            View Circular
+                                        </a>
+                                    ) : (
+                                        /* Standard Announcement */
+                                        item.content && (
+                                            <p>
+                                                Please click here for the{' '}
+                                                <a href={item.link || '#'} className="highlight-link">
+                                                    {item.content}
+                                                </a>
+                                            </p>
+                                        )
                                     )}
                                 </div>
                             ))}
