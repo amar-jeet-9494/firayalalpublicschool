@@ -3,11 +3,9 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 // import { useRouter } from 'next/navigation';
-import { FaFileCsv, FaEdit, FaCalendarAlt, FaBullhorn } from 'react-icons/fa';
+import { FaFileCsv, FaEdit, FaCalendarAlt, FaBullhorn, FaChalkboardTeacher } from 'react-icons/fa';
 
 export default function DashboardHome() {
-    const [tables, setTables] = useState([]);
-    const [loading, setLoading] = useState(true);
     const router = useRouter();
 
     useEffect(() => {
@@ -15,37 +13,8 @@ export default function DashboardHome() {
         const token = localStorage.getItem('admin_token');
         if (!token) {
             router.push('/admin');
-            return;
         }
-
-        const fetchTables = async () => {
-            try {
-                const response = await fetch('/api/dynamic-tables');
-                const data = await response.json();
-                
-                if (!response.ok) throw new Error(data.error || 'Failed to fetch tables');
-                
-                setTables(data || []);
-                setLoading(false);
-            } catch (err) {
-                console.error(err);
-                setLoading(false);
-            }
-        };
-
-        fetchTables();
     }, [router]);
-
-    if (loading) return <div className="p-10">Loading Dashboard...</div>;
-
-    // Helper to format table names (e.g., "school_timetable" -> "School Timetable")
-    const formatName = (name) => {
-        return name
-            .replace(/_/g, ' ')
-            .replace(/-/g, ' ')
-            .replace('.csv', '')
-            .replace(/\b\w/g, l => l.toUpperCase());
-    };
 
     return (
         <div>
@@ -89,29 +58,39 @@ export default function DashboardHome() {
                     </Link>
                 </div>
 
-                {tables.map(table => (
-                    <div key={table.id} className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group">
-                        <div className="flex items-start justify-between mb-4">
-                            <div className="p-3 bg-slate-50 text-slate-600 rounded-lg group-hover:bg-slate-800 group-hover:text-white transition-colors">
-                                <FaFileCsv size={24} />
-                            </div>
+                {/* Faculty Card */}
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group">
+                    <div className="flex items-start justify-between mb-4">
+                        <div className="p-3 bg-purple-50 text-purple-600 rounded-lg group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                            <FaChalkboardTeacher size={24} />
                         </div>
-                        <h3 className="text-lg font-bold text-slate-800 mb-2">{formatName(table.name)}</h3>
-                        <p className="text-slate-500 text-sm mb-6 truncate">Table ID: {table.name}</p>
-                        <Link 
-                            href={`/admin/dashboard/editor?table=${table.name}`}
-                            className="inline-flex items-center text-sm font-semibold text-slate-600 hover:text-slate-900 transition-colors"
-                        >
-                            <FaEdit className="mr-2" /> Edit Table
-                        </Link>
                     </div>
-                ))}
-                
-                {tables.length === 0 && (
-                    <div className="col-span-full p-12 text-center bg-white rounded-xl border border-dashed border-slate-200">
-                        <p className="text-slate-400">No dynamic tables found in database. Importing data...</p>
+                    <h3 className="text-lg font-bold text-slate-800 mb-2">Faculty</h3>
+                    <p className="text-slate-500 text-sm mb-6">Manage teacher profiles and staff details.</p>
+                    <Link 
+                        href="/admin/dashboard/faculty"
+                        className="inline-flex items-center text-sm font-semibold text-purple-600 hover:text-purple-800 transition-colors"
+                    >
+                        Manage Faculty &rarr;
+                    </Link>
+                </div>
+
+                {/* Data Tables Card */}
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group">
+                    <div className="flex items-start justify-between mb-4">
+                        <div className="p-3 bg-slate-50 text-slate-600 rounded-lg group-hover:bg-slate-800 group-hover:text-white transition-colors">
+                            <FaFileCsv size={24} />
+                        </div>
                     </div>
-                )}
+                    <h3 className="text-lg font-bold text-slate-800 mb-2">Data Tables</h3>
+                    <p className="text-slate-500 text-sm mb-6">Manage all dynamic data tables and CSV content.</p>
+                    <Link 
+                        href="/admin/dashboard/data-tables"
+                        className="inline-flex items-center text-sm font-semibold text-slate-600 hover:text-slate-800 transition-colors"
+                    >
+                        Manage Tables &rarr;
+                    </Link>
+                </div>
             </div>
         </div>
     );

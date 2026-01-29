@@ -4,10 +4,13 @@ import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { FaSave, FaArrowLeft, FaPlus, FaTrash } from 'react-icons/fa';
 
-function TableEditorContent() {
+export function TableEditorContent({ predefinedTable }) {
     const searchParams = useSearchParams();
     const router = useRouter();
-    const tableName = searchParams.get('table');
+    const tableName = predefinedTable || searchParams.get('table');
+    
+    // If passed a predefined table (e.g. 'faculty'), we might want to override the title display
+    const isPredefined = !!predefinedTable;
 
     const [rows, setRows] = useState([]);
     const [headers, setHeaders] = useState([]);
@@ -114,6 +117,8 @@ function TableEditorContent() {
     return (
         <div className="flex flex-col h-full">
             {/* Toolbar */}
+            {/* Toolbar - Only show if not predefined or if we want to show actions but no back button/title */ }
+            {!isPredefined && (
             <div className="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-20">
                 <div className="flex items-center gap-4">
                     <button onClick={() => router.back()} className="text-gray-500 hover:text-gray-800">
@@ -141,6 +146,36 @@ function TableEditorContent() {
                     </button>
                 </div>
             </div>
+            )}
+            
+            {/* If predefined, we still need the actions (Add/Save). So we should render a toolbar but simpler? 
+               Actually, for predefined tables, we probably want the ADD/SAVE buttons but maybe not the Back button and Title if the wrapper page provides it.
+               Let's render a simplified toolbar for predefined tables.
+            */}
+            {isPredefined && (
+                 <div className="bg-white border-b px-6 py-4 flex justify-between items-center sticky top-0 z-20">
+                    <div>
+                        {/* Title handled by wrapper, but we can show row count here or nothing */}
+                        <p className="text-sm text-gray-500">{rows.length} Records</p>
+                    </div>
+
+                    <div className="flex gap-3">
+                        {msg && <span className={`text-sm my-auto font-medium ${msg.includes('Success') ? 'text-green-600' : 'text-blue-600'}`}>{msg}</span>}
+                        
+                        <button onClick={handleAddRow} className="px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-50 flex items-center gap-2">
+                            <FaPlus /> Add Member
+                        </button>
+                        
+                        <button 
+                            onClick={handleSave} 
+                            disabled={saving}
+                            className="px-4 py-2 bg-[#10385c] text-white rounded-md hover:bg-[#0d2e4d] flex items-center gap-2"
+                        >
+                            <FaSave /> {saving ? 'Saving...' : 'Save Changes'}
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {/* Editor Grid */}
             <div className="flex-1 overflow-auto p-6">
