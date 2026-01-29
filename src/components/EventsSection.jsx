@@ -1,35 +1,56 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import { supabase } from '@/lib/supabase';
 
 export default function EventsSection() {
-    const [currentDate, setCurrentDate] = useState(new Date(2026, 0, 1)); // January 2026
+    const [currentDate, setCurrentDate] = useState(new Date());
     const [hoveredDate, setHoveredDate] = useState(null);
     const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
     const announcementRef = useRef(null);
 
-    // Sample events data (will be replaced with API data later)
-    const eventsData = {
-        '2026-01-01': { title: 'WINTER BREAK', type: 'holiday' },
-        '2026-01-02': { title: 'WINTER BREAK', type: 'holiday' },
-        '2026-01-03': { title: 'WINTER BREAK', type: 'holiday' },
-        '2026-01-04': { title: 'WINTER BREAK', type: 'holiday' },
-        '2026-01-05': { title: 'WINTER BREAK', type: 'holiday' },
-        '2026-01-06': { title: 'WINTER BREAK', type: 'holiday' },
-        '2026-01-10': { title: 'SKILLVANTAGE', type: 'event' },
-        '2026-01-14': { title: 'MAKAR SANKRANTI', type: 'holiday' },
-        '2026-01-16': { title: 'CBSE CLASS XII EXAM', type: 'exam' },
-        '2026-01-17': { title: 'SKILLVANTAGE', type: 'event' },
-        '2026-01-20': { title: 'PTM CLASS III TO VIII', type: 'meeting' },
-        '2026-01-21': { title: 'PTM CLASS IX-XII, CBSE MTS', type: 'meeting' },
-        '2026-01-22': { title: 'ASC COMP VI-VIII TERM II', type: 'exam' },
-        '2026-01-23': { title: 'VASANT PANCHAMI', type: 'holiday' },
-        '2026-01-26': { title: 'REPUBLIC DAY', type: 'holiday' },
-        '2026-01-27': { title: 'CHD RAJ VII-VIII & IX-X RKO', type: 'event' },
-        '2026-01-29': { title: 'E-DISCUSSION COMPETITION', type: 'event' },
-        '2026-01-30': { title: 'CHD K VI-X, PTM', type: 'event' },
-        '2026-01-31': { title: 'SKILLVANTAGE', type: 'event' },
-    };
+    // State for events
+    const [eventsData, setEventsData] = useState({});
+
+    useEffect(() => {
+        const fetchEvents = async () => {
+            if (!supabase) return;
+
+            try {
+                const { data, error } = await supabase
+                    .from('academic_calendar')
+                    .select('*');
+
+                if (error) throw error;
+
+                // Transform array to object: { 'YYYY-MM-DD': { title: 'Event Name', type: 'event/holiday' } }
+                const formattedEvents = {};
+                (data || []).forEach(item => {
+                    // Simple heuristic for type
+                    const upperEvent = item.event.toUpperCase();
+                    let type = 'event';
+                    if (upperEvent.includes('BREAK') || upperEvent.includes('HOLIDAY') || upperEvent.includes('SUNDAY')) {
+                        type = 'holiday';
+                    } else if (upperEvent.includes('EXAM') || upperEvent.includes('TEST')) {
+                        type = 'exam';
+                    } else if (upperEvent.includes('MEET') || upperEvent.includes('PTM')) {
+                        type = 'meeting';
+                    }
+
+                    formattedEvents[item.date] = {
+                        title: item.event,
+                        type: type
+                    };
+                });
+
+                setEventsData(formattedEvents);
+            } catch (err) {
+                console.error('Error fetching calendar events:', err);
+            }
+        };
+
+        fetchEvents();
+    }, []);
 
     // Sample announcements data (will be replaced with API data later)
     const announcements = [
@@ -128,7 +149,8 @@ export default function EventsSection() {
         for (let day = 1; day <= daysInMonth; day++) {
             const dateKey = `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
             const event = eventsData[dateKey];
-            const isToday = day === 7 && month === 0 && year === 2026; // Highlighting 7th as current day for demo
+            const today = new Date();
+            const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
 
             days.push({
                 day,
