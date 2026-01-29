@@ -1,18 +1,36 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 
 export default function FoundationalAdmissionInfo() {
     const [searchTerm, setSearchTerm] = useState('');
     const [entriesPerPage, setEntriesPerPage] = useState(10);
 
     // Age requirements data
-    const ageData = [
-        { class: 'BalVatika II', age: '4 yrs - 5 yrs' },
-        { class: 'BalVatika III', age: '5 yrs - 6 yrs' },
-        { class: 'Grade I', age: '6 yrs - 7 yrs' },
-        { class: 'Grade II', age: '7 yrs - 8 yrs' }
-    ];
+    const [ageData, setAgeData] = useState([]);
+
+    useEffect(() => {
+        const fetchAgeData = async () => {
+            if (supabase) {
+                const { data, error } = await supabase
+                    .from('dynamic_tables')
+                    .select('content')
+                    .eq('name', '21-foundational-stage-2026-01-28')
+                    .single();
+
+                if (data && data.content) {
+                    // Map uppercase keys to lowercase
+                    const mappedData = data.content.map(item => ({
+                        class: item['CLASS'] || item['Class'] || '',
+                        age: item['AGE AS ON 1ST APRIL'] || item['Age as on 1st April'] || ''
+                    }));
+                    setAgeData(mappedData);
+                }
+            }
+        };
+        fetchAgeData();
+    }, []);
 
     // Filter data based on search
     const filteredData = ageData.filter(item =>

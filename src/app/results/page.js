@@ -1,142 +1,48 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
 import Lightbox from '@/components/Lightbox';
+import { supabase } from '@/lib/supabase';
 import './results.css';
 
-// Data extraction from the provided content
-const resultsData = [
-    {
-        year: '2024 - 2025',
-        heading: 'FPS Result - 2024',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/2-3.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/COMMERCE.avif'
-        ]
-    },
-    {
-        year: '2023 - 2024',
-        heading: 'FPS Result - 2023',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-20-at-12.40.02_bf02af2e.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/WhatsApp-Image-2025-11-20-at-12.40.02_284a0aee.avif'
-        ]
-    },
-    {
-        year: '2022 - 2023',
-        heading: 'FPS Result - 2022',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/22b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/22a.avif'
-        ]
-    },
-    {
-        year: '2021 - 2022',
-        heading: 'FPS Result - 2022', /* Note: 2022 in source for this year as well, kept as is */
-        images: [
-             'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/22b.avif',
-             'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/22a.avif'
-        ]
-    },
-    {
-        year: '2020 - 2021',
-        heading: 'FPS Result - 2021',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/21b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/21a.avif'
-        ]
-    },
-    {
-        year: '2019 - 2020',
-        heading: 'FPS Result - 2020',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/20a.avif'
-        ]
-    },
-    {
-        year: '2018 - 2019',
-        heading: 'FPS Result - 2019',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/19b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/19a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/19c.avif'
-        ]
-    },
-    {
-        year: '2017 - 2018',
-        heading: 'FPS Result - 2018',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/18b-1.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/18a-1.avif'
-        ]
-    },
-    {
-        year: '2016 - 2017',
-        heading: 'FPS Result - 2017',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/17d.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/17c.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/17a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/17a-1.avif'
-        ]
-    },
-    {
-        year: '2015 - 2016',
-        heading: 'FPS Result - 2016',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/16a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/16c.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/16b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/16d.avif'
-        ]
-    },
-    {
-        year: '2014 - 2015',
-        heading: 'FPS Result - 2015',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15c.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15d.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15e.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15f.avif'
-        ]
-    },
-    {
-        year: '2013 - 2014',
-        heading: 'FPS Result - 2014',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014g.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014d.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014c.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014f.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014e.avif'
-
-        ]
-    },
-    {
-        year: '2012 - 2013',
-        heading: 'FPS Result - 2013',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2013a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2013b.avif'
-        ]
-    }
-];
+// Data will be fetched from Supabase
 
 
 export default function ResultsPage() {
     const [activeTab, setActiveTab] = useState(0);
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
+    const [resultsData, setResultsData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const heroImage = 'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-05-170600.avif';
+
+    useEffect(() => {
+        const fetchResults = async () => {
+            if (!supabase) return;
+            try {
+                const { data, error } = await supabase
+                    .from('dynamic_tables')
+                    .select('content')
+                    .eq('name', 'results_data')
+                    .single();
+
+                if (error) {
+                    console.error("Error fetching results:", error);
+                } else if (data && data.content) {
+                    setResultsData(data.content);
+                }
+            } catch (err) {
+                console.error("Unexpected error:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchResults();
+    }, []);
 
     const openLightbox = (index) => {
         setLightboxIndex(index);
@@ -147,7 +53,11 @@ export default function ResultsPage() {
         setLightboxOpen(false);
     };
 
-    const currentYearImages = resultsData[activeTab].images;
+    if (loading) {
+        return <div className="results-loading" style={{textAlign: 'center', padding: '50px'}}>Loading Results...</div>;
+    }
+
+    const currentYearImages = resultsData[activeTab]?.images || [];
 
     return (
         <div className="results-page-container">

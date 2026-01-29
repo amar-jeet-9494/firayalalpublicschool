@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
-import { FaFileCsv, FaEdit } from 'react-icons/fa';
+import { FaFileCsv, FaEdit, FaCalendarAlt } from 'react-icons/fa';
 
 export default function DashboardHome() {
     const [tables, setTables] = useState([]);
@@ -53,6 +53,27 @@ export default function DashboardHome() {
             </div>
 
             <div className="card-grid">
+                {/* Academic Calendar Card */}
+                <div className="admin-card border-l-4 border-l-blue-600">
+                    <div className="card-body">
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className="p-2 bg-blue-100 rounded-lg text-blue-700">
+                                <FaCalendarAlt size={24} />
+                            </div>
+                            <h3 className="card-title mb-0">Academic Calendar</h3>
+                        </div>
+                        <p className="card-desc">Manage holidays and school events.</p>
+                    </div>
+                    <div className="card-footer">
+                        <Link 
+                            href="/admin/dashboard/calendar"
+                            className="btn-primary flex items-center gap-2"
+                        >
+                            <FaEdit /> Manage Calendar
+                        </Link>
+                    </div>
+                </div>
+
                 {tables.map(table => (
                     <div key={table.id} className="admin-card">
                         <div className="card-body">

@@ -540,3 +540,77 @@
         text-align: center;
     }
 }
+
+/* ============================================
+   AGE CRITERIA TABLE STYLES
+   ============================================ */
+.secondary-age-criteria {
+    max-width: 1140px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.secondary-table-heading {
+    color: #0B2C54;
+    font-family: "Times New Roman", serif;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.secondary-table-wrapper {
+    overflow-x: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.secondary-stage-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: "Times New Roman", serif;
+    font-size: 16px;
+    background: #fff;
+}
+
+.secondary-stage-table thead tr {
+    background: linear-gradient(135deg, #0B2C54 0%, #1a4a7a 100%);
+    color: #fff;
+}
+
+.secondary-stage-table th {
+    padding: 18px 20px;
+    text-align: center;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.secondary-stage-table th:last-child {
+    border-right: none;
+}
+
+.secondary-stage-table tbody tr {
+    border-bottom: 1px solid #eef2f7;
+    transition: all 0.3s ease;
+}
+
+.secondary-stage-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.secondary-stage-table tbody tr:hover {
+    background-color: #f8fbfd;
+}
+
+.secondary-stage-table td {
+    padding: 16px 20px;
+    text-align: center;
+    color: #333;
+    border-right: 1px solid #eef2f7;
+}
+
+.secondary-stage-table td:last-child {
+    border-right: none;
+}

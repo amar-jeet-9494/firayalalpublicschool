@@ -1,117 +1,49 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
 import Lightbox from '@/components/Lightbox';
+import { supabase } from '@/lib/supabase';
 import './achievements.css';
 
 // Data extraction from the provided content
-const achievementsData = [
-    {
-        year: '2012 - 2013',
-        heading: 'FPS Result - 2013',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2013a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2013b.avif'
-        ]
-    },
-    {
-        year: '2013 - 2014',
-        heading: 'FPS Result - 2014',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014e.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014f.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014c.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014d.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/2014g.avif'
-        ]
-    },
-    {
-        year: '2014 - 2015',
-        heading: 'FPS Result - 2015',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15f.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15c.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15d.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/15e.avif'
-        ]
-    },
-    {
-        year: '2015 - 2016',
-        heading: 'FPS Result - 2016',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/16a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/16b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/16d.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/16c.avif'
-        ]
-    },
-    {
-        year: '2016 - 2017',
-        heading: 'FPS Result - 2017',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/17c.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/17a-1.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/17d.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/17a.avif'
-        ]
-    },
-    {
-        year: '2017 - 2018',
-        heading: 'FPS Result - 2018',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/18b-1.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/18a-1.avif'
-        ]
-    },
-    {
-        year: '2018 - 2019',
-        heading: 'FPS Result - 2019',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/19c.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/19a.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/19b.avif'
-        ]
-    },
-    {
-        year: '2019 - 2020',
-        heading: 'FPS Result - 2020',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/20a.avif'
-        ]
-    },
-    {
-        year: '2020 - 2021',
-        heading: 'FPS Result - 2021',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/21b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/21a.avif'
-        ]
-    },
-    {
-        year: '2021 - 2022',
-        heading: 'FPS Result - 2022',
-        images: [
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/22b.avif',
-            'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/09/22a.avif'
-        ]
-    }
-];
+// Data will be fetched from Supabase
 
 
 export default function AchievementsPage() {
     const [activeTab, setActiveTab] = useState(0);
     const [lightboxOpen, setLightboxOpen] = useState(false);
     const [lightboxIndex, setLightboxIndex] = useState(0);
+    const [achievementsData, setAchievementsData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const heroImage = 'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Screenshot-2025-11-05-170600.avif';
+
+    useEffect(() => {
+        const fetchAchievements = async () => {
+             if (!supabase) return;
+            try {
+                const { data, error } = await supabase
+                    .from('dynamic_tables')
+                    .select('content')
+                    .eq('name', 'achievements_data')
+                    .single();
+
+                if (error) {
+                    console.error("Error fetching achievements:", error);
+                } else if (data && data.content) {
+                    setAchievementsData(data.content);
+                }
+            } catch (err) {
+                console.error("Unexpected error:", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchAchievements();
+    }, []);
 
     const openLightbox = (index) => {
         setLightboxIndex(index);
@@ -122,7 +54,11 @@ export default function AchievementsPage() {
         setLightboxOpen(false);
     };
 
-    const currentYearImages = achievementsData[activeTab].images;
+    if (loading) {
+        return <div className="achievements-loading" style={{textAlign: 'center', padding: '50px'}}>Loading Achievements...</div>;
+    }
+
+    const currentYearImages = achievementsData[activeTab]?.images || [];
 
     return (
         <div className="achievements-page-container">

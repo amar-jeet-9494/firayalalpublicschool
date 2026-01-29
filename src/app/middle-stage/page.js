@@ -3,6 +3,7 @@ import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
 import MiddleStageSection from '@/components/MiddleStageSection';
 import { getCompletePageById, PAGE_IDS, extractElementorImages, filterWordPressContentFromHeading } from '@/lib/wordpress';
+import { supabase } from '@/lib/supabase';
 import './middle-stage.css';
 
 // This is a Server Component - data is fetched at build/request time
@@ -32,12 +33,33 @@ export default async function MiddleStagePage() {
     try {
         pageData = await getCompletePageById(PAGE_IDS.MIDDLE_STAGE);
         // Extract slideshow images from Elementor data-settings
+        // Extract slideshow images from Elementor data-settings
         if (pageData?.content) {
             slideshowImages = extractElementorImages(pageData.content);
         }
     } catch (err) {
         console.error('Failed to fetch Middle Stage page:', err);
         error = 'Failed to load page content. Please try again later.';
+    }
+
+    // Fetch dynamic table data from Supabase
+    let tableData = [];
+    try {
+        if (supabase) {
+            const { data, error: tableError } = await supabase
+                .from('dynamic_tables')
+                .select('content')
+                .eq('name', '18-middle-stage-2026-01-28')
+                .single();
+            
+            if (tableError) {
+                console.warn('Failed to fetch table data:', tableError);
+            } else if (data && data.content) {
+                tableData = data.content;
+            }
+        }
+    } catch (err) {
+        console.warn('Error fetching table data:', err);
     }
 
     // Use first slideshow image or fallback
@@ -78,17 +100,46 @@ export default async function MiddleStagePage() {
                     <div className="middle-error">
                         <p>{error}</p>
                     </div>
-                ) : pageData ? (
-                    <div
-                        className="wordpress-content"
-                        dangerouslySetInnerHTML={{ 
-                            __html: filterWordPressContentFromHeading(pageData.content, 'Minimum Age Required') 
-                        }}
-                    />
                 ) : (
-                    <div className="middle-loading">
-                        <p>Loading content...</p>
-                    </div>
+                    <>
+                        {/* Dynamic Age Criteria Table from Supabase */}
+                        {tableData.length > 0 && (
+                            <div className="middle-age-criteria">
+                                <h3 className="middle-table-heading">Minimum Age Required (as on 1st April)</h3>
+                                <div className="middle-table-wrapper">
+                                    <table className="middle-stage-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Class</th>
+                                                <th>Age as on 1st April</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {tableData.map((row, index) => (
+                                                <tr key={index}>
+                                                    <td>{row['Class'] || 'Std. VI'}</td>
+                                                    <td>{row['Age as on 1st April']}</td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        )}
+
+                        {pageData ? (
+                            <div
+                                className="wordpress-content"
+                                dangerouslySetInnerHTML={{ 
+                                    __html: filterWordPressContentFromHeading(pageData.content, 'Minimum Age Required') 
+                                }}
+                            />
+                        ) : (
+                            <div className="middle-loading">
+                                <p>Loading content...</p>
+                            </div>
+                        )}
+                    </>
                 )}
             </section>
 
