@@ -2,7 +2,6 @@
 
 import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
 import { FaSave, FaArrowLeft, FaPlus, FaTrash } from 'react-icons/fa';
 
 function TableEditorContent() {
@@ -17,29 +16,38 @@ function TableEditorContent() {
     const [msg, setMsg] = useState('');
 
     useEffect(() => {
-        if (!tableName) return;
+        if (!tableName) {
+            setLoading(false);
+            return;
+        }
 
         const fetchContent = async () => {
-            const { data, error } = await supabase
-                .from('dynamic_tables')
-                .select('content')
-                .eq('name', tableName)
-                .single();
-            
-            if (error) {
-                console.error(error);
-                setMsg('Error loading table');
-            } else if (data) {
-                const content = data.content; // Should be array of objects
-                if (Array.isArray(content) && content.length > 0) {
-                    setRows(content);
-                    setHeaders(Object.keys(content[0]));
-                } else if (Array.isArray(content) && content.length === 0) {
-                     setRows([]);
-                     setHeaders(['Column 1']); // Default if empty
+            try {
+                const response = await fetch(`/api/dynamic-tables?name=${encodeURIComponent(tableName)}`);
+                const data = await response.json();
+
+                if (!response.ok) {
+                    setMsg('Error loading table');
+                    setLoading(false);
+                    return;
                 }
+
+                if (data) {
+                    const content = data.content; // Should be array of objects
+                    if (Array.isArray(content) && content.length > 0) {
+                        setRows(content);
+                        setHeaders(Object.keys(content[0]));
+                    } else if (Array.isArray(content) && content.length === 0) {
+                         setRows([]);
+                         setHeaders(['Column 1']); // Default if empty
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+                setMsg('Error loading table');
+            } finally {
+                setLoading(false);
             }
-            setLoading(false);
         };
         fetchContent();
     }, [tableName]);
@@ -53,16 +61,23 @@ function TableEditorContent() {
     const handleSave = async () => {
         setSaving(true);
         setMsg('');
-        const { error } = await supabase
-            .from('dynamic_tables')
-            .update({ content: rows })
-            .eq('name', tableName);
+        
+        try {
+            const response = await fetch('/api/dynamic-tables', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: tableName, content: rows }),
+            });
+            
+            const data = await response.json();
 
-        if (error) {
-            setMsg('Failed to save changes');
-        } else {
+            if (!response.ok) throw new Error(data.error);
+
             setMsg('Changes saved successfully!');
             setTimeout(() => setMsg(''), 3000);
+        } catch (error) {
+            console.error(error);
+            setMsg('Failed to save changes');
         }
         setSaving(false);
     };
@@ -81,6 +96,20 @@ function TableEditorContent() {
     };
 
     if (loading) return <div className="p-10">Loading Data...</div>;
+
+    if (!tableName) {
+        return (
+            <div className="p-10 text-center">
+                <p className="text-gray-500 mb-4">No table selected.</p>
+                <button 
+                    onClick={() => router.back()}
+                    className="text-blue-600 hover:text-blue-800 font-medium"
+                >
+                    &larr; Back to Data Tables
+                </button>
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col h-full">

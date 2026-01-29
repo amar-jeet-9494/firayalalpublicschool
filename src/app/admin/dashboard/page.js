@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { supabase } from '@/lib/supabase';
+// import { useRouter } from 'next/navigation';
 import { FaFileCsv, FaEdit, FaCalendarAlt, FaBullhorn } from 'react-icons/fa';
 
 export default function DashboardHome() {
@@ -19,16 +19,18 @@ export default function DashboardHome() {
         }
 
         const fetchTables = async () => {
-            if (!supabase) return; // Handle mock mode if keys missing
-            
-            const { data, error } = await supabase
-                .from('dynamic_tables')
-                .select('id, name, created_at')
-                .order('name', { ascending: true });
-
-            if (error) console.error(error);
-            else setTables(data || []);
-            setLoading(false);
+            try {
+                const response = await fetch('/api/dynamic-tables');
+                const data = await response.json();
+                
+                if (!response.ok) throw new Error(data.error || 'Failed to fetch tables');
+                
+                setTables(data || []);
+                setLoading(false);
+            } catch (err) {
+                console.error(err);
+                setLoading(false);
+            }
         };
 
         fetchTables();

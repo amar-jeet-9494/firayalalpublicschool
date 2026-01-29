@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
-import { supabase } from '@/lib/supabase';
 import './faculty.css';
 
 // Faculty data will be fetched from Supabase
@@ -104,18 +103,11 @@ export default function FacultyPage() {
 
     useEffect(() => {
         const fetchFaculty = async () => {
-            if (!supabase) return;
-            
             try {
-                const { data, error } = await supabase
-                    .from('dynamic_tables')
-                    .select('content')
-                    .eq('name', 'faculty_master_list')
-                    .single();
+                const response = await fetch('/api/dynamic-tables?name=faculty_master_list');
+                const data = await response.json();
 
-                if (error) {
-                    console.error("Error fetching faculty data:", error);
-                } else if (data && data.content) {
+                if (data && data.content) {
                     // Organize flat data back into categories
                     const organizedData = { ...initialFacultyData };
                     
@@ -125,8 +117,6 @@ export default function FacultyPage() {
                             organizedData[category].push(member);
                         }
                     });
-                     // Sort if needed (assuming upload order is preserved or we have an id/index)
-                    // Currently just push order
                     setFacultyData(organizedData);
                 }
             } catch (err) {

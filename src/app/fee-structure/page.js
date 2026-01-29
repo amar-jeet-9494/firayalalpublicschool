@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
-import { supabase } from '@/lib/supabase';
 import './fee-structure.css';
 
 // ... (retain metadata export if Next.js allows, but this is a client component so metadata export might not work here. 
@@ -63,56 +62,48 @@ export default function FeeStructurePage() {
     const [transportData, setTransportData] = useState(initialTransportHelper);
 
     useEffect(() => {
-        if (!supabase) return;
 
         const fetchFees = async () => {
-            // 1. Registration Charges (Table 11)
-            const { data: regRaw } = await supabase
-                .from('dynamic_tables')
-                .select('content')
-                .eq('name', '11-registration-charges-2026-01-28')
-                .single();
-            
-            if (regRaw?.content) {
-                // Normalize keys (CSV headers might be "Particulars", "Amount (Rs)", etc)
-                // We map them to our UI keys: particulars, amount, remarks
-                const normalized = regRaw.content.map(row => ({
-                    particulars: row['Particulars'] || row['particulars'] || Object.values(row)[0],
-                    amount: row['Amount'] || row['Amount (₹)'] || row['amount'] || Object.values(row)[1],
-                    remarks: row['Remarks'] || row['remarks'] || Object.values(row)[2] || ''
-                }));
-                if (normalized.length > 0) setRegistrationData(normalized);
-            }
+            try {
+                // 1. Registration Charges (Table 11)
+                const res1 = await fetch('/api/dynamic-tables?name=11-registration-charges-2026-01-28');
+                const data1 = await res1.json();
+                
+                if (data1?.content) {
+                    const normalized = data1.content.map(row => ({
+                        particulars: row['Particulars'] || row['particulars'] || Object.values(row)[0],
+                        amount: row['Amount'] || row['Amount (₹)'] || row['amount'] || Object.values(row)[1],
+                        remarks: row['Remarks'] || row['remarks'] || Object.values(row)[2] || ''
+                    }));
+                    if (normalized.length > 0) setRegistrationData(normalized);
+                }
 
-            // 2. Admission/Annual Fees (Table 12)
-            const { data: admRaw } = await supabase
-                .from('dynamic_tables')
-                .select('content')
-                .eq('name', '12-annual-fees-2026-01-28')
-                .single();
+                // 2. Admission/Annual Fees (Table 12)
+                const res2 = await fetch('/api/dynamic-tables?name=12-annual-fees-2026-01-28');
+                const data2 = await res2.json();
 
-            if (admRaw?.content) {
-                const normalized = admRaw.content.map(row => ({
-                    group: row['Group'] || row['group'] || Object.values(row)[0],
-                    admissionFee: row['Admission Fees'] || row['Admission Fee'] || Object.values(row)[1],
-                    tuitionFee: row['Tuition Fees'] || row['Tuition Fee'] || Object.values(row)[2]
-                }));
-                if (normalized.length > 0) setAdmissionData(normalized);
-            }
+                if (data2?.content) {
+                    const normalized = data2.content.map(row => ({
+                        group: row['Group'] || row['group'] || Object.values(row)[0],
+                        admissionFee: row['Admission Fees'] || row['Admission Fee'] || Object.values(row)[1],
+                        tuitionFee: row['Tuition Fees'] || row['Tuition Fee'] || Object.values(row)[2]
+                    }));
+                    if (normalized.length > 0) setAdmissionData(normalized);
+                }
 
-            // 3. Transport Fees (Table 13)
-            const { data: transRaw } = await supabase
-                .from('dynamic_tables')
-                .select('content')
-                .eq('name', '13-transport-fees-2026-01-28')
-                .single();
+                // 3. Transport Fees (Table 13)
+                const res3 = await fetch('/api/dynamic-tables?name=13-transport-fees-2026-01-28');
+                const data3 = await res3.json();
 
-            if (transRaw?.content) {
-                const normalized = transRaw.content.map(row => ({
-                    distance: row['Distance Range'] || row['Distance'] || Object.values(row)[0],
-                    fee: row['Fee'] || row['Fee (Per Month)'] || Object.values(row)[1]
-                }));
-                if (normalized.length > 0) setTransportData(normalized);
+                if (data3?.content) {
+                    const normalized = data3.content.map(row => ({
+                        distance: row['Distance Range'] || row['Distance'] || Object.values(row)[0],
+                        fee: row['Fee'] || row['Fee (Per Month)'] || Object.values(row)[1]
+                    }));
+                    if (normalized.length > 0) setTransportData(normalized);
+                }
+            } catch (err) {
+                console.error("Error fetching fees:", err);
             }
         };
 

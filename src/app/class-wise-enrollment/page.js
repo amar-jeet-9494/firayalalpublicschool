@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
-import { supabase } from '@/lib/supabase';
 import './enrollment.css';
 
 export default function ClassWiseEnrollmentPage() {
@@ -14,20 +13,12 @@ export default function ClassWiseEnrollmentPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            if (!supabase) {
-                setLoading(false);
-                return;
-            }
-
             try {
                 // Fetch from Supabase Table 3 (School Class Strength)
-                const { data: rawData, error: sbError } = await supabase
-                    .from('dynamic_tables')
-                    .select('content')
-                    .eq('name', '3-school-class-strength-2026-01-28')
-                    .single();
+                const response = await fetch('/api/dynamic-tables?name=3-school-class-strength-2026-01-28');
+                const rawData = await response.json();
 
-                if (sbError) throw sbError;
+                if (!response.ok) throw new Error(rawData.error);
 
                 if (rawData?.content && Array.isArray(rawData.content)) {
                     // Map CSV columns to our UI format

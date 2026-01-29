@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
 
 export default function FoundationalAdmissionInfo() {
     const [searchTerm, setSearchTerm] = useState('');
@@ -12,12 +11,9 @@ export default function FoundationalAdmissionInfo() {
 
     useEffect(() => {
         const fetchAgeData = async () => {
-            if (supabase) {
-                const { data, error } = await supabase
-                    .from('dynamic_tables')
-                    .select('content')
-                    .eq('name', '21-foundational-stage-2026-01-28')
-                    .single();
+            try {
+                const response = await fetch('/api/dynamic-tables?name=21-foundational-stage-2026-01-28');
+                const data = await response.json();
 
                 if (data && data.content) {
                     // Map uppercase keys to lowercase
@@ -27,6 +23,8 @@ export default function FoundationalAdmissionInfo() {
                     }));
                     setAgeData(mappedData);
                 }
+            } catch (err) {
+                console.error('Error fetching admission info:', err);
             }
         };
         fetchAgeData();

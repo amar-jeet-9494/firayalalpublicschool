@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
 import { FaCalendarAlt, FaPlus, FaTrash, FaEdit, FaSave, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 
@@ -22,12 +21,11 @@ export default function AdminCalendarPage() {
     const fetchEvents = async () => {
         setLoading(true);
         try {
-            const { data, error } = await supabase
-                .from('academic_calendar')
-                .select('*')
-                .order('date', { ascending: true });
+            const response = await fetch('/api/academic-calendar');
+            const data = await response.json();
             
-            if (error) throw error;
+            if (!response.ok) throw new Error(data.error || 'Failed to fetch');
+            
             setEvents(data || []);
         } catch (err) {
             console.error('Error fetching events:', err);
@@ -42,11 +40,14 @@ export default function AdminCalendarPage() {
         if (!formData.date || !formData.event) return;
 
         try {
-            const { error } = await supabase
-                .from('academic_calendar')
-                .insert([{ date: formData.date, event: formData.event }]);
+            const response = await fetch('/api/academic-calendar', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
 
-            if (error) throw error;
+            if (!response.ok) throw new Error(data.error || 'Failed to create');
             
             setFormData({ date: '', event: '' });
             fetchEvents();
@@ -60,18 +61,20 @@ export default function AdminCalendarPage() {
         if (!confirm('Are you sure you want to delete this event?')) return;
 
         try {
-            const { error } = await supabase
-                .from('academic_calendar')
-                .delete()
-                .eq('id', id);
+            const response = await fetch(`/api/academic-calendar?id=${id}`, {
+                method: 'DELETE',
+            });
+            const data = await response.json();
 
-            if (error) throw error;
+            if (!response.ok) throw new Error(data.error || 'Failed to delete');
+            
             fetchEvents();
         } catch (err) {
             console.error('Error deleting event:', err);
             alert('Failed to delete event.');
         }
     };
+
 
     const startEdit = (item) => {
         setIsEditing(item.id);
@@ -85,12 +88,14 @@ export default function AdminCalendarPage() {
 
     const handleUpdate = async (id) => {
         try {
-            const { error } = await supabase
-                .from('academic_calendar')
-                .update({ date: editData.date, event: editData.event })
-                .eq('id', id);
+            const response = await fetch('/api/academic-calendar', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, ...editData }),
+            });
+            const data = await response.json();
 
-            if (error) throw error;
+            if (!response.ok) throw new Error(data.error || 'Failed to update');
             
             setIsEditing(null);
             fetchEvents();

@@ -5,7 +5,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
 import Lightbox from '@/components/Lightbox';
-import { supabase } from '@/lib/supabase';
 import './results.css';
 
 // Data will be fetched from Supabase
@@ -22,17 +21,11 @@ export default function ResultsPage() {
 
     useEffect(() => {
         const fetchResults = async () => {
-            if (!supabase) return;
             try {
-                const { data, error } = await supabase
-                    .from('dynamic_tables')
-                    .select('content')
-                    .eq('name', 'results_data')
-                    .single();
+                const response = await fetch('/api/dynamic-tables?name=results_data');
+                const data = await response.json();
 
-                if (error) {
-                    console.error("Error fetching results:", error);
-                } else if (data && data.content) {
+                if (data && data.content) {
                     setResultsData(data.content);
                 }
             } catch (err) {

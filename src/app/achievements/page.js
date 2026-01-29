@@ -5,7 +5,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
 import Lightbox from '@/components/Lightbox';
-import { supabase } from '@/lib/supabase';
 import './achievements.css';
 
 // Data extraction from the provided content
@@ -23,17 +22,11 @@ export default function AchievementsPage() {
 
     useEffect(() => {
         const fetchAchievements = async () => {
-             if (!supabase) return;
             try {
-                const { data, error } = await supabase
-                    .from('dynamic_tables')
-                    .select('content')
-                    .eq('name', 'achievements_data')
-                    .single();
+                const response = await fetch('/api/dynamic-tables?name=achievements_data');
+                const data = await response.json();
 
-                if (error) {
-                    console.error("Error fetching achievements:", error);
-                } else if (data && data.content) {
+                if (data && data.content) {
                     setAchievementsData(data.content);
                 }
             } catch (err) {

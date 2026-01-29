@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
 import { FaBullhorn, FaPlus, FaTrash, FaEdit, FaSave, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 
@@ -34,12 +33,11 @@ export default function AdminAnnouncementsPage() {
     const fetchAnnouncements = async () => {
         setLoading(true);
         try {
-            const { data, error } = await supabase
-                .from('announcements')
-                .select('*')
-                .order('date', { ascending: false });
+            const response = await fetch('/api/announcements');
+            const data = await response.json();
             
-            if (error) throw error;
+            if (!response.ok) throw new Error(data.error || 'Failed to fetch');
+            
             setAnnouncements(data || []);
         } catch (err) {
             console.error('Error fetching announcements:', err);
@@ -54,11 +52,14 @@ export default function AdminAnnouncementsPage() {
         if (!formData.title || !formData.date) return;
 
         try {
-            const { error } = await supabase
-                .from('announcements')
-                .insert([formData]);
+            const response = await fetch('/api/announcements', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+            const data = await response.json();
 
-            if (error) throw error;
+            if (!response.ok) throw new Error(data.error || 'Failed to create');
             
             setFormData({ title: '', content: '', link: '', date: '', type: 'blue' });
             fetchAnnouncements();
@@ -72,12 +73,13 @@ export default function AdminAnnouncementsPage() {
         if (!confirm('Are you sure you want to delete this announcement?')) return;
 
         try {
-            const { error } = await supabase
-                .from('announcements')
-                .delete()
-                .eq('id', id);
+            const response = await fetch(`/api/announcements?id=${id}`, {
+                method: 'DELETE',
+            });
+            const data = await response.json();
 
-            if (error) throw error;
+            if (!response.ok) throw new Error(data.error || 'Failed to delete');
+            
             fetchAnnouncements();
         } catch (err) {
             console.error('Error deleting announcement:', err);
@@ -103,18 +105,20 @@ export default function AdminAnnouncementsPage() {
 
     const handleUpdate = async (id) => {
         try {
-            const { error } = await supabase
-                .from('announcements')
-                .update(editData)
-                .eq('id', id);
+            const response = await fetch('/api/announcements', {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ id, ...editData }),
+            });
+            const data = await response.json();
 
-            if (error) throw error;
+            if (!response.ok) throw new Error(data.error || 'Failed to update');
             
             setIsEditing(null);
             fetchAnnouncements();
         } catch (err) {
             console.error('Error updating announcement:', err);
-            alert('Failed to update announcement.');
+            alert(`Failed to update announcement. Error: ${err.message}`);
         }
     };
 

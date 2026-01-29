@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
-import { supabase } from '@/lib/supabase';
 import './annual-sports.css';
 
 // Initial Static Data (Fallback until DB is connected)
@@ -33,29 +32,30 @@ export default function AnnualSportsPage() {
 
     useEffect(() => {
         // Only fetch if Supabase is connected (i.e., keys exist)
-        if (supabase) {
             const fetchEvents = async () => {
-                const { data, error } = await supabase
-                    .from('sports_events')
-                    .select('*')
-                    .order('s_no', { ascending: true });
-                
-                if (error) console.error('Error loading sports events:', error);
-                else if (data && data.length > 0) {
-                    // Normalize data structure if DB columns differ slightly
-                    const formattedData = data.map(item => ({
-                        id: item.id,
-                        sNo: item.s_no,
-                        className: item.class_name,
-                        events: item.events,
-                        category: item.category,
-                        students: item.students
-                    }));
-                    setSportsEvents(formattedData);
+                try {
+                    const response = await fetch('/api/sports-events');
+                    const data = await response.json();
+                    
+                    if (!response.ok) throw new Error(data.error);
+
+                    if (data && data.length > 0) {
+                        // Normalize data structure if DB columns differ slightly
+                        const formattedData = data.map(item => ({
+                            id: item.id,
+                            sNo: item.s_no,
+                            className: item.class_name,
+                            events: item.events,
+                            category: item.category,
+                            students: item.students
+                        }));
+                        setSportsEvents(formattedData);
+                    }
+                } catch (error) {
+                    console.error('Error loading sports events:', error);
                 }
             };
             fetchEvents();
-        }
     }, []);
     return (
         <div className="annual-sports-container">

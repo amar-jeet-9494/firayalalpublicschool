@@ -5,7 +5,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
 import Lightbox from '@/components/Lightbox';
-import { supabase } from '@/lib/supabase';
 import './gallery.css';
 
 export default function PhotoGalleryPage() {
@@ -69,17 +68,11 @@ function GalleryTabs() {
 
     React.useEffect(() => {
         const fetchGallery = async () => {
-            if (!supabase) return;
             try {
-                const { data, error } = await supabase
-                    .from('dynamic_tables')
-                    .select('content')
-                    .eq('name', 'gallery_data')
-                    .single();
+                const response = await fetch('/api/dynamic-tables?name=gallery_data');
+                const data = await response.json();
                 
-                if (error) {
-                    console.error("Error fetching gallery:", error);
-                } else if (data && data.content) {
+                if (data && data.content) {
                     const organized = {};
                     // Initialize keys with empty arrays to prevent crashes if categories missing
                     tabs.forEach(tab => organized[tab] = []);

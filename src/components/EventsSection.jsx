@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { supabase } from '@/lib/supabase';
 
 export default function EventsSection() {
     const [currentDate, setCurrentDate] = useState(new Date());
@@ -15,15 +14,12 @@ export default function EventsSection() {
 
     useEffect(() => {
         const fetchData = async () => {
-            if (!supabase) return;
-
             try {
                 // Fetch Calendar Events
-                const { data: calendarData, error: calendarError } = await supabase
-                    .from('academic_calendar')
-                    .select('*');
+                const calendarRes = await fetch('/api/academic-calendar');
+                const calendarData = await calendarRes.json();
 
-                if (calendarError) throw calendarError;
+                if (!calendarRes.ok) throw new Error(calendarData.error);
 
                 const formattedEvents = {};
                 (calendarData || []).forEach(item => {
@@ -45,12 +41,11 @@ export default function EventsSection() {
                 setEventsData(formattedEvents);
 
                 // Fetch Announcements
-                const { data: announcementsData, error: announcementsError } = await supabase
-                    .from('announcements')
-                    .select('*')
-                    .order('date', { ascending: false });
+                const announcementsRes = await fetch('/api/announcements');
+                const announcementsData = await announcementsRes.json();
 
-                if (announcementsError) throw announcementsError;
+                if (!announcementsRes.ok) throw new Error(announcementsData.error);
+
                 setAnnouncements(announcementsData || []);
 
             } catch (err) {
