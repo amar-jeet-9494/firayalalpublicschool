@@ -69,17 +69,20 @@ function GalleryTabs() {
     React.useEffect(() => {
         const fetchGallery = async () => {
             try {
-                const response = await fetch('/api/dynamic-tables?name=gallery_data');
-                const data = await response.json();
+                const response = await fetch('/api/photo-gallery');
+                const result = await response.json();
                 
-                if (data && data.content) {
+                if (result.data) {
                     const organized = {};
-                    // Initialize keys with empty arrays to prevent crashes if categories missing
+                    // Initialize keys with empty arrays
                     tabs.forEach(tab => organized[tab] = []);
                     
-                    data.content.forEach(item => {
-                       if (!organized[item.category]) organized[item.category] = [];
-                       organized[item.category].push(item.url);
+                    result.data.forEach(item => {
+                       // Normalize category matches (e.g. handle case sensitivity if needed)
+                       // Here we assume exact match or fallback
+                       if (organized[item.category]) {
+                           organized[item.category].push(item.image_url);
+                       }
                     });
                     setGalleryData(organized);
                 }

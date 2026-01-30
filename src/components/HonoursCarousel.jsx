@@ -3,66 +3,25 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 export default function HonoursCarousel() {
-    // Sample data - will be replaced with API data
-    // Backend structure: { image_url: "", title: "", designation: "", date: "" }
-    const honoursData = [
-        {
-            id: 1,
-            image_url: 'https://images.unsplash.com/photo-1560439514-4e9645039924?w=800&h=600&fit=crop',
-            title: 'Mr. Ajit',
-            designation: 'Trustee Member',
-            galleryLink: '/photo-gallery',
-        },
-        {
-            id: 2,
-            image_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=600&fit=crop',
-            title: 'Mr. Subhash Kumar Patni',
-            designation: 'Principal - South Point Public School, Bundu',
-            galleryLink: '/photo-gallery',
-        },
-        {
-            id: 3,
-            image_url: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=800&h=600&fit=crop',
-            title: 'Mr. S.K. Mishra',
-            designation: 'Principal - D.A.V. Public School, Bariatu',
-            galleryLink: '/photo-gallery',
-        },
-        {
-            id: 4,
-            image_url: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&h=600&fit=crop',
-            title: 'Dr. (Capt.) Sumit Kaur',
-            designation: 'Principal - Guru Nanak Higher Secondary School',
-            galleryLink: '/photo-gallery',
-        },
-        {
-            id: 5,
-            image_url: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=600&fit=crop',
-            title: 'Mrs. Monika Shrivastav',
-            designation: 'Academic Director - Sachidanand Gyan Bharti Model School, Ranchi',
-            galleryLink: '/photo-gallery',
-        },
-        {
-            id: 6,
-            image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop',
-            title: 'Professor (Dr.) Raman Kumar Jha',
-            designation: 'Vice Chancellor - ICFAI University, Jharkhand',
-            galleryLink: '/photo-gallery',
-        },
-        {
-            id: 7,
-            image_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=800&h=600&fit=crop',
-            title: 'Mr. Shuchitangshu Chatterjee',
-            designation: 'Vice Chancellor - RKDF University',
-            galleryLink: '/photo-gallery',
-        },
-        {
-            id: 8,
-            image_url: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800&h=600&fit=crop',
-            title: 'Mr. Bijay Kumar',
-            designation: 'Sr. DGM J/C FFP, HEC',
-            galleryLink: '/photo-gallery',
-        },
-    ];
+    const [honoursData, setHonoursData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch('/api/honours-milestones');
+                const result = await res.json();
+                if (result.data) {
+                    setHonoursData(result.data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch Honours Milestones', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -91,11 +50,20 @@ export default function HonoursCarousel() {
         setActiveIndex(index);
     };
 
-    // Calculate position and transform for each slide - Only 3 visible (center + 2 tilted sides)
+    // Calculate position and transform for each slide
     const getSlideStyle = (index) => {
+        if (!totalSlides) return {};
+
         const diff = index - activeIndex;
-        const normalizedDiff = ((diff + totalSlides) % totalSlides);
-        const actualDiff = normalizedDiff > totalSlides / 2 ? normalizedDiff - totalSlides : normalizedDiff;
+        // Handle negative modulo correctly in JS
+        const normalizedDiff = ((diff % totalSlides) + totalSlides) % totalSlides;
+
+        // Determine distance from center (0) in circular buffer
+        // If totalSlides is 8: 0->0, 1->1, 7->-1
+        let actualDiff = normalizedDiff;
+        if (actualDiff > totalSlides / 2) {
+            actualDiff -= totalSlides;
+        }
 
         let translateX = 0;
         let translateZ = 0;
@@ -130,6 +98,7 @@ export default function HonoursCarousel() {
             zIndex = 5;
         } else {
             // Hidden slides - completely off screen
+            // Improved hidden logic to prevent piling up
             translateX = actualDiff > 0 ? 1200 : -1200;
             translateZ = -300;
             rotateY = actualDiff > 0 ? -45 : 45;
@@ -162,6 +131,12 @@ export default function HonoursCarousel() {
                     onMouseEnter={() => setIsAutoPlaying(false)}
                     onMouseLeave={() => setIsAutoPlaying(true)}
                 >
+                    {honoursData.length === 0 && !loading && (
+                        <div className="w-full text-center py-20 text-gray-500">
+                            <p>No milestones found. Please add them from the Admin Dashboard.</p>
+                        </div>
+                    )}
+
                     {/* Left Arrow */}
                     {/* <button
                         className="coverflow-arrow left"
@@ -188,15 +163,19 @@ export default function HonoursCarousel() {
                                             src={item.image_url}
                                             alt={item.title}
                                             loading="lazy"
+                                            onError={(e) => {
+                                                e.target.onerror = null;
+                                                e.target.src = 'https://via.placeholder.com/800x600?text=No+Image';
+                                            }}
                                         />
 
                                         {/* Hover Overlay */}
                                         <div className="slide-overlay">
                                             <div className="overlay-content">
                                                 <h3 className="overlay-title">
-                                                    {item.title} | {item.designation}
+                                                    {item.title} {item.designation ? `| ${item.designation}` : ''}
                                                 </h3>
-                                                <a href={item.galleryLink} className="overlay-link">
+                                                <a href={item.link || '/photo-gallery'} className="overlay-link">
                                                     View Gallery
                                                 </a>
                                             </div>

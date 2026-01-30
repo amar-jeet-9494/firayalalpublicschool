@@ -4,56 +4,49 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
 export default function PrincipalMessage() {
-    // Carousel slides data with dummy images and titles
-    const carouselSlides = [
-        {
-            image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=300&fit=crop',
-            caption: 'CBSE Workshop DAV Patna'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1560439514-4e9645039924?w=400&h=300&fit=crop',
-            caption: 'With Mrs. Mahua Maji (Member of Rajya Sabha) at Radiance Of Jharkhand'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=400&h=300&fit=crop',
-            caption: 'CBP By CBSE | On the topic "Classroom Management"'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=400&h=300&fit=crop',
-            caption: 'Best Motivational Principal | Capital Hill Ranchi'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop',
-            caption: 'Felicitated as a leading leader by Sahodaya, Ranchi at Courtyard Marriot'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=300&fit=crop',
-            caption: 'Science Exhibition at St. Francis Ranchi'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop',
-            caption: 'Core Sahodaya Team Members'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1559223607-180d0c79a8f0?w=400&h=300&fit=crop',
-            caption: 'Being felicitated by Academic Director Ma\'am for leading F.P.S.'
-        },
-        {
-            image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400&h=300&fit=crop',
-            caption: 'British Council | International School Award 2016-19 at Hotel Le Lac'
-        }
-    ];
+    const [data, setData] = useState({
+        name: 'Shri. Niraj Kumar Sinha',
+        designation: 'Principal, Firayalal Public School',
+        message: 'Firayalal Public School was established through the commitment and vision of Shri Harish Munjal, who sought to offer holistic education that shapes character and develops responsible citizens. Aligned with the National Education Policy (NEP) 2020, the school ensures academic excellence, creativity, and value-based learning, empowering students to realise their potential and serve society with integrity.',
+        image_url: 'https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/2-13.avif',
+        carousel_slides: [
+            { image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=300&fit=crop', caption: 'CBSE Workshop DAV Patna' },
+            { image: 'https://images.unsplash.com/photo-1560439514-4e9645039924?w=400&h=300&fit=crop', caption: 'With Mrs. Mahua Maji (Member of Rajya Sabha)' }
+        ]
+    });
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await fetch('/api/principal-message');
+                const result = await res.json();
+                if (result.data) {
+                    setData(result.data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch Principal Message', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+    }, []);
 
     const [currentSlide, setCurrentSlide] = useState(0);
 
     // Auto-slide effect
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % carouselSlides.length);
-        }, 3000);
+        const slides = data.carousel_slides || [];
+        if (slides.length > 0) {
+            const interval = setInterval(() => {
+                setCurrentSlide((prev) => (prev + 1) % slides.length);
+            }, 3000);
+            return () => clearInterval(interval);
+        }
+    }, [data.carousel_slides]);
 
-        return () => clearInterval(interval);
-    }, [carouselSlides.length]);
+    const slides = data.carousel_slides || [];
 
     return (
         <section className="principal-message-section">
@@ -63,46 +56,40 @@ export default function PrincipalMessage() {
                 <div className="principal-image-wrapper">
                     <div className="principal-image-container">
                         <img
-                            src="https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/2-13.avif"
-                            alt="Principal - Shri. Niraj Kumar Sinha"
-                            className="principal-photo"
+                            src={data.image_url || "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/2-13.avif"}
+                            alt={`Principal - ${data.name}`}
+                            className="principal-photo object-cover"
                         />
                     </div>
-                    {/* Bell notification icon */}
-                    {/* <div className="fps-notify-bell principal-bell">
-                        🔔
-                    </div> */}
                 </div>
 
                 {/* Message Content */}
                 <div className="principal-content">
                     <h2 className="principal-title">Message from Principal's Desk</h2>
-                    <p className="principal-message">
-                        Firayalal Public School was established through the commitment and vision of
-                        Shri Harish Munjal, who sought to offer holistic education that shapes character
-                        and develops responsible citizens. Aligned with the National Education Policy (NEP) 2020,
-                        the school ensures academic excellence, creativity, and value-based learning,
-                        empowering students to realise their potential and serve society with integrity.
-                    </p>
-                    <h3 className="principal-name">Shri. Niraj Kumar Sinha</h3>
-                    <p className="principal-designation"><em>Principal, Firayalal Public School</em></p>
+                    <div className="principal-message prose text-justify max-w-none text-gray-700 whitespace-pre-wrap">
+                        {data.message}
+                    </div>
+                    <h3 className="principal-name mt-4">{data.name}</h3>
+                    <p className="principal-designation"><em>{data.designation}</em></p>
                 </div>
             </div>
 
             {/* Right Content - 40% Carousel */}
             <div className="principal-right">
-                <div className="principal-carousel">
-                    <div className="carousel-slide">
-                        <img
-                            src={carouselSlides[currentSlide].image}
-                            alt={carouselSlides[currentSlide].caption}
-                            className="carousel-image"
-                        />
+                {slides.length > 0 && (
+                    <div className="principal-carousel">
+                        <div className="carousel-slide">
+                            <img
+                                src={slides[currentSlide]?.image || ''}
+                                alt={slides[currentSlide]?.caption || 'Slide'}
+                                className="carousel-image object-cover"
+                            />
+                        </div>
+                        <div className="carousel-caption">
+                            <p>{slides[currentSlide]?.caption}</p>
+                        </div>
                     </div>
-                    <div className="carousel-caption">
-                        <p>{carouselSlides[currentSlide].caption}</p>
-                    </div>
-                </div>
+                )}
             </div>
         </section>
     );

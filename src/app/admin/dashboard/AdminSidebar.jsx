@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaTachometerAlt, FaCalendarAlt, FaBullhorn, FaCog, FaSignOutAlt, FaTable, FaChalkboardTeacher, FaEnvelope, FaGlobe, FaCommentDots } from 'react-icons/fa';
+import { FaTachometerAlt, FaCalendarAlt, FaBullhorn, FaCog, FaSignOutAlt, FaTable, FaChalkboardTeacher, FaEnvelope, FaGlobe, FaCommentDots, FaUserTie, FaStar, FaAward, FaImages } from 'react-icons/fa';
 
 export default function AdminSidebar({ onLogout }) {
     const pathname = usePathname();
@@ -11,10 +11,14 @@ export default function AdminSidebar({ onLogout }) {
         { name: 'Dashboard', icon: <FaTachometerAlt />, href: '/admin/dashboard' },
         { name: 'Calendar', icon: <FaCalendarAlt />, href: '/admin/dashboard/calendar' },
         { name: 'Announcements', icon: <FaBullhorn />, href: '/admin/dashboard/announcements' },
+        { name: 'Principal\'s Page', icon: <FaUserTie />, href: '/admin/dashboard/principal' },
+        { name: 'Distinguished Feat', icon: <FaStar />, href: '/admin/dashboard/distinguished-feat' },
+        { name: 'Honours & Milestones', icon: <FaAward />, href: '/admin/dashboard/honours-milestones' },
         { name: 'Faculty', icon: <FaChalkboardTeacher />, href: '/admin/dashboard/faculty' },
         { name: 'Enquiries', icon: <FaEnvelope />, href: '/admin/dashboard/enquiries' },
         { name: 'Testimonials', icon: <FaCommentDots />, href: '/admin/dashboard/testimonials' },
         { name: 'SEO Manager', icon: <FaGlobe />, href: '/admin/dashboard/seo' },
+        { name: 'Photo Gallery', icon: <FaImages />, href: '/admin/dashboard/photo-gallery' },
         { name: 'Data Tables', icon: <FaTable />, href: '/admin/dashboard/editor' }, // Maybe link to dashboard or specific table list? Keep generic for now.
     ];
 

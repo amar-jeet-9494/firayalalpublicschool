@@ -3,52 +3,25 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
 export default function DistinguishedFeat() {
-    // Sample achievements data - will be replaced with API data
-    // Backend structure: { image_url: "", title: "", date: "", is_featured: true }
-    const achievements = [
-        {
-            id: 1,
-            image_url: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop',
-            title: 'Participation in ULLAS – 2025 at Sourendra Mohini Public School',
-            date: 'January 2026',
-            is_featured: true,
-        },
-        {
-            id: 2,
-            image_url: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=800&h=600&fit=crop',
-            title: 'Awarded with 1st Prize by University of Engineering & Management, Jaipur | Kolkata',
-            date: 'December 2025',
-            is_featured: true,
-        },
-        {
-            id: 3,
-            image_url: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=800&h=600&fit=crop',
-            title: 'Inter-School Cultural Excellence Award – Annual Festival 2025',
-            date: 'November 2025',
-            is_featured: true,
-        },
-        {
-            id: 4,
-            image_url: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&h=600&fit=crop',
-            title: 'National Level Academic Achievement Recognition – Science Olympiad',
-            date: 'October 2025',
-            is_featured: true,
-        },
-        {
-            id: 5,
-            image_url: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=800&h=600&fit=crop',
-            title: 'State Level Sports Championship – Athletics Winners',
-            date: 'September 2025',
-            is_featured: false,
-        },
-        {
-            id: 6,
-            image_url: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&h=600&fit=crop',
-            title: 'Best School Award – District Education Excellence 2025',
-            date: 'August 2025',
-            is_featured: true,
-        },
-    ];
+    const [achievements, setAchievements] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchFeats = async () => {
+            try {
+                const res = await fetch('/api/distinguished-feat');
+                const result = await res.json();
+                if (result.data) {
+                    setAchievements(result.data);
+                }
+            } catch (error) {
+                console.error('Failed to fetch Distinguished Feats', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchFeats();
+    }, []);
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
