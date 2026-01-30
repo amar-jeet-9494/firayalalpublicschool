@@ -7,6 +7,7 @@ import {
     FaSearch, FaSortAmountDown, FaPlus, FaFilter, 
     FaEdit, FaTrash, FaTimes, FaCamera, FaArrowLeft, FaChalkboardTeacher 
 } from 'react-icons/fa';
+import MediaUploader from '@/components/admin/MediaUploader';
 
 // Departments from public page config
 const departments = [
@@ -369,22 +370,12 @@ export default function FacultyAdminPage() {
                             </div>
 
                             <div>
-                                <label className="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
-                                <div className="flex gap-2">
-                                    <input 
-                                        type="url" 
-                                        className="flex-1 p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                        value={formData.image}
-                                        onChange={e => setFormData({...formData, image: e.target.value})}
-                                        placeholder="https://..."
-                                    />
-                                    {formData.image && (
-                                        <div className="w-10 h-10 rounded-lg border overflow-hidden flex-shrink-0">
-                                             <img src={formData.image} alt="Preview" className="w-full h-full object-cover" />
-                                        </div>
-                                    )}
-                                </div>
-                                <p className="text-xs text-gray-500 mt-1">Enter a direct link to an image.</p>
+                                <label className="block text-sm font-medium text-gray-700 mb-1">Faculty Image</label>
+                                <MediaUploader 
+                                    value={formData.image} 
+                                    onChange={(url) => setFormData({...formData, image: url})} 
+                                    placeholder="Enter image URL or upload file..."
+                                />
                             </div>
 
                             <div className="pt-4 flex gap-3 justify-end">
