@@ -106,10 +106,55 @@ export default function AdmissionProcessPage() {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const [submitting, setSubmitting] = useState(false);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Form submitted:', formData);
-        alert('Thank you for your enquiry! We will contact you soon.');
+        setSubmitting(true);
+        
+        try {
+            // Map form data to DB columns
+            const payload = {
+                student_name: formData.studentName,
+                admission_class: formData.admissionClass,
+                parent_name: formData.parentName,
+                relationship: formData.relationship,
+                email: formData.email,
+                phone: formData.phone,
+                address: formData.address,
+                visit_date: formData.visitDate,
+                visit_time: formData.visitTime,
+                source_of_enquiry: formData.sourceOfEnquiry,
+                parent_type: formData.parentType,
+                child_name: formData.childName,
+                parent_old: formData.parentOld,
+                message: formData.message
+            };
+
+            const response = await fetch('/api/admissions', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            if (response.ok) {
+                alert('Thank you! Your enquiry has been submitted. We will contact you shortly.');
+                setFormData({
+                    studentName: '', admissionClass: '', parentName: '', relationship: '',
+                    email: '', phone: '', address: '', visitDate: '', visitTime: '',
+                    sourceOfEnquiry: '', parentType: '', childName: '', parentOld: '', message: ''
+                });
+            } else {
+                const errorData = await response.json();
+                console.error('Submission Error:', errorData);
+                alert(`Submission failed: ${errorData.error || 'Unknown error'}. Please check if the table exists or restart the server.`);
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred. Please try again.');
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     // Get minimum date (today)
@@ -377,8 +422,8 @@ export default function AdmissionProcessPage() {
 
                                 {/* Submit Button */}
                                 <div className="form-submit">
-                                    <button type="submit" className="submit-btn">
-                                        Submit Enquiry
+                                    <button type="submit" className="submit-btn" disabled={submitting}>
+                                        {submitting ? 'Submitting...' : 'Submit Enquiry'}
                                     </button>
                                 </div>
                             </form>

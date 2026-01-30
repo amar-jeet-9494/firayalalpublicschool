@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { FaTachometerAlt, FaCalendarAlt, FaBullhorn, FaCog, FaSignOutAlt, FaTable, FaChalkboardTeacher } from 'react-icons/fa';
+import { FaTachometerAlt, FaCalendarAlt, FaBullhorn, FaCog, FaSignOutAlt, FaTable, FaChalkboardTeacher, FaEnvelope } from 'react-icons/fa';
 
 export default function AdminSidebar({ onLogout }) {
     const pathname = usePathname();
@@ -12,6 +12,7 @@ export default function AdminSidebar({ onLogout }) {
         { name: 'Calendar', icon: <FaCalendarAlt />, href: '/admin/dashboard/calendar' },
         { name: 'Announcements', icon: <FaBullhorn />, href: '/admin/dashboard/announcements' },
         { name: 'Faculty', icon: <FaChalkboardTeacher />, href: '/admin/dashboard/faculty' },
+        { name: 'Enquiries', icon: <FaEnvelope />, href: '/admin/dashboard/enquiries' },
         { name: 'Data Tables', icon: <FaTable />, href: '/admin/dashboard/editor' }, // Maybe link to dashboard or specific table list? Keep generic for now.
     ];
 
