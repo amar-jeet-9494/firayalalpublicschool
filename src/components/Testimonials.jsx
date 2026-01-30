@@ -18,95 +18,39 @@ export default function Testimonials() {
         feedbackMessage: ''
     });
 
-    // Testimonial data
-    const testimonials = {
-        students: [
-            {
-                text: "Our school provides an excellent environment for learning and personal growth. The teachers are dedicated, approachable, and always encourage students to perform to the best of their abilities. The classrooms are well-maintained, and the overall atmosphere is positive and motivating.",
-                name: "Priyasha Roy",
-                title: "Class – 9 A",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/image1.avif"
-            },
-            {
-                text: "My name is Eenakshi Bag, and I'm in Class V/A at Firayalal Public School. I just love coming to school every day! My teachers are the best! They are always super kind and patient, even when we don't understand something the first time. They don't shout; they just explain things in a new way until the whole class gets it.",
-                name: "Eenakshi Bag",
-                title: "Class V/A",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/image2.avif"
-            },
-            {
-                text: "Firayalal Public School has been my home for over 12 years, it was a place that shaped not just my academics, but my character. Serving as Head Boy taught me to lead with empathy and purpose, while years of competitions in various events across the city and state built my confidence and resilience. From scoring 95.6% in Grade 10 to 94% in Grade 12, every milestone here has been a reflection of the guidance and belief this school instilled in me.",
-                name: "Aniket Kumar",
-                title: "Head Boy (Session 2024-25)",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Aniket.avif"
-            },
-            {
-                text: "I joined the school in 2016, and the journey since then has been nothing short of transformative. From shy beginnings to becoming confident and curious, every year here helped me grow both academically and personally. Those years with countless experiences shaped my character and outlook. I'm proud to have scored 96% in Class 10 and 94% in Class 12.",
-                name: "Sahil Raj",
-                title: "Former Student",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Sahil-Raj-.avif"
-            }
-        ],
-        parents: [
-            {
-                text: "Firayalal Public School provides a warm and encouraging atmosphere where students can discover their strengths and learn with confidence. The teachers are experienced, understanding, and always willing to guide students whenever needed. The school takes pride in maintaining discipline and a positive learning environment that helps children focus on both academics and personal growth.",
-                name: "Sayantika Roy",
-                title: "Mother of Priyasha Roy, Class 9 'A'",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/image3.avif"
-            },
-            {
-                text: "Selecting the ideal educational environment is a formidable responsibility, and in choosing Firayalal Public School (FPS), we are profoundly gratified to have found an institution that consistently exceeds our expectations. FPS is not merely a school; it is a holistic crucible for future leaders. The Management body is distinguished by its foresight, accessibility, and commitment to the school's foundational ethos.",
-                name: "Dr. Biplab Bag",
-                title: "Father of Ms. Eenakshi Bag, Class V/A",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/image4.avif"
-            },
-            {
-                text: "एक अभिभावक के रूप में, मैं हमेशा चाहता था कि मेरे बच्चे ऐसे विद्यालय में पढ़ें जहाँ शिक्षा के साथ-साथ चरित्र निर्माण पर भी ध्यान दिया जाए। जब मेरे बड़े बेटे ने फ़िरायलाल पब्लिक स्कूल में प्रवेश लिया, तो मैंने उसमें अद्भुत परिवर्तन देखा।",
-                name: "बंकिम चन्द्र सेठ",
-                title: "Parent",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Bankim.avif"
-            },
-            {
-                text: "मेरा नाम माधवी सिंहा है और मेरे पति का नाम रामरूप सिंह है, हमारे दो बच्चे, सत्यम (कक्षा 12) और सभ्यता (कक्षा 9), वे दोनों फिरायालाल पब्लिक स्कूल में पढ़ते है। जब हमने पहली बार सत्यम के लिए प्रवेश की कोशिश की, तो हमने कई विद्यालय में आवेदन किया था।",
-                name: "माधवी सिंहा",
-                title: "Parent",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/Madhvi-.avif"
-            }
-        ],
-        teachers: [
-            {
-                text: "Supriti Shekhar, an educator of English at Firayalal Public School, have been associated with this esteemed institution for the past 10 years. Recently, I have been entrusted with the responsibility of Coordinator for Balvatika to Class II. Over the years, I have witnessed the school's remarkable growth, guided by the National Education Policy (NEP).",
-                name: "Supriti Shekhar",
-                title: "English Teacher",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/Supriti-Shekhar.avif"
-            },
-            {
-                text: "I Sanjeev Kumar Shrivastava, have had the privilege of being a part of this esteemed school community since 2009, and it has been an immensely rewarding journey. As a Computer Teacher (PGT) and Head of the Department (Computer), I have witnessed tremendous growth—both professionally and personally.",
-                name: "Sanjeev Kumar Shrivastava",
-                title: "PGT Comp.Sc (HOD)",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/2.avif"
-            },
-            {
-                text: "Hello everyone. I am Dhruva Saha, PGT English have been rendering my services to this reputed school since 2019 as an english educator. It was my cherished desire to be a dedicated teacher in a renowned school soon after my education. I am privileged to be a part of FPS that values academic excellence, creativity and holistic development.",
-                name: "Dhruva Saha",
-                title: "HOD English Department",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/7.avif"
-            },
-            {
-                text: "I am Mrs. Sravani Sinha. I am a TGT (Social Science), and I have been associated with Firayalal Public School Ranchi for 19 years. Being part of this school since 2007 has been an extraordinary journey. Every day has brought the joy of guiding young minds, learning alongside passionate colleagues.",
-                name: "Shravani Sinha",
-                title: "Middle Section Coordinator",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/13.avif"
-            },
-            {
-                text: "Myself Anchan Prasad Keshari, Head of the Social Science Department TGT (Sst) has been associated with Firayalal Public School since 2020. It has been a wonderful journey working within a happy positive environment contributing to the academic growth of the students.",
-                name: "Mrs. Anchan Prasad Keshari",
-                title: "TGT | Social Science",
-                image: "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/24.avif"
-            }
-        ]
-    };
+    const [testimonialsData, setTestimonialsData] = useState({
+        students: [],
+        parents: [],
+        teachers: []
+    });
+    const [loading, setLoading] = useState(true);
+    const [submitting, setSubmitting] = useState(false);
 
-    const currentTestimonials = testimonials[activeTab] || [];
+    // Fetch testimonials
+    useEffect(() => {
+        const fetchTestimonials = async () => {
+            try {
+                const res = await fetch('/api/testimonials');
+                const result = await res.json();
+                if (result.data) {
+                    const grouped = {
+                        students: result.data.filter(t => t.category === 'Student'),
+                        parents: result.data.filter(t => t.category === 'Parent'),
+                        teachers: result.data.filter(t => t.category === 'Teacher')
+                    };
+                    setTestimonialsData(grouped);
+                }
+            } catch (error) {
+                console.error('Failed to fetch testimonials', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchTestimonials();
+    }, []);
+
+    const currentTestimonials = testimonialsData[activeTab] || [];
 
     // Auto-slide for testimonials
     useEffect(() => {
@@ -128,22 +72,53 @@ export default function Testimonials() {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert('Thank you for your submission!');
-        // Reset form
-        setFormData({
-            fullName: '',
-            email: '',
-            phone: '',
-            relation: 'Student',
-            suggestionCategory: 'Academic',
-            suggestionMessage: '',
-            grievanceSubject: '',
-            grievanceMessage: '',
-            rating: '',
-            feedbackMessage: ''
-        });
+        setSubmitting(true);
+
+        try {
+            const payload = {
+                name: formData.fullName,
+                email: formData.email,
+                phone: formData.phone,
+                role: formData.relation === 'Student' ? 'Student' : formData.relation, // Store relation as role for now
+                category: formData.relation, // Use relation as category
+                message: formType === 'Suggestion' ? formData.suggestionMessage :
+                    formType === 'Grievance' ? formData.grievanceMessage :
+                        formData.feedbackMessage,
+                rating: formData.rating,
+                submission_type: formType
+            };
+
+            const res = await fetch('/api/testimonials', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload)
+            });
+
+            if (res.ok) {
+                alert('Thank you! Your response has been submitted for review.');
+                // Reset form
+                setFormData({
+                    fullName: '',
+                    email: '',
+                    phone: '',
+                    relation: 'Student',
+                    suggestionCategory: 'Academic',
+                    suggestionMessage: '',
+                    grievanceSubject: '',
+                    grievanceMessage: '',
+                    rating: '',
+                    feedbackMessage: ''
+                });
+            } else {
+                throw new Error('Submission failed');
+            }
+        } catch (error) {
+            alert('Failed to submit. Please try again.');
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     const tabs = [
@@ -184,21 +159,24 @@ export default function Testimonials() {
                                     {currentTestimonials.length > 0 && (
                                         <div className="testimonial-card">
                                             <div className="testimonial-text">
-                                                {currentTestimonials[currentSlide].text}
+                                                "{currentTestimonials[currentSlide].message}"
                                             </div>
                                             <div className="testimonial-author">
                                                 <img
-                                                    src={currentTestimonials[currentSlide].image}
+                                                    src={currentTestimonials[currentSlide].image_url || "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/10/image1.avif"}
                                                     alt={currentTestimonials[currentSlide].name}
-                                                    className="testimonial-avatar"
+                                                    className="testimonial-avatar object-cover"
                                                 />
                                                 <div className="testimonial-info">
                                                     <h4 className="testimonial-name">
                                                         {currentTestimonials[currentSlide].name}
                                                     </h4>
                                                     <p className="testimonial-role">
-                                                        {currentTestimonials[currentSlide].title}
+                                                        {currentTestimonials[currentSlide].role || currentTestimonials[currentSlide].category}
                                                     </p>
+                                                    {currentTestimonials[currentSlide].rating && (
+                                                        <p className="text-yellow-500 text-xs mt-1">{currentTestimonials[currentSlide].rating}</p>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -380,8 +358,8 @@ export default function Testimonials() {
                                             </>
                                         )}
 
-                                        <button type="submit" className="submit-btn">
-                                            Submit Response
+                                        <button type="submit" className="submit-btn" disabled={submitting}>
+                                            {submitting ? 'Submitting...' : 'Submit Response'}
                                         </button>
                                     </form>
                                 </div>

@@ -11,11 +11,13 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Firayalal Public School | Attain and Excel",
-  description: "Firayalal Public School - A Unit of Ajay Munyal Memorial Trust. Affiliated to CBSE, New Delhi. Senior Secondary (10+2) education with excellence.",
-  keywords: "Firayalal Public School, CBSE School, Education, School, Senior Secondary",
-};
+import { getPageMetadata } from "@/lib/seo";
+
+export async function generateMetadata({ params }) {
+  // Fetch SEO for homepage by default or handle logic if needed
+  // For root layout, we usually default to Home
+  return await getPageMetadata('/');
+}
 
 export default function RootLayout({ children }) {
   return (
