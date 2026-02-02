@@ -1,0 +1,210 @@
+/* Main Container */
+.notices-page-container {
+    background-color: #fcefc7; /* The yellowish background from the image */
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+/* Hero Section */
+.notices-hero-section {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    /* Removed static background-image */
+    background-color: #000; /* Fallback */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 40px;
+    overflow: hidden; /* Ensure slides don't overflow */
+}
+
+/* Slideshow Background Layers */
+.hero-bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    z-index: 0;
+}
+
+.hero-bg-slide.active {
+    opacity: 1;
+    transform: scale(1.05); /* Slight zoom effect for dynamism */
+    transition: opacity 1s ease-in-out, transform 5s ease-out; /* Zoom happens over longer time */
+}
+
+.notices-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5); /* Slightly darker for better text readability */
+    z-index: 1;
+}
+
+.notices-hero-content {
+    position: relative;
+    z-index: 2;
+    animation: fadeIn 1s ease-out;
+}
+
+.notices-hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.notices-hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.95;
+    text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+}
+
+/* Notices List Container */
+.notices-main-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.notices-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 30px;
+    background-color: #fef9e7; /* Inner lighter yellow container */
+    border-radius: 15px;
+}
+
+
+/* --- Notice Item Card Structure --- */
+.notice-item {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    position: relative;
+    border-left-width: 10px;
+    border-left-style: solid;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.notice-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+/* Border Colors based on Type */
+.notice-item.blue { border-left-color: #0d6efd; } /* Primary Blue */
+.notice-item.green { border-left-color: #198754; } /* Success Green */
+.notice-item.red { border-left-color: #dc3545; } /* Urgent Red */
+.notice-item.yellow { border-left-color: #ffc107; } /* Warning Yellow */
+
+
+/* 1. Header */
+.notice-header {
+    background-color: #e9ecef; /* Light gray header background */
+    padding: 15px 20px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.notice-header h3 {
+    font-family: 'Georgia', 'Times New Roman', serif; /* Font matching the formal look */
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: #343a40;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* 2. Body */
+.notice-body {
+    padding: 20px;
+    background-color: #fff;
+    min-height: 60px;
+    position: relative;
+}
+
+/* Vertical line decoration in body (left side gray line) */
+.notice-body::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    bottom: 15px;
+    width: 3px;
+    background-color: #ced4da;
+    border-radius: 2px;
+}
+
+.notice-link-wrapper, .notice-text-content {
+     margin-left: 20px; /* Space for the gray line */
+     font-family: 'Open Sans', sans-serif;
+     font-size: 0.95rem;
+     color: #495057;
+}
+
+/* Links Style - Pinkish Red */
+.notice-action-link, .read-more-link {
+    color: #d63384 !important; /* The specific pink/red color */
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s;
+}
+
+.notice-action-link:hover, .read-more-link:hover {
+    color: #a61e4d !important;
+}
+
+/* 3. Footer / Date Badge */
+.notice-footer {
+    padding: 10px 20px 20px 20px; /* Bottom padding for spacing */
+    background-color: #fff;
+}
+
+.notice-date-badge {
+    background-color: #006080; /* Dark Teal/Blue Pill */
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-style: italic; /* Matches the slightly italic look if any, otherwise can remove */
+}
+
+/* Keyframes */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .notices-hero-section {
+        height: 250px;
+    }
+    .notices-hero-title {
+        font-size: 2rem;
+    }
+    .notice-header h3 {
+        font-size: 1rem;
+    }
+}

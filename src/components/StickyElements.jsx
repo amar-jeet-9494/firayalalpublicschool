@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useState } from 'react';
 
 export default function StickyElements() {
@@ -9,13 +10,13 @@ export default function StickyElements() {
         <>
             {/* Bell Icon - Left Side */}
             <div className="fixed left-4 top-1/3 z-50">
-                <a
-                    href="#notifications"
+                <Link
+                    href="/notices"
                     className="fps-notify-bell"
                     aria-label="Notifications"
                 >
                     🔔
-                </a>
+                </Link>
             </div>
 
             {/* Admission Enquiry - Right Side Vertical */}

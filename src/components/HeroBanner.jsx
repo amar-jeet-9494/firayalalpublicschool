@@ -2,7 +2,14 @@
 
 import { useState, useRef, useEffect } from 'react';
 
-export default function HeroBanner() {
+export default function HeroBanner({
+    welcomeText = "Welcome to",
+    title = "Firayalal Public School",
+    subtitle = "ATTAIN AND EXCEL",
+    description = "Affiliated to CBSE, New Delhi | Senior Secondary (10+2)",
+    videoUrl = "https://firayalalpublicschool.edu.in/wp-content/uploads/2026/01/Firayalal-Public-School-Ranchi.mp4",
+    thumbnailUrl = "https://firayalalpublicschool.edu.in/wp-content/uploads/2025/12/Firayalal-Public-School-Ranchi.avif"
+}) {
     const [isPlaying, setIsPlaying] = useState(false);
     const [showThumbnail, setShowThumbnail] = useState(true);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -77,8 +84,8 @@ export default function HeroBanner() {
         >
             {/* Placeholder/Thumbnail Image */}
             <img
-                src="https://firayalalpublicschool.edu.in/wp-content/uploads/2025/12/Firayalal-Public-School-Ranchi.avif"
-                alt="Firayalal Public School"
+                src={thumbnailUrl}
+                alt={title}
                 className={`absolute top-1/2 left-1/2 w-full h-full object-cover -translate-x-1/2 -translate-y-1/2 z-[2] transition-opacity duration-500 ${showThumbnail ? 'opacity-100' : 'opacity-0'
                     }`}
             />
@@ -93,7 +100,7 @@ export default function HeroBanner() {
                     }`}
             >
                 <source
-                    src="https://firayalalpublicschool.edu.in/wp-content/uploads/2026/01/Firayalal-Public-School-Ranchi.mp4" type="video/mp4"
+                    src={videoUrl} type="video/mp4"
                 />
                 Your browser does not support the video tag.
             </video>
@@ -106,16 +113,16 @@ export default function HeroBanner() {
                 className="absolute bottom-[5%] left-1/2 -translate-x-1/2 text-center text-white z-[30] w-[90%] animate-fade-in-up"
             >
                 <h2 className="text-2xl md:text-2xl font-semibold m-0">
-                    Welcome to
+                    {welcomeText}
                 </h2>
                 <h1 className="text-4xl md:text-3xl lg:text-5xl font-bold my-2 md:my-4">
-                    Firayalal Public School
+                    {title}
                 </h1>
                 <h3 className="text-xl md:text-2xl font-medium my-1 md:my-2 tracking-widest">
-                    ATTAIN AND EXCEL
+                    {subtitle}
                 </h3>
                 <p className="text-base md:text-lg font-normal mt-2 md:mt-4">
-                    Affiliated to CBSE, New Delhi | Senior Secondary (10+2)
+                    {description}
                 </p>
             </div>
 

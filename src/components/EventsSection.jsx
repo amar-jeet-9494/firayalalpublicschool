@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 
-export default function EventsSection() {
+export default function EventsSection({ title = "UPCOMING EVENTS & SCHOOL NOTICES" }) {
     const [currentDate, setCurrentDate] = useState(new Date());
     const [hoveredDate, setHoveredDate] = useState(null);
     const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
@@ -155,7 +155,7 @@ export default function EventsSection() {
     return (
         <section className="events-section">
             <div className="events-container">
-                <h2 className="events-title">UPCOMING EVENTS & SCHOOL NOTICES</h2>
+                <h2 className="events-title">{title}</h2>
 
                 <div className="events-layout">
                     {/* CALENDAR */}

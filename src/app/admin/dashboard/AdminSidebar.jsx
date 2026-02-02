@@ -12,6 +12,7 @@ export default function AdminSidebar({ onLogout }) {
         { name: 'Calendar', icon: <FaCalendarAlt />, href: '/admin/dashboard/calendar' },
         { name: 'Announcements', icon: <FaBullhorn />, href: '/admin/dashboard/announcements' },
         { name: 'Principal\'s Page', icon: <FaUserTie />, href: '/admin/dashboard/principal' },
+        { name: 'Holistic Education', icon: <FaChalkboardTeacher />, href: '/admin/dashboard/education' },
         { name: 'Distinguished Feat', icon: <FaStar />, href: '/admin/dashboard/distinguished-feat' },
         { name: 'Honours & Milestones', icon: <FaAward />, href: '/admin/dashboard/honours-milestones' },
         { name: 'Faculty', icon: <FaChalkboardTeacher />, href: '/admin/dashboard/faculty' },

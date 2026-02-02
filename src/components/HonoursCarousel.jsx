@@ -2,11 +2,18 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-export default function HonoursCarousel() {
-    const [honoursData, setHonoursData] = useState([]);
-    const [loading, setLoading] = useState(true);
+export default function HonoursCarousel(props) {
+    const [honoursData, setHonoursData] = useState(props.items || []);
+    const [loading, setLoading] = useState(!props.items);
+    const title = props.title || "HONOURS, ACCOLADES & MILESTONES OF PRIDE";
+    const subtitle = props.subtitle || "Moments of Honour — a showcase of the distinguished guests, eminent educationists, and respected dignitaries who have graced our events and acknowledged Firayalal Public School for its academic excellence, holistic development initiatives, and contributions to the community.";
 
     useEffect(() => {
+        if (props.items) {
+            setLoading(false);
+            return;
+        }
+
         const fetchData = async () => {
             try {
                 const res = await fetch('/api/honours-milestones');
@@ -21,7 +28,7 @@ export default function HonoursCarousel() {
             }
         };
         fetchData();
-    }, []);
+    }, [props.items]);
 
     const [activeIndex, setActiveIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -118,12 +125,9 @@ export default function HonoursCarousel() {
     return (
         <section className="honours-section">
             <div className="honours-container">
-                <h2 className="honours-title">HONOURS, ACCOLADES & MILESTONES OF PRIDE</h2>
+                <h2 className="honours-title">{title}</h2>
                 <p className="honours-subtitle">
-                    Moments of Honour — a showcase of the distinguished guests, eminent educationists,
-                    and respected dignitaries who have graced our events and acknowledged
-                    Firayalal Public School for its academic excellence, holistic development initiatives,
-                    and contributions to the community.
+                    {subtitle}
                 </p>
 
                 <div

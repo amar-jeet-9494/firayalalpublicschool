@@ -3,142 +3,127 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 
-export default function EducationSection() {
-    // Image sets that will rotate
-    const imageSets = [
-        {
-            large: '/images/education/sports-1.jpg',
-            small1: '/images/education/cultural-1.jpg',
-            small2: '/images/education/classroom-1.jpg',
-        },
-        {
-            large: '/images/education/sports-2.jpg',
-            small1: '/images/education/cultural-2.jpg',
-            small2: '/images/education/classroom-2.jpg',
-        },
-        {
-            large: '/images/education/sports-3.jpg',
-            small1: '/images/education/cultural-3.jpg',
-            small2: '/images/education/classroom-3.jpg',
-        },
-    ];
+const DEFAULT_JSON = {
+    "section": "Holistic Education",
+    "headings": [
+        "Holistic Education at F.P.S.",
+        "One Among the Top CBSE Schools in Ranchi"
+    ],
+    "description": "At Firayalal Public School, life for students exist beyond the syllabi. As one of the leading CBSE schools in Ranchi, we devote ourselves towards comprehensive education, which encompasses <strong>character formation, self-discipline and values.</strong> We aim to develop the students to be responsible citizens and future nation builders, making F.P.S. among one of the <strong>best CBSE schools in Ranchi.</strong>",
+    "statistics": [
+        { "title": "Students Enrolled", "value": "6,000", "suffix": "+" },
+        { "title": "Qualified Teachers", "value": "60", "suffix": "+" },
+        { "title": "Years of Excellence", "value": "27", "suffix": "+" },
+        { "title": "Academic Excellence", "value": "100", "suffix": "%" }
+    ],
+    // Fallbacks just in case
+    "image_slideshows": [
+        { "images": ['/images/education/sports-1.jpg', '/images/education/sports-2.jpg'] },
+        { "images": ['/images/education/cultural-1.jpg', '/images/education/cultural-2.jpg'] },
+        { "images": ['/images/education/classroom-1.jpg', '/images/education/classroom-2.jpg'] }
+    ]
+};
 
-    // Placeholder images for demo (using school-related placeholders)
-    const placeholderImages = [
-        {
-            large: 'https://images.unsplash.com/photo-1571260899304-425eee4c7efc?w=600&h=800&fit=crop',
-            small1: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?w=400&h=400&fit=crop',
-            small2: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=400&h=400&fit=crop',
-        },
-        {
-            large: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?w=600&h=800&fit=crop',
-            small1: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=400&fit=crop',
-            small2: 'https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=400&h=400&fit=crop',
-        },
-        {
-            large: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=800&fit=crop',
-            small1: 'https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=400&h=400&fit=crop',
-            small2: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=400&h=400&fit=crop',
-        },
-    ];
+// Helper component for a single slideshow
+function Slideshow({ images, interval = 3000, className }) {
+    const [index, setIndex] = useState(0);
+    const [fade, setFade] = useState(false);
 
-    const [currentIndex, setCurrentIndex] = useState(0);
-    const [isTransitioning, setIsTransitioning] = useState(false);
-
-    // Auto-rotate images every 4 seconds
     useEffect(() => {
-        const interval = setInterval(() => {
-            setIsTransitioning(true);
+        if (!images || images.length <= 1) return;
+
+        const timer = setInterval(() => {
+            setFade(true); // Trigger fade out
             setTimeout(() => {
-                setCurrentIndex((prev) => (prev + 1) % placeholderImages.length);
-                setIsTransitioning(false);
-            }, 300);
-        }, 4000);
+                setIndex(prev => (prev + 1) % images.length);
+                setFade(false); // Trigger fade in
+            }, 300); // 300ms transition time
+        }, interval);
+        return () => clearInterval(timer);
+    }, [images, interval]);
 
-        return () => clearInterval(interval);
-    }, []);
+    if (!images || images.length === 0) return null;
 
-    const currentImages = placeholderImages[currentIndex];
+    return (
+        <div className={`${className} ${fade ? 'opacity-80' : 'opacity-100'} transition-opacity duration-300`}>
+            <img src={images[index]} alt="Slideshow" className="w-full h-full object-cover" />
+        </div>
+    );
+}
 
-    const stats = [
-        { value: '6,000+', label: 'Students Enrolled' },
-        { value: '60+', label: 'Qualified Teachers' },
-        { value: '27+', label: 'Years of Excellence' },
-        { value: '100%', label: 'Academic Excellence' },
-    ];
+export default function EducationSection(props) {
+    // If props are provided (from DB), use them. Otherwise use DEFAULT_JSON.
+    // We check if 'headings' exists to determine if we have valid data.
+    const data = (props && props.headings) ? props : DEFAULT_JSON;
+
+    const { headings, description, statistics, image_slideshows } = data;
+
+    // Map the 3 slideshows to the UI slots
+    // 0 -> Large Image (Left/Main)
+    // 1 -> Small Image 1 (Top Right)
+    // 2 -> Small Image 2 (Bottom Right)
+    const largeSlideshow = image_slideshows?.[0] || {};
+    const smallSlideshow1 = image_slideshows?.[1] || {};
+    const smallSlideshow2 = image_slideshows?.[2] || {};
 
     return (
         <section className="education-section">
             <div className="education-container">
-                <h2 className="education-title">Holistic Education at F.P.S.</h2>
+                {headings && headings.length > 0 && (
+                    <h2 className="education-title">{headings[0]}</h2>
+                )}
+                {/* Optional Subheading if array has 2 items */}
+                {headings && headings.length > 1 && (
+                    <h3 className="education-subtitle text-center text-xl text-primary font-medium mb-6">
+                        {headings[1]}
+                    </h3>
+                )}
 
                 <div className="education-wrapper">
                     {/* LEFT CONTENT */}
                     <div className="education-left">
-                        <p className="education-description">
-                            At Firayalal Public School, life for students exist beyond the syllabi.
-                            As one of the leading CBSE schools in Ranchi, we devote ourselves
-                            towards comprehensive education, which encompasses{' '}
-                            <strong>character formation, self-discipline and values.</strong>{' '}
-                            We aim to develop students to be{' '}
-                            <strong>responsible citizens and future nation builders</strong>,
-                            making F.P.S. among one of the{' '}
-                            <strong>best CBSE schools in Ranchi.</strong>
-                        </p>
+                        <p className="education-description" dangerouslySetInnerHTML={{ __html: description }} />
 
                         <div className="stats-grid">
-                            {stats.map((stat, index) => (
+                            {statistics && statistics.map((stat, index) => (
                                 <div key={index} className="stat-card">
-                                    <h3>{stat.value}</h3>
-                                    <span>{stat.label}</span>
+                                    <h3>{stat.value}{stat.suffix}</h3>
+                                    <span>{stat.title}</span>
                                 </div>
                             ))}
                         </div>
                     </div>
 
-                    {/* RIGHT IMAGES - Auto Rotating */}
+                    {/* RIGHT IMAGES - using generic Slideshow helper */}
                     <div className="education-right">
-                        <div className={`image-large ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
-                            <img
-                                src={currentImages.large}
-                                alt="Student Activities"
+                        <div className="image-large overflow-hidden relative">
+                            <Slideshow
+                                images={largeSlideshow.images}
+                                interval={largeSlideshow.duration_ms || 3000}
+                                className="w-full h-full"
                             />
                         </div>
 
                         <div className="image-small-group">
-                            <div className={`image-small ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
-                                <img
-                                    src={currentImages.small1}
-                                    alt="Cultural Activity"
+                            <div className="image-small overflow-hidden relative">
+                                <Slideshow
+                                    images={smallSlideshow1.images}
+                                    interval={smallSlideshow1.duration_ms || 3500} // Offset slightly
+                                    className="w-full h-full"
                                 />
                             </div>
-                            <div className={`image-small ${isTransitioning ? 'fade-out' : 'fade-in'}`}>
-                                <img
-                                    src={currentImages.small2}
-                                    alt="Classroom Learning"
+                            <div className="image-small overflow-hidden relative">
+                                <Slideshow
+                                    images={smallSlideshow2.images}
+                                    interval={smallSlideshow2.duration_ms || 4000} // Offset slightly
+                                    className="w-full h-full"
                                 />
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {/* Image Indicators */}
-                <div className="image-indicators">
-                    {placeholderImages.map((_, index) => (
-                        <button
-                            key={index}
-                            className={`indicator ${index === currentIndex ? 'active' : ''}`}
-                            onClick={() => {
-                                setIsTransitioning(true);
-                                setTimeout(() => {
-                                    setCurrentIndex(index);
-                                    setIsTransitioning(false);
-                                }, 300);
-                            }}
-                            aria-label={`View image set ${index + 1}`}
-                        />
-                    ))}
-                </div>
+                {/* No indicators for this dynamic layout as requested by implicit simplicity */}
             </div>
         </section>
     );

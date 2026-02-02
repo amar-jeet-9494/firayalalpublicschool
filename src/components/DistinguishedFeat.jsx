@@ -2,11 +2,18 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-export default function DistinguishedFeat() {
-    const [achievements, setAchievements] = useState([]);
-    const [loading, setLoading] = useState(true);
+export default function DistinguishedFeat(props) {
+    const [achievements, setAchievements] = useState(props.achievements || []);
+    const [loading, setLoading] = useState(!props.achievements);
+    const title = props.title || "DISTINGUISHED FEAT";
+    const subtitle = props.subtitle || "Showcasing the remarkable achievements of our students—moments of pride that reflect their talent, effort, and growing potential";
 
     useEffect(() => {
+        if (props.achievements) {
+            setLoading(false);
+            return;
+        }
+
         const fetchFeats = async () => {
             try {
                 const res = await fetch('/api/distinguished-feat');
@@ -21,7 +28,7 @@ export default function DistinguishedFeat() {
             }
         };
         fetchFeats();
-    }, []);
+    }, [props.achievements]);
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoPlaying, setIsAutoPlaying] = useState(true);
@@ -73,10 +80,9 @@ export default function DistinguishedFeat() {
     return (
         <section className="distinguished-feat">
             <div className="feat-container">
-                <h2 className="feat-title">DISTINGUISHED FEAT</h2>
+                <h2 className="feat-title">{title}</h2>
                 <p className="feat-subtitle">
-                    Showcasing the remarkable achievements of our students—moments of pride
-                    that reflect their talent, effort, and growing potential
+                    {subtitle}
                 </p>
 
                 <div
