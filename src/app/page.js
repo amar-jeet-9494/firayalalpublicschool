@@ -23,6 +23,7 @@ import ForParents from '@/components/ForParents';
 import FAQ from '@/components/FAQ';
 import LifeAtFPS from '@/components/LifeAtFPS';
 import BusTrackingAdmission from '@/components/BusTrackingAdmission';
+import NoticePopup from '@/components/NoticePopup';
 
 // Revalidate every 60 seconds for ISR
 export const revalidate = 60; 
@@ -36,6 +37,7 @@ export default async function Home() {
   return (
     <>
       <Header isTransparent={true} />
+      <NoticePopup />
       
       {/* Dynamic Content Rendering */}
       {useDynamic ? (

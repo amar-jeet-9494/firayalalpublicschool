@@ -2,6 +2,7 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StickyElements from '@/components/StickyElements';
+import InteractiveCalendar from '@/components/InteractiveCalendar';
 import { supabase } from '@/lib/supabase';
 import './academic-calendar.css';
 
@@ -54,12 +55,12 @@ export default async function AcademicCalendarPage() {
             <section className="calendar-hero-section">
                 <div 
                     className="calendar-hero-bg"
-                    style={{ backgroundImage: 'url(https://firayalalpublicschool.edu.in/wp-content/uploads/2023/12/DSC_0137-scaled.jpg)' }} 
+                    style={{ backgroundImage: 'url(https://firayalalpublicschool.edu.in/wp-content/uploads/2025/11/calender.avif)' }} 
                 />
                 <div className="calendar-hero-overlay" />
                 <div className="calendar-hero-content">
                     <h1 className="calendar-hero-title">Academic Calendar</h1>
-                    <p style={{ fontSize: '18px', opacity: 0.9 }}>Session 2026</p>
+                    <p style={{ fontSize: '18px', opacity: 0.9 }}>Building Bright Futures, One Step at a Time</p>
                 </div>
             </section>
 
@@ -68,35 +69,10 @@ export default async function AcademicCalendarPage() {
 
                 <section className="calendar-section">
                     <h2 className="calendar-section-title">Academic Calendar & Events</h2>
-                    {calendarEvents.length > 0 ? (
-                        <div className="calendar-table-wrapper">
-                            <table className="calendar-table">
-                                <thead>
-                                    <tr>
-                                        <th>Date</th>
-                                        <th>Day</th>
-                                        <th>Event / Occasion</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {calendarEvents.map((item) => {
-                                        const { full, day } = formatDate(item.date);
-                                        return (
-                                            <tr key={item.id}>
-                                                <td style={{ whiteSpace: 'nowrap', fontWeight: '500', color: '#0B2C54' }}>
-                                                    {full}
-                                                </td>
-                                                <td>{day}</td>
-                                                <td>{item.event}</td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
-                        </div>
-                    ) : (
-                        <p className="loading-container">No calendar data formatted yet.</p>
-                    )}
+                    
+                    <div style={{ marginBottom: '60px' }}>
+                        <InteractiveCalendar />
+                    </div>
                 </section>
             </div>
 

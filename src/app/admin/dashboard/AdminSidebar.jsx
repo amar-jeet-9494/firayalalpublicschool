@@ -20,6 +20,7 @@ export default function AdminSidebar({ onLogout }) {
         { name: 'Testimonials', icon: <FaCommentDots />, href: '/admin/dashboard/testimonials' },
         { name: 'SEO Manager', icon: <FaGlobe />, href: '/admin/dashboard/seo' },
         { name: 'Photo Gallery', icon: <FaImages />, href: '/admin/dashboard/photo-gallery' },
+        { name: 'Notice Popups', icon: <FaBullhorn />, href: '/admin/dashboard/notice-popup' },
         { name: 'Data Tables', icon: <FaTable />, href: '/admin/dashboard/editor' }, // Maybe link to dashboard or specific table list? Keep generic for now.
     ];
 
