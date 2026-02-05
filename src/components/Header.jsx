@@ -30,7 +30,7 @@ export default function Header({ isTransparent = false }) {
             { name: 'Curriculum', href: '/curriculum' },
             { name: 'Faculty', href: '/faculty' },
             { name: 'Academic Results', href: '/results' },
-            { name: 'Achievements', href: '/academic-achievements' },
+            { name: 'Achievements', href: '/achievements' },
             { name: 'Class wise Enrollment', href: '/class-wise-enrollment' },
             { name: 'Book List', href: '/book-list' },
             { name: 'Academic Calendar', href: '/academic-calendar' },
