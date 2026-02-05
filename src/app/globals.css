@@ -29,17 +29,20 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Times New Roman', Times, serif;
+  font-family: var(--font-body, 'Times New Roman', Times, serif);
+  font-size: var(--base-font-size, 16px);
   overflow-x: hidden;
 }
 
 h1{
     line-height: 1.5;
+    font-family: var(--font-heading, inherit);
 }
 
 h2{
     font-size: 30px;
-    font-weight: 600;
+    font-family: var(--font-heading, inherit);
+    font-weight: var(--heading-font-weight, 600);
     text-transform: uppercase;
     color: var(--e-global-color-488f907);
     line-height: 1.5;

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 // import { useRouter } from 'next/navigation';
-import { FaFileCsv, FaEdit, FaCalendarAlt, FaBullhorn, FaChalkboardTeacher } from 'react-icons/fa';
+import { FaFileCsv, FaEdit, FaCalendarAlt, FaBullhorn, FaChalkboardTeacher, FaFont } from 'react-icons/fa';
 
 export default function DashboardHome() {
     const router = useRouter();
@@ -89,6 +89,23 @@ export default function DashboardHome() {
                         className="inline-flex items-center text-sm font-semibold text-slate-600 hover:text-slate-800 transition-colors"
                     >
                         Manage Tables &rarr;
+                    </Link>
+                </div>
+
+                {/* Appearance Card - NEW */}
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition-all duration-300 group">
+                    <div className="flex items-start justify-between mb-4">
+                        <div className="p-3 bg-teal-50 text-teal-600 rounded-lg group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                            <FaFont size={24} />
+                        </div>
+                    </div>
+                    <h3 className="text-lg font-bold text-slate-800 mb-2">Appearance</h3>
+                    <p className="text-slate-500 text-sm mb-6">Customize website fonts, sizes, and themes.</p>
+                    <Link 
+                        href="/admin/dashboard/appearance"
+                        className="inline-flex items-center text-sm font-semibold text-teal-600 hover:text-teal-800 transition-colors"
+                    >
+                        Customize Theme &rarr;
                     </Link>
                 </div>
             </div>

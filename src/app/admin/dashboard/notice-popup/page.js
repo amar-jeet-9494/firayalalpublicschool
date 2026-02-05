@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import { FaTrash, FaPlus, FaImage, FaToggleOn, FaToggleOff } from 'react-icons/fa';
+import MediaUploader from '@/components/admin/MediaUploader';
 
 export default function NoticePopupManager() {
     const [popups, setPopups] = useState([]);
@@ -33,35 +34,6 @@ export default function NoticePopupManager() {
             console.error('Error fetching popups:', error);
         } finally {
             setLoading(false);
-        }
-    };
-
-    const handleFileUpload = async (e) => {
-        try {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            setUploading(true);
-            const fileExt = file.name.split('.').pop();
-            const fileName = `notice-popup-${Date.now()}.${fileExt}`;
-            const filePath = `notices/${fileName}`;
-
-            const { data, error } = await supabase.storage
-                .from('school-assets') // Assuming 'school-assets' exists, otherwise likely need to create or use existing bucket
-                .upload(filePath, file);
-
-            if (error) throw error;
-
-            // Get Public URL
-            const { data: { publicUrl } } = supabase.storage
-                .from('school-assets')
-                .getPublicUrl(filePath);
-
-            setFormData(prev => ({ ...prev, image_url: publicUrl }));
-        } catch (error) {
-            alert('Error uploading image: ' + error.message);
-        } finally {
-            setUploading(false);
         }
     };
 
@@ -146,47 +118,16 @@ export default function NoticePopupManager() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium text-slate-600 mb-1">Popup Image</label>
+                            <label className="block text-sm font-medium text-slate-600 mb-2">Popup Image</label>
                             
-                            <div className="flex gap-4 items-start">
-                                <div className="flex-1">
-                                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:bg-gray-50 transition cursor-pointer relative">
-                                        <input 
-                                            type="file" 
-                                            onChange={handleFileUpload}
-                                            className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                                            accept="image/*"
-                                        />
-                                        <div className="flex flex-col items-center">
-                                            <FaImage className="text-3xl text-gray-400 mb-2" />
-                                            <span className="text-sm text-gray-500">
-                                                {uploading ? 'Uploading...' : 'Click to Upload Image'}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div className="text-center my-2 text-sm text-gray-400">- OR -</div>
-                                    <input 
-                                        type="url"
-                                        placeholder="Enter Image URL directly"
-                                        value={formData.image_url}
-                                        onChange={e => setFormData({...formData, image_url: e.target.value})}
-                                        className="w-full p-2 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none text-sm"
-                                    />
-                                </div>
-
-                                {formData.image_url && (
-                                    <div className="w-32 h-32 bg-gray-100 rounded-lg border overflow-hidden flex-shrink-0">
-                                        <img 
-                                            src={formData.image_url} 
-                                            alt="Preview" 
-                                            className="w-full h-full object-cover"
-                                        />
-                                    </div>
-                                )}
-                            </div>
+                            <MediaUploader 
+                                value={formData.image_url}
+                                onChange={(url) => setFormData({...formData, image_url: url})}
+                                placeholder="Upload image or enter URL..."
+                            />
                         </div>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 pt-2">
                             <label className="text-sm font-medium text-slate-600">Active Immediately?</label>
                             <input 
                                 type="checkbox" 
@@ -199,10 +140,10 @@ export default function NoticePopupManager() {
                         <div className="pt-2">
                             <button 
                                 type="submit" 
-                                disabled={uploading || !formData.image_url}
+                                disabled={!formData.image_url}
                                 className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                {uploading ? 'Uploading...' : 'Create Popup'}
+                                Create Popup
                             </button>
                         </div>
                     </form>
